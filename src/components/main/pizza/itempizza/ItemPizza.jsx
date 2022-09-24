@@ -1,5 +1,5 @@
 import s from './Item_pizza.module.scss'
-// import pizza from '../../../../img/pizza.png'
+
 
 function Item_pizza({ title, description, photo, price_small }) {
     return (

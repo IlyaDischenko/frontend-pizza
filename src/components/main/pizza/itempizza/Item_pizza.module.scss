@@ -56,14 +56,14 @@
     button {
         padding: 6px 18px 8px;
         border-radius: 35px;
-        background-color: #fce9d7;
+        background-color: #ffffff;
         font-size: 18px;
-        border: none;
-        color: #AE4625;
+        border: 1px solid;
+        color: #df5830;
         &:hover {
                 cursor: pointer;
-                background-color: #ffd0a3;
-                transition-duration: 300ms; 
+                background-color: #fad3b2;
+                transition-duration: 200ms; 
         }
     }
 }

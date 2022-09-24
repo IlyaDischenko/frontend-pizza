@@ -1,6 +1,6 @@
-import s from './Main.module.scss'
+import s from '../components/main/Main.module.scss'
 
-import Pizza from './pizza/Pizza'
+import Pizza from '../components/main/pizza/Pizza'
 
 function Main() {
     return (

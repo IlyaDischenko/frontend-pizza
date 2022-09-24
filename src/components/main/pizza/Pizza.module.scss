@@ -14,6 +14,14 @@
         margin: auto 15px;
     }
 
+    @media screen and (min-width:0px) and (max-width:1348px) {
+        grid-template-columns: repeat( 1fr, 3);
+        justify-items: center;
+
+        // grid-column-gap: 5px;
+        margin: auto 15px;
+    }
+
 }
 
 .pizza_title {
