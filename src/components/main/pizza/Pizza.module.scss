@@ -1,20 +1,18 @@
 .pizza_block {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
 
-    
-
-    @media screen and (min-width:426px) and (max-width:768px) {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
+    @media screen and (min-width:882px) and (max-width:1157px) {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
     }
-
-    @media screen and (min-width:0px) and (max-width:1348px) {
-
+    @media screen and (min-width:0px) and (max-width:881px) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
     }
-
 }
 
 
@@ -23,8 +21,6 @@
     font-size: 35px;
     margin-bottom: 20px;
     margin-top: 30px;
+    margin-left: 10px;
 
-    @media screen and (min-width:0px) and (max-width:1348px) {
-        margin: 30px 15px 20px;
-    }
 }

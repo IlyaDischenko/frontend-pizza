@@ -4,9 +4,9 @@ import Pizza from '../components/main/pizza/Pizza'
 
 function Main() {
     return (
-        <div className={s.main}>
+        <main className={s.main}>
             <Pizza />
-        </div>
+        </main>
     )
 }
 

@@ -1,19 +1,19 @@
 .item_pizza {
-    width: 270px;
-    height: 420;
+    max-width: 270px;
+    max-height: 420;
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 0 0 20%;
-    // flex-shrink: 0;
-    margin: 10px;
+    // flex: 0 0 25%;
+    margin: 30px 10px 10px 10px;
+    box-sizing: border-box;
 
     .photo {
         width: 100%;
         display: flex;
         justify-content: center;
+        margin: 0 0 0 7px;
         img {
-            margin: auto;
             width: 270px;
             max-width: 270px;
             &:hover {
@@ -43,48 +43,6 @@
             color: #0000009f;
         } 
     }
-    
-   
-
-    @media screen and (min-width:426px) and (max-width:768px) {
-        width: 50%;
-        height: 400px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        .photo {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            img {
-                margin: auto;
-                width: 100%;
-                max-width: 270px;
-            }
-        }
-
-        .title {
-            margin-top: 6px;
-            margin-bottom:2px;
-            div {
-                font-weight: 700;
-                font-size: 15px;
-            }
-        }
-
-        .description{
-            height: 25px;
-            margin: auto;
-        
-            div{
-                text-align: center;
-                font-weight: 300;
-                font-size: 10px;
-                color: #0000009f;
-            } 
-        }
-    }
 }
 
 
@@ -103,7 +61,7 @@
         display: flex;
         background-color: #f3f3f3;
         border-radius: 8px;
-        padding: 6px;
+        padding: 3px;
         margin-bottom: 6px;
         
         ul {
@@ -132,49 +90,49 @@
         }
     }
 
-    @media screen and (min-width:426px) and (max-width:768px) {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    margin-top: 8px;
+    // @media screen and (min-width:426px) and (max-width:768px) {
+    // display: flex;
+    // justify-content: space-between;
+    // flex-direction: column;
+    // margin-top: 8px;
 
-    width: 100%;
+    // width: 100%;
 
 
 
-    .sizes {
-        display: flex;
-        background-color: #f3f3f3;
-        border-radius: 8px;
-        padding: 6px;
-        margin-bottom: 6px;
+    // .sizes {
+    //     display: flex;
+    //     background-color: #f3f3f3;
+    //     border-radius: 8px;
+    //     padding: 6px;
+    //     margin-bottom: 6px;
         
-        ul {
-          display: flex;
-          flex: 1;
+    //     ul {
+    //       display: flex;
+    //       flex: 1;
         
 
   
-            li {
-                display: flex;
-                justify-content: center;
-                padding: 6px;
-                margin: 0 1px;
-                flex: 1;
-                cursor: pointer;
-                font-weight: 600;
-                font-size: 12px;
+    //         li {
+    //             display: flex;
+    //             justify-content: center;
+    //             padding: 6px;
+    //             margin: 0 1px;
+    //             flex: 1;
+    //             cursor: pointer;
+    //             font-weight: 600;
+    //             font-size: 12px;
 
-                &.active {
-                    background: #ffffff;
-                    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.178);
-                    border-radius: 8px;
-                    cursor: pointer;
-                }
-            }
-        }
-    }
-    }
+    //             &.active {
+    //                 background: #ffffff;
+    //                 box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.178);
+    //                 border-radius: 8px;
+    //                 cursor: pointer;
+    //             }
+    //         }
+    //     }
+    // }
+    // }
 }
 
 .price_and_button{

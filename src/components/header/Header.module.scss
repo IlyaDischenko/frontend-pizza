@@ -1,26 +1,28 @@
-* {
-    font-family: 'Nunito', sans-serif;
-}
-
 .Header {
     height: 80px;
     max-width: 1350px;
+    margin: 0 auto; 
+
+    // display: grid;
+    // grid-template-columns: repeat(4, 1fr);
+    // grid-template-areas:"A B C D";
+    
+    padding: 10px 10px;
+}
+
+.header_inner{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 10px;
-    margin: auto;
-    @media screen and (min-width:200px) and (max-width:560px) {
-        margin: 5px 5px;
-        height: 60px;
-    }
+    flex: 0 0 100%;
 }
-// сделать для широких расширений
-
 
 .left_items {
     width: 50%;
     height: 50px;
+    justify-self: flex-start;
+    flex: 0 0 50%;
+    // grid-area: A;
 
     img {
         height: 50px;
@@ -29,24 +31,22 @@
     &:hover {
         cursor: pointer;
     }
-
-    @media screen and (min-width:0px) and (max-width:560px) {
-        display: none;
-    }
 }
 
 .right_items {
+    justify-self: flex-end;
+    // grid-area: D;
+
     display: flex;
     height: 50px;
     justify-content: right;
     align-items: center;
     width: 50%;
-    margin-right: 30px;
-    @media screen and (min-width:200px) and (max-width:560px) {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
+    flex: 0 0 50%;
+    margin-right: 15px;
+
+    // position: absolute;
+    // right: 20px;
 }
 
 
