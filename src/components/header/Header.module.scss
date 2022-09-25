@@ -22,7 +22,8 @@
     height: 50px;
     justify-self: flex-start;
     flex: 0 0 50%;
-    // grid-area: A;
+    
+    margin-right: 1px;
 
     img {
         height: 50px;
@@ -31,11 +32,12 @@
     &:hover {
         cursor: pointer;
     }
+    @media screen and (min-width:0px) and (max-width:581px) {
+        display: none;
+    }
 }
 
 .right_items {
-    justify-self: flex-end;
-    // grid-area: D;
 
     display: flex;
     height: 50px;
@@ -44,11 +46,14 @@
     width: 50%;
     flex: 0 0 50%;
     margin-right: 15px;
+    margin-left: 1px;
 
-    // position: absolute;
-    // right: 20px;
+    @media screen and (min-width:0px) and (max-width:581px) {
+        width: 100%;
+        flex: 0 0 100%;
+        justify-content: space-between;
+    }
 }
-
 
 .cabinet {
     display: flex;

@@ -4,6 +4,7 @@ import axios from 'axios'
 import s from './Pizza.module.scss'
 import ItemPizza from './itempizza/ItemPizza'
 import Skeleton from './Skeleton/Skeleton'
+import Sort from '../../sort/Sort'
 
 
 function Pizza() {
@@ -22,7 +23,11 @@ function Pizza() {
 
     return (
         <div>
-            <div className={s.pizza_title}>Пицца</div>
+            <div className={s.title}>
+                <div className={s.pizza_title}>Пицца</div>
+                <Sort />
+            </div>
+            
             <div className={s.pizza_block}>
                 {
                     isLoading 
