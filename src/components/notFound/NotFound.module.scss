@@ -2,5 +2,22 @@
     margin: 100px auto;
     max-width: 270px;
     font-size: 35px;
-    
+    text-align: center;
+
+    button {
+        font-size: 20px;
+        color: #FF5925;
+        padding: 5px 10px;
+        margin: 15px 0 0 0;
+        background-color: #ffffff;
+        border-radius: 25px;
+        border: 1px solid #FF5925;
+        cursor: pointer;
+
+        &:hover{
+            padding: 8px 13px;  
+            font-size: 22px;  
+            transition-duration: 0.5s;
+        }
+    }
 }

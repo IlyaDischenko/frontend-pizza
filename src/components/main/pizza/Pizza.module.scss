@@ -4,19 +4,13 @@
     justify-items: center;
 
     @media screen and (min-width:882px) and (max-width:1157px) {
-        display: grid;
         grid-template-columns: repeat(3, 1fr);
-        justify-items: center;
     }
     @media screen and (min-width:572px) and (max-width:881px) {
-        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        justify-items: center;
     }
     @media screen and (min-width:0px) and (max-width:571px) {
-        display: grid;
         grid-template-columns: repeat(1, 1fr);
-        justify-items: center;
     }
 }
 

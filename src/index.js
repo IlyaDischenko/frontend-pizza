@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import MobileApp from './mobileComponents/MobileApp'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
@@ -11,13 +12,13 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
 
-      {/* <BrowserView> */}
+      <BrowserView>
         <App />
-      {/* </BrowserView> */}
+      </BrowserView>
       
-      {/* <MobileView>
-        <h1>This is rendered only on mobile</h1>
-      </MobileView> */}
+      <MobileView>
+        <MobileApp />
+      </MobileView>
 
     </BrowserRouter>
 
