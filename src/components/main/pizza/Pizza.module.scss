@@ -1,28 +1,23 @@
 .pizza_block {
-    display: grid;
-    // grid-template-columns:  1fr 1fr 1fr 1fr;
-    // grid-template-columns: repeat(auto-fill, 322,5px);
-    grid-template-columns: repeat(auto-fill, minmax(min(322px, 100%), 1fr));
-    grid-column-gap: 20px;
-    grid-row-gap: 50px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 
-    @media screen and (min-width:0px) and (max-width:1348px) {
-        grid-template-columns: repeat( 1fr, 3);
-        justify-items: center;
+    
 
-        // grid-column-gap: 5px;
-        margin: auto 15px;
+    @media screen and (min-width:426px) and (max-width:768px) {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
     }
 
     @media screen and (min-width:0px) and (max-width:1348px) {
-        grid-template-columns: repeat( 1fr, 3);
-        justify-items: center;
 
-        // grid-column-gap: 5px;
-        margin: auto 15px;
     }
 
 }
+
+
 
 .pizza_title {
     font-size: 35px;

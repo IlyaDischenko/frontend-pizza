@@ -1,13 +1,16 @@
 import s from './Header.module.scss'
 import logo from '../../img/logosvg.svg'
+import { Link } from 'react-router-dom';
 
 
 function Header() {
     return (
         <div className={s.Header}>
-            <div className={s.left_items}>
-                <img src={logo} alt="as" />
-            </div>
+            <Link to="/">
+                <div className={s.left_items}>
+                    <img src={logo} alt="as" />
+                </div>
+            </Link>
             <div className={s.right_items}>
                 <div className={s.cabinet}>
                     <span fill="none" className={s.icon}>
@@ -18,9 +21,11 @@ function Header() {
                     </span>
                     <div className={s.text}>Кабинет</div>
                 </div>
-                <div className={s.divbutton}>
-                    <button>Корзина</button>
-                </div>
+                <Link to="/cart">
+                    <div className={s.divbutton}>
+                        <button>Корзина</button>
+                    </div>
+                </Link>
             </div>
         </div>
     )
