@@ -1,9 +1,13 @@
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux'
+
 import s from './Header.module.scss'
 import logo from '../../img/logosvg.svg'
-import { Link } from 'react-router-dom';
-
+// import shopPNG from '../../img/shopping-cart.png'
 
 function Header() {
+    const cartState = useSelector((state) => state.cart)
+
     return (
         <header className={s.Header}>
             <div className={s.header_inner}>
@@ -24,7 +28,7 @@ function Header() {
                     </div>
                     <Link to="/cart">
                         <div className={s.divbutton}>
-                            <button>Корзина</button>
+                            <button>{cartState.countItems == 0 ? "Корзина" : `${cartState.countItems} | ${cartState.totalPrice} ₽`  }</button>
                         </div>
                     </Link>
                 </div>
