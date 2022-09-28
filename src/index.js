@@ -14,17 +14,17 @@ root.render(
   // <React.StrictMode>
     <BrowserRouter>
 
-      <BrowserView>
+      {/* <BrowserView> */}
         <Provider store={ store }>
           <App />
         </Provider>
-      </BrowserView>
+      {/* </BrowserView> */}
       
-      <MobileView>
-        <Provider store={ store }>
+      {/* <MobileView> */}
+        {/* <Provider store={ store }>
           <MobileApp />
-        </Provider>
-      </MobileView>
+        </Provider> */}
+      {/* </MobileView> */}
 
     </BrowserRouter>
 
