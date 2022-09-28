@@ -11,14 +11,28 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action) {
-      // console.log('что пришло', action.payload)
-      state.items.push(action.payload)
-      // console.log('что после пуша', state.items[1])
-      state.totalPrice += action.payload.price
-      state.countItems += 1
+      const findItem = state.items.find(obj => obj.id == action.payload.id && obj.size == action.payload.size)
+      // Проверка на наличие элемента в стэйте
+      if (findItem) {
+        //Если есть, то инкрементируем count, добавляем стоймость в totalPrice, добавляем количество в countItems и добавляем стоймость в общую стоймость пицц одной категории
+        findItem.count++
+        state.totalPrice += findItem.price
+        state.countItems += 1
+        findItem.allItemPrice += action.payload.price
+      } else {
+        state.items.push({
+          ...action.payload,
+          count: 1,
+          allItemPrice: action.payload.price
+          
+        }
+        )
+        state.totalPrice += action.payload.price
+        state.countItems += 1
+      }
     },
     removeItem(state, action) {
-        state.items.filter((obj) => obj.id !== action.payload)
+        state.items.filter((obj) => obj.id !== action.payload.id)
     },
     clearItems(state) {
         state.totalPrice = 0

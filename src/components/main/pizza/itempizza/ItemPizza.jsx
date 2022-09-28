@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addItem, clearItems } from '../../../../redux/slices/cartSlice';
 
 import s from './Item_pizza.module.scss'
@@ -7,6 +7,9 @@ import s from './Item_pizza.module.scss'
 
 function ItemPizza({ id, title, description, photo, price_small, price_middle, price_big }) {
     const dispatch = useDispatch()
+    const itemState = useSelector((state) => state.cart.items.find((obj) => obj.id == id))
+    const addedCount = itemState ? itemState.count : 0
+    // console.log('item', itemState.count)
     
     const [activePrice, setActivePrice] = React.useState(0)
     const [activeSize, setActiveSize] = React.useState(0);
@@ -28,7 +31,6 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
             size: sizes[activeSize]
         }
         dispatch(addItem(item),
-        console.log('item', item)
         )
     }
 
@@ -67,7 +69,10 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
                     </div>
 
                     <div className={s.button}>
-                        <button onClick={onClickAdd}>Выбрать</button>
+                        <button onClick={onClickAdd}>
+                        <span>Выбрать</span>
+                        {addedCount > 0 && <p> 0</p>} 
+                        </button>
                     </div>
                 </div>
             </div>

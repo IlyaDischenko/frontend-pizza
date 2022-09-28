@@ -1,0 +1,130 @@
+.rootCartItem {
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
+    margin-bottom: 10px;
+
+    .photoAndTitle {
+        display: flex;
+
+        .img {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    
+        .titleAndSize {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+    
+            .title {
+                font-size: 18px;
+                font-weight: 700;
+            }
+    
+            .size {
+                font-size: 14px;
+            }
+        }
+
+    }
+
+
+    .rightItems {
+        display: flex;
+
+        .count {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90px;
+
+            div {
+                font-size: 20px;
+            }
+
+            button {
+                width: 32px;
+                height: 32px;
+                min-width: 32px;
+                min-height: 32px;
+                background-color: #ffffff;
+                border: 2px #FF5925 solid;
+                padding: 2px 9px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                svg {
+                    fill: #EB5A1E;
+                }
+
+                &:hover {
+                    background-color: #FF5925;
+                    cursor: pointer;
+                    transition-duration: 200ms; 
+
+                    svg {
+                        fill: #ffffff;
+                    }
+                }
+
+
+
+            }
+        }
+
+        .priceAndRemove {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .price {
+                display: flex;
+                justify-content: flex-end;
+                font-weight: 400;
+                margin-right: 10px;
+                margin-left: 10px;
+                width: 60px;
+            }
+
+            .removeItem {
+                button {
+                min-width: 32px;
+                min-height: 32px;
+                background-color: #ffffff;
+                border: 2px #c9c9c9 solid;
+                padding: 2px 9px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                svg {
+                    rotate: 45deg;
+                    path{
+                        fill: #c9c9c9;
+                    } 
+                }
+
+                &:hover {
+                    background-color: #c9c9c9;
+                    cursor: pointer;
+                    transition-duration: 200ms; 
+    
+                    svg {
+                        path {
+                            fill: #ffffff;
+                        }
+                    }
+                }
+                }
+            }
+        }
+    }
+}
