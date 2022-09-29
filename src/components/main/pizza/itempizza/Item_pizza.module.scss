@@ -145,14 +145,15 @@
         div {
             font-weight: 400;
             font-size: 20px;
+            white-space: nowrap;
         }
     }
     
     .button {
-        margin-left: 25px;
+
     
         button {
-            padding: 4px 16px 6px;
+            padding: 4px 16px 4px;
             border-radius: 35px;
             background-color: #ffffff;
             font-size: 18px;
@@ -161,15 +162,22 @@
             cursor: pointer;
 
             display: flex;
+            
+            span {
+                white-space: nowrap;
+            }
 
             p {
-                margin-left: 4px;
+                margin: 0px;
+                padding-left: 3px;
+                white-space: nowrap;
             }
 
             &:hover {
                     color: #ffffff;
                     background-color: #FF5925;
                     transition-duration: 200ms; 
+                    
             }
         }}
 }

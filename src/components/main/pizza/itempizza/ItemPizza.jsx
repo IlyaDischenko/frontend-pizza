@@ -7,9 +7,15 @@ import s from './Item_pizza.module.scss'
 
 function ItemPizza({ id, title, description, photo, price_small, price_middle, price_big }) {
     const dispatch = useDispatch()
-    const itemState = useSelector((state) => state.cart.items.find((obj) => obj.id == id))
-    const addedCount = itemState ? itemState.count : 0
-    // console.log('item', itemState.count)
+    // Ищем добавленные пиццы по размерам
+    const bigItemState = useSelector((state) => state.cart.items.find((obj) => obj.id == id && obj.size == 40))
+    const middleItemState = useSelector((state) => state.cart.items.find((obj) => obj.id == id && obj.size == 30))
+    const smallItemState = useSelector((state) => state.cart.items.find((obj) => obj.id == id && obj.size == 26))
+
+    const bigAddedCount = bigItemState ? bigItemState.count : 0
+    const middleAddedCount = middleItemState ? middleItemState.count : 0
+    const smallAddedCount = smallItemState ? smallItemState.count : 0
+
     
     const [activePrice, setActivePrice] = React.useState(0)
     const [activeSize, setActiveSize] = React.useState(0);
@@ -71,7 +77,9 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
                     <div className={s.button}>
                         <button onClick={onClickAdd}>
                         <span>Выбрать</span>
-                        <p> {addedCount > 0 && `| ${addedCount}`} </p>
+                        <p>{smallAddedCount > 0 && `| ${smallAddedCount}`}{middleAddedCount > 0 && `| ${middleAddedCount}`}{bigAddedCount > 0 && `| ${bigAddedCount}`}</p>
+                        {/* <p>{middleAddedCount > 0 && `| ${middleAddedCount}`}</p>
+                        <p>{bigAddedCount > 0 && `| ${bigAddedCount}`}</p> */}
                         </button>
                     </div>
                 </div>
