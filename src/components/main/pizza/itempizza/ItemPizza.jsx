@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { addItem, clearItems } from '../../../../redux/slices/cartSlice';
+import { addItem } from '../../../../redux/slices/cartSlice';
 
 import s from './Item_pizza.module.scss'
 
@@ -71,7 +71,7 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
                     <div className={s.button}>
                         <button onClick={onClickAdd}>
                         <span>Выбрать</span>
-                        {addedCount > 0 && <p> 0</p>} 
+                        <p> {addedCount > 0 && `| ${addedCount}`} </p>
                         </button>
                     </div>
                 </div>

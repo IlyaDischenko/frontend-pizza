@@ -1,13 +1,11 @@
 .Header {
+    display: flex;
     height: 80px;
     max-width: 1350px;
     margin: 0 auto; 
 
-    // display: grid;
-    // grid-template-columns: repeat(4, 1fr);
-    // grid-template-areas:"A B C D";
     
-    padding: 10px 10px;
+    // padding: 10px 10px;
 }
 
 .header_inner{
@@ -70,6 +68,7 @@
     
     .text {
         font-size: 18px;
+        font-weight: 400;
     }
     
     // .iconimg {
@@ -99,6 +98,7 @@
         border-radius: 35px;
         background-color: #FF5925;
         font-size: 18px;
+        font-weight: 400;
         border: none;
         color: rgb(255, 255, 255);
         &:hover {

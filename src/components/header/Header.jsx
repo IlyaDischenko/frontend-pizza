@@ -28,7 +28,7 @@ function Header() {
                     </div>
                     <Link to="/cart">
                         <div className={s.divbutton}>
-                            <button>{cartState.countItems == 0 ? "Корзина" : `${cartState.countItems} | ${cartState.totalPrice} ₽`  }</button>
+                            <button>{cartState.countItems == 0 ? "Корзина" : `Корзина | ${cartState.countItems}`  }</button>
                         </div>
                     </Link>
                 </div>

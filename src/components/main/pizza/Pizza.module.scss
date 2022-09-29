@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-items: center;
+    max-width: 1350px;
 
     @media screen and (min-width:882px) and (max-width:1157px) {
         grid-template-columns: repeat(3, 1fr);
@@ -17,14 +18,12 @@
 .title {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     margin: 20px 0;
 }
 
 .pizza_title {
     font-size: 35px;
-    // margin-bottom: 20px;
-    // margin-top: 30px;
-    margin-left: 10px;
+    // padding-left: 10px;
 
 }

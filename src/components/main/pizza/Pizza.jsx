@@ -1,5 +1,7 @@
 import React from 'react'
-import axios from 'axios'
+
+import { useDispatch, useSelector } from 'react-redux'
+import { addToRedux, fetchPizzas } from '../../../redux/slices/ItemsSlice';
 
 import s from './Pizza.module.scss'
 import ItemPizza from './itempizza/ItemPizza'
@@ -9,16 +11,8 @@ import Sort from '../../sort/Sort'
 
 function Pizza() {
 
-    const [isLoading, setIsLoading] = React.useState(true)
-    const [items, setitems] = React.useState([])
-
-    React.useEffect(() => {
-        axios.get('https://backend-pizza-test.herokuapp.com/get')
-        .then((arr) => {
-            setitems(arr.data.pizza)
-            setIsLoading(false)
-        })
-    }, [])
+    const { pizzas, status } = useSelector((state) => state.items)
+    console.log(status)
 
 
     return (
@@ -29,10 +23,10 @@ function Pizza() {
             </div>
             
             <div className={s.pizza_block}>
-                {
-                    isLoading 
+                {   status == 'error' ? <div> Ошибка </div> :
+                    status == 'loading' 
                     ? [...new Array(12)].map((_, index) => <Skeleton key={index}/>)
-                    : items.map((item) => <ItemPizza key={item.id} {...item} />) 
+                    : pizzas.map((item) => <ItemPizza key={item.id} {...item} />) 
                 }
             </div>
         </div>
