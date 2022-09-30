@@ -40,6 +40,42 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
         )
     }
 
+    const checkSize = (indexSize) => {
+        if (indexSize == 0) {
+            if (smallAddedCount > 0) {
+                return <div>
+                           <div className={s.delimiter}></div>
+                           <div>{smallAddedCount}</div>
+                       </div>
+            }
+            
+        } else if (indexSize == 1) {
+            if (middleAddedCount > 0) {
+                return <div>
+                           <div className={s.delimiter}></div>
+                           <div>{middleAddedCount}</div>
+                       </div>
+            }
+        }else if (indexSize == 2) {
+            if (bigAddedCount > 0) {
+                return <div>
+                           <div className={s.delimiter}></div>
+                           <div>{bigAddedCount}</div>
+                       </div>
+            }
+        }
+    }
+
+    const allCountItem = () => {
+        const allcount = bigAddedCount + middleAddedCount + smallAddedCount
+        if (allcount > 0) {
+            return <div className={s.countDiv}>
+                <div className={s.delimiter}></div>
+                <div>{allcount}</div>
+            </div>
+        }
+    }
+
     return (
         <div className={s.item_pizza}>
             <div className={s.photo}>
@@ -63,7 +99,8 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
                             key={size}
                             onClick={() => onClickSizeItem(i)}
                             className={activeSize === i ? s.active : ""}>
-                            {size} см.
+                            {size} см 
+                            {checkSize(i)}
                             </li>
                         ))}
                     </ul>
@@ -77,9 +114,7 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
                     <div className={s.button}>
                         <button onClick={onClickAdd}>
                         <span>Выбрать</span>
-                        <p>{smallAddedCount > 0 && `| ${smallAddedCount}`}{middleAddedCount > 0 && `| ${middleAddedCount}`}{bigAddedCount > 0 && `| ${bigAddedCount}`}</p>
-                        {/* <p>{middleAddedCount > 0 && `| ${middleAddedCount}`}</p>
-                        <p>{bigAddedCount > 0 && `| ${bigAddedCount}`}</p> */}
+                        {allCountItem()}
                         </button>
                     </div>
                 </div>
