@@ -1,11 +1,10 @@
 import { useDispatch } from 'react-redux'
 
 import s from './CartItem.module.scss'
-import { addItem, removeItem, itemMinus } from './../../../redux/slices/cartSlice';
+import { addItem, removeItem, itemMinus } from './../../../redux/slices/cartPizzaSlice';
 
 
-function CartItem({ id, photo, title, size, count, price, allItemPrice }) {
-    console.log(id)
+function CartItem({ id, photo, title, size, count, allItemPrice }) {
     const dispatch = useDispatch()
 
     const itemDecrement = () => {

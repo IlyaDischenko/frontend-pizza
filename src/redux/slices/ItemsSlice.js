@@ -8,6 +8,7 @@ export const fetchItems = createAsyncThunk('items/fetchItems', async () => {
 
 const initialState = {
   pizzas: [],
+  drinks: [],
   status: 'loading'
 }
 
@@ -15,9 +16,6 @@ export const itemsSlice = createSlice({
     name: 'items',
     initialState,
     reducers: {
-        setPizzas(state, action) {
-            state.pizzas = action.payload
-        }
     },
     extraReducers: {
         [fetchItems.pending]: (state) => {
@@ -25,11 +23,13 @@ export const itemsSlice = createSlice({
         },
         [fetchItems.fulfilled]: (state, action) => {
             state.pizzas = action.payload.pizza
+            state.drinks = action.payload.drinks
             state.status = 'success'
         },
         [fetchItems.rejected]: (state) => {
             state.status = 'error'
             state.pizzas = []
+            state.drinks = []
         }
     }
 })

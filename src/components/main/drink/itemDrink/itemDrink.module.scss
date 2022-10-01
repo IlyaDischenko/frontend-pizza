@@ -1,0 +1,120 @@
+.itemDrink {
+    max-width: 270px;
+    max-height: 420;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 10px 10px 10px;
+    box-sizing: border-box;
+
+    .photo {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 0 0 0 7px;
+        img {
+            width: 270px;
+            max-width: 270px;
+            &:hover {
+                transform: translate(0, 3px);
+                transition-duration: 200ms; 
+            }
+        }
+    }
+    
+    .title {
+        margin-top: 10px;
+        margin-bottom:2px;
+        width: 270px;
+        div {
+            font-weight: 700;
+            font-size: 20px;
+        }
+    }
+
+    .description{
+        height: 50px;
+        margin-bottom: 7px;
+        width: 270px;
+    
+        div{
+            font-weight: 300;
+            font-size: 14px;
+            color: #0000009f;
+        } 
+    }
+}
+
+
+
+.item_footer {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    margin-top: 8px;
+}
+
+
+.price_and_button{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 4px;
+    width: 270px;
+
+    .price {
+        div {
+            font-weight: 400;
+            font-size: 20px;
+            white-space: nowrap;
+        }
+    }
+    
+    .button {
+
+    
+        button {
+            padding: 4px 16px 4px;
+            border-radius: 35px;
+            background-color: #ffffff;
+            font-size: 18px;
+            border: 1px solid;
+            color: #df5830;
+            cursor: pointer;
+
+            display: flex;
+            
+            span {
+                white-space: nowrap;
+            }
+
+            .countDiv {
+                display: flex;
+                align-items: center;
+
+                .delimiter {
+                    background-color: #df593094;
+                    height: 15px;
+                    margin-left: 3px;
+                    margin-right: 3px;
+                    width: 1px;
+                    border-radius: 2px;
+                }
+            }
+
+            &:hover {
+                    color: #ffffff;
+                    background-color: #FF5925;
+                    transition-duration: 200ms;
+
+
+                    .countDiv {
+                        .delimiter {
+                            background-color: #ffffff94;
+                        }
+                    }
+                    
+            }
+        }
+    }
+}

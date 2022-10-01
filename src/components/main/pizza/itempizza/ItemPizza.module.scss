@@ -34,7 +34,7 @@
 
     .description{
         height: 50px;
-        margin: auto;
+        margin-bottom: 7px;
         width: 270px;
     
         div{
@@ -49,10 +49,10 @@
 
 .item_footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     flex-direction: column;
     margin-top: 8px;
-
+    height: 100%;
     width: 100%;
 
 

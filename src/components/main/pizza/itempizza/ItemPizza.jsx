@@ -1,16 +1,16 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { addItem } from '../../../../redux/slices/cartSlice';
+import { addItem } from '../../../../redux/slices/cartPizzaSlice';
 
-import s from './Item_pizza.module.scss'
+import s from './ItemPizza.module.scss'
 
 
 function ItemPizza({ id, title, description, photo, price_small, price_middle, price_big }) {
     const dispatch = useDispatch()
     // Ищем добавленные пиццы по размерам
-    const bigItemState = useSelector((state) => state.cart.items.find((obj) => obj.id == id && obj.size == 40))
-    const middleItemState = useSelector((state) => state.cart.items.find((obj) => obj.id == id && obj.size == 30))
-    const smallItemState = useSelector((state) => state.cart.items.find((obj) => obj.id == id && obj.size == 26))
+    const bigItemState = useSelector((state) => state.cartPizza.items.find((obj) => obj.id == id && obj.size == 40))
+    const middleItemState = useSelector((state) => state.cartPizza.items.find((obj) => obj.id == id && obj.size == 30))
+    const smallItemState = useSelector((state) => state.cartPizza.items.find((obj) => obj.id == id && obj.size == 26))
 
     const bigAddedCount = bigItemState ? bigItemState.count : 0
     const middleAddedCount = middleItemState ? middleItemState.count : 0

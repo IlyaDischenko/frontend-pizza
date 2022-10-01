@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 
 import s from './../components/cart/Cart.module.scss'
 import CartItem from './../components/cart/cartItem/CartItem'
-import { clearItems } from './../redux/slices/cartSlice';
+import { clearItems } from './../redux/slices/cartPizzaSlice';
 
 function Cart() {
-    const cartState = useSelector((state) => state.cart)
-    console.log(cartState)
+    const cartPizzaState = useSelector((state) => state.cartPizza)
 
     const dispatch = useDispatch()
 
@@ -25,15 +24,17 @@ function Cart() {
                 </div>
             </div>
             <div>
-                {cartState.items.map((item) => <CartItem key={item.id} {...item} />)}
+                {cartPizzaState.items.map((item) => <CartItem key={item.id} {...item} />)}
             </div>
 
             <div className={s.allCountAndSum}>
                 <div className={s.allCount}>
-                    Всего: <span>{cartState.countItems}</span> шт.
+                     {/* сделать правильный расчёт, не только пиццы!!!! */}
+                    Всего: <span>{cartPizzaState.countItems}</span> шт.
                 </div>
                 <div className={s.totalPrice}>
-                    Сумма заказа: <span>{cartState.totalPrice} ₽</span> 
+                    {/* сделать правильный расчёт, не только пиццы!!!! */}
+                    Сумма заказа: <span>{cartPizzaState.totalPrice} ₽</span> 
                 </div>
             </div>
 

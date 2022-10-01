@@ -5,12 +5,12 @@
     margin: 20px 0;
 }
 
-.pizza_title {
+.drink_title {
     font-size: 35px;
     margin-left: 10px;
 }
 
-.pizza_block {
+.drink_block {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-items: center;
@@ -25,6 +25,5 @@
     // @media screen and (min-width:0px) and (max-width:571px) {
     //     grid-template-columns: repeat(1, 1fr);
     // }
-
 }
 
