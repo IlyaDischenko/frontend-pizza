@@ -32,7 +32,6 @@ export const cartSlice = createSlice({
         //Если есть, то инкрементируем count, добавляем стоймость в totalPrice, добавляем количество в countItems и добавляем стоймость в общую стоймость пицц одной категории
         if (findItem.count < 99) {
           findItem.count++
-
           findItem.allItemPrice = calcItemPrice(findItem.count, findItem.price)
         }
       } else {
