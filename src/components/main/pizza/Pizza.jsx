@@ -18,7 +18,6 @@ function Pizza() {
         <div>
             <div className={s.title}>
                 <div className={s.pizza_title}>Пицца</div>
-                <Sort />
             </div>
             
             <div className={s.pizza_block}>

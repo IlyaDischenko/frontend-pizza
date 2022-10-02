@@ -2,16 +2,28 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 
 import s from './../components/cart/Cart.module.scss'
-import CartItem from './../components/cart/cartItem/CartItem'
-import { clearItems } from './../redux/slices/cartPizzaSlice';
+import CartItemPizza from '../components/cart/CartItemPizza/CartItemPizza'
+import CartItemDrink from '../components/cart/CartItemDrink/CartItemDrink'
+import { clearPizzaItems } from './../redux/slices/cartPizzaSlice'
+import { clearDrinkItems } from './../redux/slices/cartDrinkSlice'
 
 function Cart() {
     const cartPizzaState = useSelector((state) => state.cartPizza)
+    const cartDrinkState = useSelector((state) => state.cartDrink)
 
     const dispatch = useDispatch()
 
     const clear = () => {
-        dispatch(clearItems())
+        dispatch(clearPizzaItems())
+        dispatch(clearDrinkItems())
+    }
+
+    const summ = () => {
+        return cartPizzaState.totalPrice + cartDrinkState.totalPrice
+    }
+
+    const allCount = () => {
+        return cartPizzaState.countItems + cartDrinkState.countItems
     }
 
     return (
@@ -24,17 +36,21 @@ function Cart() {
                 </div>
             </div>
             <div>
-                {cartPizzaState.items.map((item) => <CartItem key={item.id} {...item} />)}
+                {cartPizzaState.items.map((item) => <CartItemPizza key={item.id} {...item} />)}
+            </div>
+
+            <div>
+                {cartDrinkState.items.map((item) => <CartItemDrink key={item.id} {...item} />)}
             </div>
 
             <div className={s.allCountAndSum}>
                 <div className={s.allCount}>
                      {/* сделать правильный расчёт, не только пиццы!!!! */}
-                    Всего: <span>{cartPizzaState.countItems}</span> шт.
+                    Всего: <span>{allCount()}</span> шт.
                 </div>
                 <div className={s.totalPrice}>
                     {/* сделать правильный расчёт, не только пиццы!!!! */}
-                    Сумма заказа: <span>{cartPizzaState.totalPrice} ₽</span> 
+                    Сумма заказа: <span>{summ()} ₽</span> 
                 </div>
             </div>
 

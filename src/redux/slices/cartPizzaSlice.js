@@ -69,7 +69,7 @@ export const cartPizzaSlice = createSlice({
         state.totalPrice = calcTotalPrice(state.items)
         state.countItems = calcTotalCount(state.items)
     },
-    clearItems(state) {
+    clearPizzaItems(state) {
         state.items = []
 
         state.countItems = calcTotalCount(state.items)
@@ -78,6 +78,6 @@ export const cartPizzaSlice = createSlice({
   },
 })
 
-export const { addItem, removeItem, clearItems, itemMinus } = cartPizzaSlice.actions
+export const { addItem, removeItem, clearPizzaItems, itemMinus } = cartPizzaSlice.actions
 
 export default cartPizzaSlice.reducer

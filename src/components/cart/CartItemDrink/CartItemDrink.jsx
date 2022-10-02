@@ -1,24 +1,24 @@
 import { useDispatch } from 'react-redux'
 
-import s from './CartItem.module.scss'
-import { addItem, removeItem, itemMinus } from './../../../redux/slices/cartPizzaSlice';
+import s from './CartItemDrink.module.scss'
+import { addDrinkItem, itemDrinkMinus, removeDrinkItem } from '../../../redux/slices/cartDrinkSlice';
 
 
-function CartItem({ id, photo, title, size, count, allItemPrice }) {
+function CartDrinkItem({ id, photo, title, size, count, allItemPrice }) {
     const dispatch = useDispatch()
 
     const itemDecrement = () => {
         if (count > 1) {
-            dispatch(itemMinus({id, size}))
+            dispatch(itemDrinkMinus({id, size}))
         }
     }
 
     const itemIncrement = () => {
-        dispatch(addItem({id, size}))
+        dispatch(addDrinkItem({id, size}))
     }
 
     const rmItem = () => {
-        dispatch(removeItem({id, size}))
+        dispatch(removeDrinkItem({id, size}))
     }
 
     return (
@@ -29,7 +29,6 @@ function CartItem({ id, photo, title, size, count, allItemPrice }) {
                 </div>
                 <div className={s.titleAndSize}>
                     <div className={s.title}>{title}</div>
-                    <div className={s.size}>{size} см.</div>
                 </div>
             </div>
             <div className={s.rightItems}>
@@ -55,4 +54,4 @@ function CartItem({ id, photo, title, size, count, allItemPrice }) {
     )
 }
 
-export default CartItem
+export default CartDrinkItem
