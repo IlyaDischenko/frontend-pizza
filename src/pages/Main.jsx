@@ -18,6 +18,8 @@ function Main() {
         getItems()
     },[])
 
+
+
     return (
         <main className={s.main}>
             <Pizza />
