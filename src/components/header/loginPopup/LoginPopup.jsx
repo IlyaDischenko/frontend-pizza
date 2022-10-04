@@ -1,7 +1,9 @@
+import axios from 'axios'
 import React from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { setSingInPopupTrue, setSingInPopupFalse, updateNumber } from './../../../redux/slices/userStateSlice'
+import { setSingInPopupFalse, updateNumber } from './../../../redux/slices/userStateSlice'
+import { getCode } from './../../../redux/slices/userStateSlice'
 
 import s from './LoginPopup.module.scss'
 
@@ -12,7 +14,11 @@ function UserPopup(children) {
     const can_send_code = useSelector((state) => state.userState.can_send_code)
     const dispatch = useDispatch()
 
-    const modal = s.modal
+    const getCo = () => {
+        dispatch(getCode(numberValue))
+    }
+
+    const path = () => {}
 
 
 
@@ -30,7 +36,7 @@ function UserPopup(children) {
                 </div>
                 
                 <div className={isActivePopup ? s.footer_active : s.footer}>
-                    <button className={can_send_code ? s.btn_can : s.btn}>Выслать код</button>
+                    <button onClick={can_send_code ? getCo : path} className={can_send_code ? s.btn_can : s.btn}>Выслать код</button>
                 </div>
             </div>
         </div>
