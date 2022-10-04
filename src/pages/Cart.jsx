@@ -26,6 +26,10 @@ function Cart() {
         return cartPizzaState.countItems + cartDrinkState.countItems
     }
 
+
+
+    // сделать проверку на 500р
+
     return (
         <div className={s.rootCart}>
             <div className={s.titleClear}>

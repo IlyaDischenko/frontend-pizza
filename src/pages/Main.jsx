@@ -19,7 +19,6 @@ function Main() {
     },[])
 
 
-
     return (
         <main className={s.main}>
             <Pizza />
