@@ -3,9 +3,20 @@ import axios from 'axios'
 
 export const getCode = createAsyncThunk('userState/getCode', async (num) => {
     const body = {
-        "number": num
+        "number": num.substring(1)
     }
     const { data } = await axios.post('https://backend-pizza-test.herokuapp.com/api/gettoken', body)
+    return data
+})
+
+export const confirmCode = createAsyncThunk('userState/confirmCode', async (dataa) => {
+    const body = {
+        "number": dataa.num.substring(1),
+        "code": dataa.codee
+    }
+    console.log('slice ',dataa.codee)
+    console.log(typeof(dataa.codee))
+    const { data } = await axios.post('https://backend-pizza-test.herokuapp.com/api/confirmtoken', body)
     return data
 })
 
@@ -19,6 +30,9 @@ const initialState = {
   code_1: "",
   code_2: "",
   code_3: "",
+  is_login: false,
+  is_login_status: "",
+  can_confirm_code: false,
 }
 
 export const userStateSlice = createSlice({
@@ -69,11 +83,23 @@ export const userStateSlice = createSlice({
         if (isNaN(actions.payload) == false) {
             state.code_3 = String(actions.payload)
         }
-        state.code = state.code_0 + state.code_1 + state.code_2 + state.code_3
+        state.code = String(state.code_0 + state.code_1 + state.code_2 + state.code_3)
+        console.log('sadasdasd', typeof(state.code))
+        if (state.code.length == 4) {
+            state.can_confirm_code = true
+        }
     },
+    //////////////////////////////////////// sdas
     setSendedFalse: (state) => {
         state.code_sended = false
     },
+    clearCodeTitles: (state) => {
+        state.code_0 = ""
+        state.code_1 = ""
+        state.code_2 = ""
+        state.code_3 = ""
+        state.code = ""
+    }
   },
   extraReducers: {
     [getCode.pending]: (state) => {
@@ -86,10 +112,25 @@ export const userStateSlice = createSlice({
     },
     [getCode.rejected]: (state) => {
         state.code_sended = false
+    },
+
+    [confirmCode.pending]: (state) => {
+        state.is_login = false
+        state.is_login_status = "error"
+    },
+    [confirmCode.fulfilled]: (state, action) => {
+        if (action.payload.status == 200) {
+            state.is_login = true
+            state.is_login_status = "success"
+        }
+    },
+    [confirmCode.rejected]: (state) => {
+        state.is_login = false
+        state.is_login_status = "reject"
     }
 }
 })
 
-export const { setSingInPopupTrue, setSingInPopupFalse, updateNumber, firstNumCode, secondNumCode, thirdNumCode, fourNumCode, setSendedFalse } = userStateSlice.actions
+export const { setSingInPopupTrue, setSingInPopupFalse, updateNumber, firstNumCode, secondNumCode, thirdNumCode, fourNumCode, setSendedFalse, clearCodeTitles } = userStateSlice.actions
 
 export default userStateSlice.reducer

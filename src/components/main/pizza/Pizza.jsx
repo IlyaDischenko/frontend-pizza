@@ -11,7 +11,6 @@ import Sort from '../../sort/Sort'
 function Pizza() {
 
     const { pizzas, status } = useSelector((state) => state.items)
-    console.log(status)
 
 
     return (

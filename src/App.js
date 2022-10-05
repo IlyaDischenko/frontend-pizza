@@ -4,6 +4,7 @@ import './App.css';
 import Header from'./components/header/Header'
 import Cart from './pages/Cart'
 import Main from'./pages/Main'
+import Profile from'./pages/Profile'
 import NotFound from'./pages/NotFound'
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
     </div>
