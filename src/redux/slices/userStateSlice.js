@@ -14,6 +14,11 @@ const initialState = {
   number: "+7",
   can_send_code: false,
   code_sended: false,
+  code: "",
+  code_0: "",
+  code_1: "",
+  code_2: "",
+  code_3: "",
 }
 
 export const userStateSlice = createSlice({
@@ -41,7 +46,34 @@ export const userStateSlice = createSlice({
             } 
         }
 
-    }
+    },
+    firstNumCode: (state, actions) => {
+        if (isNaN(actions.payload) == false) {
+            state.code_0 = String(actions.payload)
+        }
+        state.code = state.code_0 + state.code_1 + state.code_2 + state.code_3
+    },
+    secondNumCode: (state, actions) => {
+        if (isNaN(actions.payload) == false) {
+            state.code_1 = String(actions.payload)
+        }
+        state.code = state.code_0 + state.code_1 + state.code_2 + state.code_3
+    },
+    thirdNumCode: (state, actions) => {
+        if (isNaN(actions.payload) == false) {
+            state.code_2 = String(actions.payload)
+        }
+        state.code = state.code_0 + state.code_1 + state.code_2 + state.code_3
+    },
+    fourNumCode: (state, actions) => {
+        if (isNaN(actions.payload) == false) {
+            state.code_3 = String(actions.payload)
+        }
+        state.code = state.code_0 + state.code_1 + state.code_2 + state.code_3
+    },
+    setSendedFalse: (state) => {
+        state.code_sended = false
+    },
   },
   extraReducers: {
     [getCode.pending]: (state) => {
@@ -58,6 +90,6 @@ export const userStateSlice = createSlice({
 }
 })
 
-export const { setSingInPopupTrue, setSingInPopupFalse, updateNumber } = userStateSlice.actions
+export const { setSingInPopupTrue, setSingInPopupFalse, updateNumber, firstNumCode, secondNumCode, thirdNumCode, fourNumCode, setSendedFalse } = userStateSlice.actions
 
 export default userStateSlice.reducer
