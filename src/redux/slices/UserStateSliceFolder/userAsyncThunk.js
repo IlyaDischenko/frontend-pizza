@@ -24,6 +24,14 @@ export const getUserInfo = createAsyncThunk('userState/getUserInfo', async (tok)
             "token": tok.token
     }
     const { data } = await axios.post('https://backend-pizza-test.herokuapp.com/api/get/userinfo', conf)
-    console.log(data)
+    return data
+})
+
+export const updateEmailAction = createAsyncThunk('userState/updateEmailAction', async (email) => {
+    const conf = {
+            "token": email.token,
+            "email": email.email
+    }
+    const { data } = await axios.post('https://backend-pizza-test.herokuapp.com/api/set/email', conf)
     return data
 })

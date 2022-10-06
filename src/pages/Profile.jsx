@@ -1,15 +1,22 @@
 
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
+import { updaterEmailReducer } from './../redux/slices/UserStateSliceFolder/userStateSlice'
+import { updateEmailAction } from './../redux/slices/UserStateSliceFolder/userAsyncThunk'
 
 import s from '../components/profile/Profile.module.scss'
 import x from '../components/notFound/NotFound.module.scss'
 
 function Profile() {
+    const dispatch = useDispatch()
     const userstate = useSelector((state) => state.userState)
 
 
-   
+    const actionUpdateEmail = () => {
+        const inf = {"token": userstate.token, "email": userstate.updatedMail}
+        dispatch(updateEmailAction(inf))
+    }
+
     if (userstate.is_login == false) {
         return (
             <div className={x.maindiv}>
@@ -39,8 +46,8 @@ function Profile() {
                 <div className={s.email}>
                     <span>Почта</span>
                     <div>
-                        <input type="name" className={s.input_email} value={userstate.user_data.email} />
-                        <div className={s.change}>Изменить</div>
+                        <input type="email" className={s.input_email} onChange={(event) => dispatch(updaterEmailReducer(event.target.value))} value={userstate.updatedMail} />
+                        <div onClick={actionUpdateEmail} className={s.change}>Изменить</div>
                     </div>
                 </div>
 

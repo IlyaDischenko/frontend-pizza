@@ -12,7 +12,7 @@ import logo from '../../img/logosvg.svg'
 function Header() {
     const cartPizza = useSelector((state) => state.cartPizza)
     const cartDrink = useSelector((state) => state.cartDrink)
-    const isLogin = useSelector((state) => state.userState.is_login)
+    const userstate = useSelector((state) => state.userState)
 
     const dispatch = useDispatch()
 
@@ -40,6 +40,13 @@ function Header() {
         setScroll(window.scrollY);
     };
     
+    const isLoginTitle = () => {
+        if (userstate.is_login == true) {
+            return "Кабинет"
+        } else if (userstate.is_login == false) {
+            return "Вход"
+        }
+    }
 
     const linkToOrPopup = (is) => {
         if (is == false) {
@@ -51,7 +58,7 @@ function Header() {
                             <path d="M13.203 17.2727H9.79698C5.12844 17.2727 1.5187 21.3685 2.10526 26H20.8947C21.4813 21.3685 17.8716 17.2727 13.203 17.2727Z" fill="none" stroke="#000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                     </span>
-                    <div className={s.text}>Кабинет</div>
+                    <div className={s.text}>{isLoginTitle()}</div>
                 </div>
             )
         } else if (is == true) {
@@ -64,7 +71,7 @@ function Header() {
                                 <path d="M13.203 17.2727H9.79698C5.12844 17.2727 1.5187 21.3685 2.10526 26H20.8947C21.4813 21.3685 17.8716 17.2727 13.203 17.2727Z" fill="none" stroke="#000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                         </span>
-                        <div className={s.text}>Кабинет</div>
+                        <div className={s.text}> {isLoginTitle()} </div>
                     </div>
                 </Link>
             )
@@ -89,7 +96,7 @@ function Header() {
                         </div>
                     </Link>
                     <div className={s.right_items}>
-                        {linkToOrPopup(isLogin)}
+                        {linkToOrPopup(userstate.is_login)}
                         <Link to="/cart">
                             <div className={s.divbutton}>
                                 <button>

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { getCode, confirmCode, getUserInfo } from './userAsyncThunk'
+import { getCode, confirmCode, getUserInfo, updateEmailAction} from './userAsyncThunk'
 
 const initialState = {
   is_sing_in_active: false,
@@ -17,15 +17,18 @@ const initialState = {
   can_confirm_code: false,
   token: "",
   user_data: {
-    // apartment: "sad",
-    // email: "email@mail.email",
-    // entrance: "fdsf",
-    // floor: "123",
-    // house: "13",
-    // name: "Илья",
-    // street: "213"
+    name: "",
+    email: "",
+    entrance: "",
+    floor: "",
+    house: "",
+    street: "",
+    apartment: "",
+
 },
   userInfoStatus: "",
+  updatedMail: "",
+  updatedMailStatus: "",
 }
 
 export const userStateSlice = createSlice({
@@ -92,6 +95,10 @@ export const userStateSlice = createSlice({
         state.code_2 = ""
         state.code_3 = ""
         state.code = ""
+    },
+
+    updaterEmailReducer: (state, action) => {
+        state.updatedMail = action.payload
     }
   },
   extraReducers: {
@@ -140,8 +147,10 @@ export const userStateSlice = createSlice({
                 floor: action.payload.data.floor,
                 house: action.payload.data.house,
                 street: action.payload.data.street,
+                apartment: action.payload.data.apartment,
 
             }
+            state.updatedMail = action.payload.data.email
             state.userInfoStatus = "success"
         } else if (action.payload.status == 400) {
 
@@ -151,10 +160,27 @@ export const userStateSlice = createSlice({
     [getUserInfo.rejected]: (state) => {
 
         state.userInfoStatus = "reject"
-    }
+    },
+
+    [updateEmailAction.pending]: (state) => {
+        state.updatedMailStatus = "error"
+    },
+    [updateEmailAction.fulfilled]: (state, action) => {
+        if (action.payload.status == 200) {
+            state.updatedMailStatus = "success"
+            state.user_data.email = state.updatedMail
+        } else if (action.payload.status == 400) {
+            state.updatedMailStatus = "error"
+        }
+    },
+    [updateEmailAction.rejected]: (state) => {
+        state.updatedMailStatus = "error"
+    },
 }
 })
 
-export const { setSingInPopupTrue, setSingInPopupFalse, updateNumber, firstNumCode, secondNumCode, thirdNumCode, fourNumCode, setSendedFalse, clearCodeTitles } = userStateSlice.actions
+export const { setSingInPopupTrue, setSingInPopupFalse, updateNumber, firstNumCode, secondNumCode, thirdNumCode, fourNumCode, setSendedFalse, clearCodeTitles,
+    updaterEmailReducer
+ } = userStateSlice.actions
 
 export default userStateSlice.reducer
