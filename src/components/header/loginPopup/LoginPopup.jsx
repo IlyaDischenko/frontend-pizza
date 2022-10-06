@@ -2,13 +2,13 @@ import React from 'react'
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
-import { setSingInPopupFalse, updateNumber,  firstNumCode, secondNumCode, thirdNumCode, fourNumCode, setSendedFalse, clearCodeTitles } from './../../../redux/slices/userStateSlice'
-import { getCode, confirmCode } from './../../../redux/slices/userStateSlice'
+import { setSingInPopupFalse, updateNumber,  firstNumCode, secondNumCode, thirdNumCode, fourNumCode, setSendedFalse, clearCodeTitles } from './../../../redux/slices/UserStateSliceFolder/userStateSlice'
+import { getCode, confirmCode, getUserInfo } from './../../../redux/slices/UserStateSliceFolder/userAsyncThunk'
 
 import s from './LoginPopup.module.scss'
 
 
-function UserPopup(children) {
+function UserPopup() {
     const [ values, setValues ] = React.useState(Array(10).fill(''));
     const navigate = useNavigate();
 
@@ -23,12 +23,14 @@ function UserPopup(children) {
     const code_2 = useSelector((state) => state.userState.code_2)
     const code_3 = useSelector((state) => state.userState.code_3)
     const isLogin = useSelector((state) => state.userState.is_login)
+    const token = useSelector((state) => state.userState.token)
     const dispatch = useDispatch()
 
     const passForOnClick = () => {}
 
     const getCo = () => {
-        dispatch(getCode(numberValue))
+        const num = {"number": numberValue,}
+        dispatch(getCode(num))
     }
 
     const confirmCo = () => {
@@ -40,16 +42,27 @@ function UserPopup(children) {
     const setFalse = () => {
         dispatch(setSendedFalse(false))
     }
+    
+    const onKeySend = (e) => {
+        if (e.key === "Enter") {
+            getCode()
+        }
+    }
 
+    const onKeyConfirm = (e) => {
+        if (e.key === "Enter") {
+            confirmCo()
+        }
+    }
 
     const numberСodeSwitch = (c) => {
         if (c == false) {
-            return (<div className={isActivePopup ? s.number_active : s.number}>
+            return (<div onKeyDown={e => onKeySend(e)} className={isActivePopup ? s.number_active : s.number}>
                         <div className={s.title}>Номер телефона</div>
                         <input className={s.inputNumber} onChange={(event) => dispatch(updateNumber(String(event.target.value)))} value={numberValue} placeholder="+7 999 999 99 99"/>
                     </div>)
         } else if (c == true) {
-            return (<div className={isActivePopup ? s.input_items_active : s.input_items}>
+            return (<div onKeyDown={e => onKeyConfirm(e)} className={isActivePopup ? s.input_items_active : s.input_items}>
                         <input className={s.input_num} data-index="1" onChange={onChange} value={code_0} maxLength='1' ref={input => inputRefs[1] = input}/>
                         <input className={s.input_num} data-index="2" onChange={onChange} value={code_1} maxLength='1' ref={input => inputRefs[2] = input}/>
                         <input className={s.input_num} data-index="3" onChange={onChange} value={code_2} maxLength='1' ref={input => inputRefs[3] = input}/>
@@ -104,14 +117,21 @@ function UserPopup(children) {
 
     React.useEffect(() => {
         if (isLogin == true) {
+            const userToken = {"token": token}
             dispatch(setSingInPopupFalse())
-            navigate("/profile");
+            dispatch(getUserInfo(userToken))
+            navigate("/profile")
         }
     }, [isLogin]);
 
     return (
         <div className={isActivePopup ? s.modal_active : s.modal} onClick={() => dispatch(setSingInPopupFalse())}>
-            <div className={isActivePopup ? s.modal_content_active : s.modal_content} onClick={e => e.stopPropagation()}>
+            <div onKeyDown={(e) => {
+                if (e.key === "Escape") {
+                    dispatch(setSingInPopupFalse())
+                    }  
+                }}
+                className={isActivePopup ? s.modal_content_active : s.modal_content} onClick={e => e.stopPropagation()}>
                 <div className={isActivePopup ? s.divheader_active : s.divheader}>
                     <div className={s.maintext}>Вход на сайт</div>
 

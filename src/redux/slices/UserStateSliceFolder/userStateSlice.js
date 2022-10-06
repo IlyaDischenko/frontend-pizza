@@ -1,24 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
+import { createSlice } from '@reduxjs/toolkit'
 
-export const getCode = createAsyncThunk('userState/getCode', async (num) => {
-    const body = {
-        "number": num.substring(1)
-    }
-    const { data } = await axios.post('https://backend-pizza-test.herokuapp.com/api/gettoken', body)
-    return data
-})
-
-export const confirmCode = createAsyncThunk('userState/confirmCode', async (dataa) => {
-    const body = {
-        "number": dataa.num.substring(1),
-        "code": dataa.codee
-    }
-    console.log('slice ',dataa.codee)
-    console.log(typeof(dataa.codee))
-    const { data } = await axios.post('https://backend-pizza-test.herokuapp.com/api/confirmtoken', body)
-    return data
-})
+import { getCode, confirmCode, getUserInfo } from './userAsyncThunk'
 
 const initialState = {
   is_sing_in_active: false,
@@ -33,6 +15,17 @@ const initialState = {
   is_login: false,
   is_login_status: "",
   can_confirm_code: false,
+  token: "",
+  user_data: {
+    // apartment: "sad",
+    // email: "email@mail.email",
+    // entrance: "fdsf",
+    // floor: "123",
+    // house: "13",
+    // name: "Илья",
+    // street: "213"
+},
+  userInfoStatus: "",
 }
 
 export const userStateSlice = createSlice({
@@ -114,19 +107,50 @@ export const userStateSlice = createSlice({
         state.code_sended = false
     },
 
+
     [confirmCode.pending]: (state) => {
-        state.is_login = false
         state.is_login_status = "error"
     },
     [confirmCode.fulfilled]: (state, action) => {
         if (action.payload.status == 200) {
             state.is_login = true
+            state.token = action.payload.token
             state.is_login_status = "success"
+        } else if (action.payload.status == 400) {
+            state.is_login = false
+            state.is_login_status = "invalid"
         }
     },
     [confirmCode.rejected]: (state) => {
         state.is_login = false
         state.is_login_status = "reject"
+    },
+
+
+    [getUserInfo.pending]: (state) => {
+        state.userInfoStatus = "error"
+    },
+    [getUserInfo.fulfilled]: (state, action) => {
+        if (action.payload.status == 200) {
+    
+            state.user_data = { 
+                name: action.payload.data.name,
+                email: action.payload.data.email,
+                entrance: action.payload.data.entrance,
+                floor: action.payload.data.floor,
+                house: action.payload.data.house,
+                street: action.payload.data.street,
+
+            }
+            state.userInfoStatus = "success"
+        } else if (action.payload.status == 400) {
+
+            state.userInfoStatus = "error"
+        }
+    },
+    [getUserInfo.rejected]: (state) => {
+
+        state.userInfoStatus = "reject"
     }
 }
 })

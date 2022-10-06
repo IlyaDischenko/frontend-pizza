@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 export const fetchItems = createAsyncThunk('items/fetchItems', async () => {
-    const { data } = await axios.get('https://backend-pizza-test.herokuapp.com/get')
+    const { data } = await axios.get('https://backend-pizza-test.herokuapp.com/get/all')
     return data
 })
 

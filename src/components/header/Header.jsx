@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 
-import { setSingInPopupTrue, setSingInPopupFalse } from './../../redux/slices/userStateSlice'
+import { setSingInPopupTrue } from './../../redux/slices/UserStateSliceFolder/userStateSlice'
 
 import UserPopup from './loginPopup/LoginPopup';
 import s from './Header.module.scss'
