@@ -1,8 +1,8 @@
 
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
-import { updaterEmailReducer } from './../redux/slices/UserStateSliceFolder/userStateSlice'
-import { updateEmailAction } from './../redux/slices/UserStateSliceFolder/userAsyncThunk'
+import { updaterEmailReducer, updaterNameReducer } from './../redux/slices/UserStateSliceFolder/userStateSlice'
+import { updateEmailAction, updateNameAction } from './../redux/slices/UserStateSliceFolder/userAsyncThunk'
 
 import s from '../components/profile/Profile.module.scss'
 import x from '../components/notFound/NotFound.module.scss'
@@ -16,6 +16,33 @@ function Profile() {
         const inf = {"token": userstate.token, "email": userstate.updatedMail}
         dispatch(updateEmailAction(inf))
     }
+
+    const actionUpdateName = () => {
+        const inf = {"token": userstate.token, "name": userstate.updatedName}
+        dispatch(updateNameAction(inf))
+    }
+
+    const checkChangeMail = () => {
+        if (userstate.updatedMailStatus == "default") {
+            return s.input_email
+        } else if (userstate.updatedMailStatus == "success") {
+            return s.success_input_email
+        } else if (userstate.updatedMailStatus == "error") {
+            return s.error_input_email
+        }
+    }
+
+    const checkChangeName = () => {
+        if (userstate.updatedNameStatus == "default") {
+            return s.input_name
+        } else if (userstate.updatedNameStatus == "success") {
+            return s.success_input_name
+        } else if (userstate.updatedNameStatus == "error") {
+            return s.error_input_name
+        }
+    }
+
+
 
     if (userstate.is_login == false) {
         return (
@@ -33,8 +60,8 @@ function Profile() {
                 <div className={s.name}>
                     <span>Имя</span>
                     <div>
-                        <input type="name" className={s.input_name} value={userstate.user_data.name} />
-                        <div className={s.change}>Изменить</div>
+                        <input type="name" className={checkChangeName()} onChange={(event) => dispatch(updaterNameReducer(event.target.value))} value={userstate.updatedName} />
+                        <div onClick={actionUpdateName} className={s.change}>Изменить</div>
                     </div>
                 </div>
                 <div className={s.number}>
@@ -46,7 +73,7 @@ function Profile() {
                 <div className={s.email}>
                     <span>Почта</span>
                     <div>
-                        <input type="email" className={s.input_email} onChange={(event) => dispatch(updaterEmailReducer(event.target.value))} value={userstate.updatedMail} />
+                        <input type="email" className={checkChangeMail()} onChange={(event) => dispatch(updaterEmailReducer(event.target.value))} value={userstate.updatedMail} />
                         <div onClick={actionUpdateEmail} className={s.change}>Изменить</div>
                     </div>
                 </div>

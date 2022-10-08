@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { getCode, confirmCode, getUserInfo, updateEmailAction} from './userAsyncThunk'
+import { getCode, confirmCode, getUserInfo, updateEmailAction, updateNameAction} from './userAsyncThunk'
 
 const initialState = {
   is_sing_in_active: false,
@@ -27,8 +27,12 @@ const initialState = {
 
 },
   userInfoStatus: "",
+  
   updatedMail: "",
-  updatedMailStatus: "",
+  updatedMailStatus: "default",
+
+  updatedName: "",
+  updatedNameStatus: "default",
 }
 
 export const userStateSlice = createSlice({
@@ -99,6 +103,10 @@ export const userStateSlice = createSlice({
 
     updaterEmailReducer: (state, action) => {
         state.updatedMail = action.payload
+    },
+
+    updaterNameReducer: (state, action) => {
+        state.updatedName = action.payload
     }
   },
   extraReducers: {
@@ -151,6 +159,7 @@ export const userStateSlice = createSlice({
 
             }
             state.updatedMail = action.payload.data.email
+            state.updatedName = action.payload.data.name
             state.userInfoStatus = "success"
         } else if (action.payload.status == 400) {
 
@@ -163,26 +172,53 @@ export const userStateSlice = createSlice({
     },
 
     [updateEmailAction.pending]: (state) => {
-        state.updatedMailStatus = "error"
-        // state.updatedMail = state.user_data.email
+        state.updatedMailStatus = "default"
     },
     [updateEmailAction.fulfilled]: (state, action) => {
-        if (action.payload.status == 200) {
-            state.updatedMailStatus = "success"
-            state.user_data.email = state.updatedMail
-        } else if (action.payload.status == 400) {
+        if (action.payload.response_status == 200) {
+            if (action.payload.server_status == 200) {
+                state.updatedMailStatus = "success"
+                state.user_data.email = state.updatedMail
+            } else {
+                state.updatedMailStatus = "error"
+                state.updatedMail = state.user_data.email
+            }
+        } else if (action.payload.response_status == 422) {
             state.updatedMailStatus = "error"
             state.updatedMail = state.user_data.email
         }
     },
     [updateEmailAction.rejected]: (state) => {
-        state.updatedMailStatus = "error"
+        state.updatedMailStatus = "default"
+    },
+
+
+    [updateNameAction.pending]: (state) => {
+        state.updatedNameStatus = "default"
+    },
+    [updateNameAction.fulfilled]: (state, action) => {
+        console.log('red',action.payload)
+        if (action.payload.response_status == 200) {
+            if (action.payload.server_status == 200) {
+                state.updatedNameStatus = "success"
+                state.user_data.name = state.updatedName
+            } else {
+                state.updatedNameStatus = "error"
+                state.updatedName = state.user_data.name
+            }
+        } else if (action.payload.response_status == 422) {
+            state.updatedNameStatus = "error"
+            state.updatedName = state.user_data.name
+        }
+    },
+    [updateNameAction.rejected]: (state) => {
+        state.updatedNameStatus = "default"
     },
 }
 })
 
 export const { setSingInPopupTrue, setSingInPopupFalse, updateNumber, firstNumCode, secondNumCode, thirdNumCode, fourNumCode, setSendedFalse, clearCodeTitles,
-    updaterEmailReducer
+    updaterEmailReducer, updaterNameReducer
  } = userStateSlice.actions
 
 export default userStateSlice.reducer
