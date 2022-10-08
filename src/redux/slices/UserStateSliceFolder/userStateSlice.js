@@ -164,6 +164,7 @@ export const userStateSlice = createSlice({
 
     [updateEmailAction.pending]: (state) => {
         state.updatedMailStatus = "error"
+        // state.updatedMail = state.user_data.email
     },
     [updateEmailAction.fulfilled]: (state, action) => {
         if (action.payload.status == 200) {
@@ -171,6 +172,7 @@ export const userStateSlice = createSlice({
             state.user_data.email = state.updatedMail
         } else if (action.payload.status == 400) {
             state.updatedMailStatus = "error"
+            state.updatedMail = state.user_data.email
         }
     },
     [updateEmailAction.rejected]: (state) => {

@@ -4,6 +4,7 @@
     display: flex;
     justify-content: center;
     
+    
 }
 
 .header_inner{
@@ -11,6 +12,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    
 
     &_scroll {
         height: 62px;
@@ -36,6 +38,7 @@
 
     padding-top: 7px;
     padding-bottom: 5px;
+    
 
     max-width: 1350px;
     width: 100%;
@@ -51,6 +54,7 @@
     flex: 0 0 50%;
     
     margin-right: 1px;
+    margin-left: 25px;
 
     img {
         height: 50px;
@@ -59,9 +63,7 @@
     &:hover {
         cursor: pointer;
     }
-    @media screen and (min-width:0px) and (max-width:585px) {
-        display: none;
-    }
+
 }
 
 .right_items {
@@ -72,13 +74,13 @@
     align-items: center;
     width: 50%;
     flex: 0 0 50%;
-    margin-right: 15px;
+    margin-right: 25px;
     margin-left: 1px;
 
-    @media screen and (min-width:0px) and (max-width:585px) {
-        width: 100%;
-        flex: 0 0 100%;
-        justify-content: space-between;
+    @media screen and (min-width:0px) and (max-width:559px) {
+        padding-left: 5px;
+        width: 369px;
+
     }
 }
 

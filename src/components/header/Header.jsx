@@ -78,13 +78,6 @@ function Header() {
         }
     }
 
-    const isViewPopup = (is) => {
-        if (is == false) {
-            return <UserPopup />
-        } else if (is == true) {
-            return 
-        }
-    }
 
     return (
         <header className={s.Header}>
