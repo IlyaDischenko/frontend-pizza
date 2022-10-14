@@ -6,6 +6,7 @@ import Cart from './pages/Cart'
 import Main from'./pages/Main'
 import Profile from'./pages/Profile'
 import NotFound from'./pages/NotFound'
+import Test from'./pages/Test'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/test" element={<Test />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
     </div>

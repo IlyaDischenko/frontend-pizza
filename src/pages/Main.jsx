@@ -8,11 +8,13 @@ import s from '../components/main/Main.module.scss'
 import Drink from '../components/main/drink/Drink';
 
 function Main() {
+
     const dispatch = useDispatch()
 
     const getItems = async () => {
         dispatch(fetchItems())
     }
+
 
     React.useEffect(() => {
         getItems()

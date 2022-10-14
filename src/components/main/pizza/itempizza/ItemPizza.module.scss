@@ -14,7 +14,8 @@
         margin: 0 0 0 7px;
         img {
             width: 270px;
-            max-width: 270px;
+            // max-width: 270px;
+            height: 270px;
             &:hover {
                 transform: translate(0, 3px);
                 transition-duration: 200ms; 

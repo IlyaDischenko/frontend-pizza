@@ -1,7 +1,8 @@
 
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
-import { updaterEmailReducer, updaterNameReducer } from './../redux/slices/UserStateSliceFolder/userStateSlice'
+import { updaterEmailReducer, updaterNameReducer } from './../redux/slices/UserStateSliceFolder/userSlice'
+import { exitUser } from './../redux/slices/PopupStateSliceFolder/popupSlise'
 import { updateEmailAction, updateNameAction } from './../redux/slices/UserStateSliceFolder/userAsyncThunk'
 
 import s from '../components/profile/Profile.module.scss'
@@ -9,16 +10,17 @@ import x from '../components/notFound/NotFound.module.scss'
 
 function Profile() {
     const dispatch = useDispatch()
-    const userstate = useSelector((state) => state.userState)
+    const userstate = useSelector((state) => state.user)
+    const popup = useSelector((state) => state.popup)
 
 
     const actionUpdateEmail = () => {
-        const inf = {"token": userstate.token, "email": userstate.updatedMail}
+        const inf = {"token": popup.token, "email": userstate.updatedMail}
         dispatch(updateEmailAction(inf))
     }
 
     const actionUpdateName = () => {
-        const inf = {"token": userstate.token, "name": userstate.updatedName}
+        const inf = {"token": popup.token, "name": userstate.updatedName}
         dispatch(updateNameAction(inf))
     }
 
@@ -42,18 +44,20 @@ function Profile() {
         }
     }
 
+    const exitUserReduser = () => {
+        dispatch(exitUser())
+    }
 
-
-    if (userstate.is_login == false) {
+    if (popup.is_login == false) {
         return (
             <div className={x.maindiv}>
-                <p>Эта страница пока в sosi разработке(</p>
+                <p>Эта страница пока в sosi и дрочи мне разработке(</p>
                 <Link to="/">
                     <button>На главную</button>
                 </Link>
             </div>
         )
-    } else if (userstate.is_login == true) return (
+    } else if (popup.is_login == true) return (
         <div className={s.root_profile}>
             <div className={s.profile_wrapper}>
                 <div className={s.title}>Личный кабинет</div>
@@ -67,7 +71,7 @@ function Profile() {
                 <div className={s.number}>
                     <span>Номер телефона</span>
                     <div>
-                        <div className={s.number_value}> {userstate.number} </div>
+                        <div className={s.number_value}> {popup.number} </div>
                     </div>
                 </div>
                 <div className={s.email}>
@@ -79,8 +83,10 @@ function Profile() {
                 </div>
 
                 <div className={s.your_cart}>Тут будут все ваши заказы</div>
-                <div className={s.exit_button}>
-                    <button>Выйти</button>
+                <div  className={s.exit_button}>
+                    <Link to="/">
+                        <button onClick={exitUserReduser} >Выйти</button>
+                    </Link>
                 </div>
             </div>
         </div>

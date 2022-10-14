@@ -20,13 +20,14 @@ function Pizza() {
             </div>
             
             <div className={s.pizza_block}>
-                {/* //asdasd выа ываыаываываываываываываываываываываываываываываываываываыва */          }
                 {   status == 'error' ? <div> Ошибка </div> :
                     status == 'loading' 
                     ? [...new Array(12)].map((_, index) => <Skeleton key={index}/>)
                     : pizzas.map((item) => <ItemPizza key={item.id} {...item} />) 
                 }
             </div>
+            
+
         </div>
     )
 }
