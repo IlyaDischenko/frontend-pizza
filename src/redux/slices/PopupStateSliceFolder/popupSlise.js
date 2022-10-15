@@ -12,7 +12,7 @@ const initialState = {
   code_1: "",
   code_2: "",
   code_3: "",
-  is_login: true,
+  is_login: false,
   is_login_status: "default",
   can_confirm_code: false,
   confirm_code_status: "default",

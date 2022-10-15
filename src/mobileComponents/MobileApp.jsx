@@ -7,15 +7,10 @@ function MobileApp() {
     return (
       <div className="App">
             <MobileHeader />
-            <div className={s.text}> scroll </div>
-                <div className={s.text}> scroll </div>
-                <div className={s.text}> scroll </div>
-                <div className={s.text}> scroll </div>
-                <div className={s.text}> scroll </div>
-                <div className={s.text}> scroll </div>
-                <div className={s.text}> scroll </div>
             <Routes>
                 <Route path="/" element={<h1>Это мобильная версия</h1>} />
+                <Route path="/login" element={<h1>страница логина</h1>} />
+                <Route path="/profile" element={<h1>профиль</h1>} />
             </Routes>
       </div>
     );
