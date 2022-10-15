@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 import s from './Pizza.module.scss'
 import ItemPizza from './itempizza/ItemPizza'
 import Skeleton from './Skeleton/Skeleton'
-import Sort from '../../sort/Sort'
 
 
 function Pizza() {

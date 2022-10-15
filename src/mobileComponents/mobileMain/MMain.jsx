@@ -1,11 +1,11 @@
 import React from 'react'
 
 import { useDispatch } from 'react-redux'
-import { fetchItems } from './../../redux/slices/ItemsSlice'
+import { fetchItems } from '../../redux/slices/ItemsSlice'
 
-import Pizza from '../components/main/pizza/Pizza'
-import s from '../components/main/Main.module.scss'
-import Drink from '../components/main/drink/Drink';
+import MPizza from './mPizza/MPizza'
+import s from './MMain.module.scss'
+import MDrink from './mDrink/MDrink'
 
 function Main() {
 
@@ -23,8 +23,9 @@ function Main() {
 
     return (
         <main className={s.main}>
-            <Pizza />
-            <Drink />
+            <MPizza />
+            <MDrink />
+            <div>csadasadqd</div>
         </main>
     )
 }

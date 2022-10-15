@@ -1,14 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
-import MobileHeader from './mobileHeader/MobileHeader'
 
-import MMain from './mobileMain/MMain'
+import MHeader from './mobileComponents/mobileHeader/MobileHeader'
+import MMain from './mobileComponents/mobileMain/MMain'
 
-import s from './MobileApp.module.scss'
+import './MobileApp.css'
 
 function MobileApp() {
     return (
       <div className="App">
-            <MobileHeader />
+            <MHeader />
             <Routes>
                 <Route path="/" element={<MMain />} />
                 <Route path="/login" element={<h1>страница логина</h1>} />
