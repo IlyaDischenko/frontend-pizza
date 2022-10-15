@@ -5,7 +5,7 @@ import App from './App';
 import MobileApp from './mobileComponents/MobileApp'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-// import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
+import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
 
@@ -14,17 +14,17 @@ root.render(
   // <React.StrictMode>
     <BrowserRouter>
 
-      {/* <BrowserView> */}
+      <BrowserView>
         <Provider store={ store }>
           <App />
         </Provider>
-      {/* </BrowserView> */}
+      </BrowserView>
       
-      {/* <MobileView> */}
-        {/* <Provider store={ store }>
+      <MobileView>
+        <Provider store={ store }> 
           <MobileApp />
-        </Provider> */}
-      {/* </MobileView> */}
+        </Provider> 
+      </MobileView>
 
     </BrowserRouter>
 

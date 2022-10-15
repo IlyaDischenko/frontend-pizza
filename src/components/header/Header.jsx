@@ -5,14 +5,14 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { isViewTrue } from './../../redux/slices/PopupStateSliceFolder/popupSlise'
 
-import Popup from './loginPopup/PopupLogin';
+import Popup from './loginPopup/PopupLogin'
 import s from './Header.module.scss'
 import logo from '../../img/logosvg.svg'
 
 function Header() {
     const cartPizza = useSelector((state) => state.cartPizza)
     const cartDrink = useSelector((state) => state.cartDrink)
-    const userstate = useSelector((state) => state.userState)
+    // const userstate = useSelector((state) => state.userState)
     const popup = useSelector((state) => state.popup)
 
     const isActive = useSelector((state) => state.popup.isPopupActive)
@@ -87,7 +87,7 @@ function Header() {
     return (
         <header className={s.Header}>
             <div className={scroll <= 40 ? s.header_inner : s.header_inner_scroll}>
-                <div className={scroll <= 40 ? s.header_items : s.header_items}>
+                <div className={s.header_items}>
                     <Link to="/">
                         <div className={s.left_items}>
                             <img src={logo} alt="logo" />
