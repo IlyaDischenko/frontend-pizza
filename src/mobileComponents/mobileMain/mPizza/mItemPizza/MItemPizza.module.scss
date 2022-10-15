@@ -2,7 +2,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    margin: 30px 2px 10px 2px;
+    margin: 30px 8px 10px 8px;
 
     .photo {
         justify-self: flex-start;
@@ -90,6 +90,7 @@
     }
 
     .price {
+        padding-right: 14px;
         div {
             font-weight: 400;
             font-size: 20px;
