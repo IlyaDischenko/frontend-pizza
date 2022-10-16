@@ -2,6 +2,7 @@ import React from 'react'
 
 import s from './MLogin.module.scss'
 
+import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { isViewFalse, updateNumber, firstNumCode, secondNumCode, thirdNumCode, fourNumCode, setSendedFalse, clearCodeTitles } from './../../redux/slices/PopupStateSliceFolder/popupSlise'
@@ -23,7 +24,7 @@ function MLogin(  ) {
             const userToken = {"token": popup.token}
             dispatch(isViewFalse())
             dispatch(getUserInfo(userToken))
-            navigate("/")
+            navigate("/profile")
         }
     }, [popup.is_login])
 
@@ -153,7 +154,14 @@ function MLogin(  ) {
     }
 
     return (
+        
         <div className={s.wrp}>
+            <Link to="/">
+                <button className={s.backButton}>
+                    <svg width="16" height="22" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 13L1 6.93015L6.86175 1" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    назад
+                </button>
+            </Link>
             {returnCom(codeSend)}
         </div>
     )

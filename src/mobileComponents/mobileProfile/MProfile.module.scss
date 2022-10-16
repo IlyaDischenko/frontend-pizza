@@ -1,0 +1,147 @@
+.root_profile {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.profile_wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+}
+
+.title {
+    font-size: 27px;
+    margin: 40px 0 0 0 ;
+}
+
+.name {
+    margin-top: 25px;
+    span {
+        color: rgb(92, 99, 112);
+        font-size: 15px;
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+        .input_name {
+            border: 1px solid rgb(226, 226, 233);
+            background-color: rgb(255, 255, 255);
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 16px;
+        }
+
+        .success_input_name {
+            border: 1px solid rgba(53, 189, 41, 0.322);
+            background-color: rgba(53, 189, 41, 0.1);
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 16px;  
+        }
+
+        .error_input_name {
+            border: 1px solid rgba(231, 43, 43, 0.493);
+            background-color: rgb(231, 43, 43, 0.1);
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 16px;  
+        }
+
+
+    }
+}
+
+.change {
+    margin-left: 10px;
+    color: #FF5925;
+    cursor: pointer;
+    font-weight: 700;
+
+    &:hover {
+        color: #dd4314;
+    }
+}
+
+.number {
+    margin-top: 25px;
+    width: 230px;
+    span {
+        color: rgb(92, 99, 112);
+        font-size: 15px;
+    }
+
+    div {
+
+        .number_value {
+            cursor: not-allowed;
+            border: 1px solid rgb(226, 226, 233);
+            background-color: rgb(243, 243, 247);
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 16px;
+            color: rgb(92, 99, 112);            
+        }
+    }
+}
+
+.email {
+    margin-top: 25px;
+    span {
+        color: rgb(92, 99, 112);
+        font-size: 15px;
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+        .input_email {
+            border: 1px solid rgb(226, 226, 233);
+            background-color: rgb(255, 255, 255);
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 16px;            
+        }
+
+        .success_input_email {
+            border: 1px solid rgba(53, 189, 41, 0.322);
+            background-color: rgba(53, 189, 41, 0.1);
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 16px;  
+        }
+
+        .error_input_email {
+            border: 1px solid rgba(231, 43, 43, 0.493);
+            background-color: rgba(231, 43, 43, 0.1);
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 16px;  
+        }
+    }
+}
+
+.your_cart {
+    margin-top: 40px;
+    color: rgb(111, 118, 131);
+
+}
+
+.exit_button {
+    margin-top: 40px;
+    button {
+        padding: 4px 15px;
+        font-size: 15px;
+        background-color: rgb(243, 243, 247);
+        color: rgb(111, 118, 131);
+        border: 1px solid rgb(226, 226, 233);
+        border-radius: 16px;
+        cursor: pointer;
+        transition-duration: 70ms;
+
+        &:hover {
+            color: rgb(45, 48, 54);
+        }
+    }
+    
+}
