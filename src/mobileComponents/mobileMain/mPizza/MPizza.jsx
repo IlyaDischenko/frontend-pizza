@@ -10,7 +10,6 @@ import Skeleton from './mskeleton/MSkeleton'
 function MPizza() {
 
     const { pizzas, status } = useSelector((state) => state.items)
-    // console.log(pizzas)
 
 
     return (
@@ -25,7 +24,6 @@ function MPizza() {
                     ? [...new Array(12)].map((_, index) => <Skeleton key={index}/>)
                     : pizzas.map((item) => <ItemPizza key={item.id} {...item} />) 
                 }
-                {/* {pizzas.map((item) => <ItemPizza key={item.id} {...item} />)} */}
             </div>
             
 

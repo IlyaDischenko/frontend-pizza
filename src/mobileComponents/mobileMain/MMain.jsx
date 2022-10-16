@@ -25,7 +25,6 @@ function Main() {
         <main className={s.main}>
             <MPizza />
             <MDrink />
-            <div>csadasadqd</div>
         </main>
     )
 }

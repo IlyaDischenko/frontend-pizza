@@ -126,3 +126,37 @@
         }
     }
 }
+
+
+.root_empty {
+    display: flex;
+    justify-content: center;
+
+    .empty_wrapper {
+        margin: 80px;
+        width: 490px;
+
+        .empty_img {
+            img {
+                height: 400px;
+            }   
+        }
+
+        .empty_bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .empty_title {
+                font-size: 35px;
+                font-weight: 700;
+            }
+
+            .empty_description{ 
+                margin-top: 15px;
+                text-align: center;
+                font-weight: 500;
+            }
+        }
+    }
+}
