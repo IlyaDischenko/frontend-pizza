@@ -80,6 +80,10 @@ export const popupSlice = createSlice({
         state.code = ""
     },
 
+    setSendedFalse: (state) => {
+        state.code_sended = false
+    },
+
     exitUser: (state) => {
         state.is_login = false
         state.number = "+7"

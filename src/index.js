@@ -26,6 +26,12 @@ root.render(
         </Provider> 
       </MobileView>
 
+      <TabletView>
+        <Provider store={ store }> 
+          <MobileApp />
+        </Provider> 
+      </TabletView>
+
     </BrowserRouter>
 
   // </React.StrictMode>
