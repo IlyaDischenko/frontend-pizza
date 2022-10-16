@@ -1,15 +1,16 @@
 import React from 'react'
 
-import s from './PopupLogin.module.scss'
+import s from './MLogin.module.scss'
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
-import { isViewFalse, updateNumber, firstNumCode, secondNumCode, thirdNumCode, fourNumCode, setSendedFalse, clearCodeTitles } from './../../../redux/slices/PopupStateSliceFolder/popupSlise'
-import { getCodeAction, confirmCode } from './../../../redux/slices/PopupStateSliceFolder/popupAsyncThunk'
-import { getUserInfo } from './../../../redux/slices/UserStateSliceFolder/userAsyncThunk'
+import { isViewFalse, updateNumber, firstNumCode, secondNumCode, thirdNumCode, fourNumCode, setSendedFalse, clearCodeTitles } from './../../redux/slices/PopupStateSliceFolder/popupSlise'
+import { getCodeAction, confirmCode } from './../../redux/slices/PopupStateSliceFolder/popupAsyncThunk'
+import { getUserInfo } from './../../redux/slices/UserStateSliceFolder/userAsyncThunk'
 
-function UserPopup( {codeSend} ) {
+function MLogin(  ) {
     const popup = useSelector((state) => state.popup)
+    const codeSend = popup.code_sended
     const dispatch = useDispatch()
     const passForOnClick = () => {}
 
@@ -22,7 +23,7 @@ function UserPopup( {codeSend} ) {
             const userToken = {"token": popup.token}
             dispatch(isViewFalse())
             dispatch(getUserInfo(userToken))
-            navigate("/profile")
+            navigate("/")
         }
     }, [popup.is_login])
 
@@ -90,14 +91,15 @@ function UserPopup( {codeSend} ) {
     const returnCom = (c) => {
         if (!c) {
             return (
-                <div className={s.modal_active} onClick={() => dispatch(isViewFalse())}>
+                <div className={s.number} onClick={() => dispatch(isViewFalse())}>
                     <div 
                         onKeyDown={(e) => {
                         if (e.key === "Escape") {
                             dispatch(isViewFalse())
                             }  
                         }}
-                        className={s.modal_content_active} onClick={e => e.stopPropagation()}>
+                        className={s.number_content} onClick={e => e.stopPropagation()}>
+                        
                         <div className={s.divheader_active}>
                             <div className={s.maintext}>Вход на сайт</div>
                             <div className={s.description}>Cохраним адрес доставки и расскажем об акциях</div>
@@ -123,11 +125,6 @@ function UserPopup( {codeSend} ) {
             return (
                 <div className={s.modal_active} onClick={() => dispatch(isViewFalse())}>
                     <div 
-                        onKeyDown={(e) => {
-                        if (e.key === "Escape") {
-                            dispatch(isViewFalse())
-                            }  
-                        }}
                         className={s.modal_content_active} onClick={e => e.stopPropagation()}>
                         <div className={s.divheader_active}>
                             <div className={s.maintext}>Вход на сайт</div>
@@ -162,4 +159,4 @@ function UserPopup( {codeSend} ) {
 
 }
 
-export default UserPopup;
+export default MLogin;

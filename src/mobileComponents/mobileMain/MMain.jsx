@@ -6,6 +6,7 @@ import { fetchItems } from '../../redux/slices/ItemsSlice'
 import MPizza from './mPizza/MPizza'
 import s from './MMain.module.scss'
 import MDrink from './mDrink/MDrink'
+import MHeader from '../mobileHeader/MobileHeader'
 
 function Main() {
 
@@ -22,10 +23,13 @@ function Main() {
 
 
     return (
-        <main className={s.main}>
-            <MPizza />
-            <MDrink />
-        </main>
+        <>
+            <MHeader />
+            <main className={s.main}>
+                <MPizza />
+                <MDrink />
+            </main>
+        </>
     )
 }
 
