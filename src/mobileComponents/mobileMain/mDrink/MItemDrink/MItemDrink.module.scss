@@ -1,0 +1,111 @@
+.itemDrink {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 30px 10px 10px 10px;
+
+    .photo {
+        justify-self: flex-start;
+        display: flex;
+        justify-content: center;
+        img {
+            width: 128px;
+            height: 128px;
+        }
+    }
+}
+
+.right_elements {    
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .title {
+        div {
+            font-size: 20px;
+            font-weight: 700;
+        }
+    }
+
+    .description {
+        margin: 7px 0;
+        div {
+            font-size: 13px;
+            color: rgb(94, 92, 92);
+        }
+    }
+}
+
+
+
+
+// .item_footer {
+//     display: flex;
+//     justify-content: space-between;
+//     height: 100%;
+//     margin-top: 8px;
+// }
+
+
+.price_and_button{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .button {
+
+    
+        button {
+            padding: 4px 16px 4px;
+            border-radius: 35px;
+            background-color: #ffffff;
+            font-size: 18px;
+            border: 1px solid;
+            color: #df5830;
+            cursor: pointer;
+
+            display: flex;
+            
+            span {
+                white-space: nowrap;
+            }
+
+            .countDiv {
+                display: flex;
+                align-items: center;
+
+                .delimiter {
+                    background-color: #df593094;
+                    height: 15px;
+                    margin-left: 3px;
+                    margin-right: 3px;
+                    width: 1px;
+                    border-radius: 2px;
+                }
+            }
+
+            &:hover {
+                    color: #ffffff;
+                    background-color: #FF5925;
+                    transition-duration: 200ms;
+
+
+                    .countDiv {
+                        .delimiter {
+                            background-color: #ffffff94;
+                        }
+                    }
+                    
+            }
+        }
+    }
+
+    .price {
+        padding-right: 14px;
+        div {
+            font-weight: 400;
+            font-size: 20px;
+            white-space: nowrap;
+        }
+    }
+}

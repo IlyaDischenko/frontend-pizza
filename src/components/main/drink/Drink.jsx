@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useSelector } from 'react-redux'
-import { addToRedux, fetchPizzas } from '../../../redux/slices/ItemsSlice';
+// import { addToRedux, fetchPizzas } from '../../../redux/slices/ItemsSlice';
 
 import s from './Drink.module.scss'
 import ItemDrink from './itemDrink/ItemDrink'
@@ -21,7 +21,6 @@ function Drink() {
             </div>
             
             <div className={s.drink_block}>
-                {/* //asdasd выа ываыаываываываываываываываываываываываываываываываываываыва */          }
                 {   status == 'error' ? <div> Ошибка </div> :
                     status == 'loading' 
                     ? [...new Array(12)].map((_, index) => <Skeleton key={index}/>)

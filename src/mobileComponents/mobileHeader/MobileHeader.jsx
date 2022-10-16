@@ -18,7 +18,6 @@ function MobileHeader() {
     setScroll(window.scrollY);
   }
 
-  console.log(scroll)
 
   React.useEffect(() => {
       window.addEventListener("scroll", handleScroll);
