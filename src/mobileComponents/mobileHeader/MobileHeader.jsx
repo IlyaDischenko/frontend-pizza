@@ -18,6 +18,8 @@ function MobileHeader() {
     setScroll(window.scrollY);
   }
 
+  console.log(scroll)
+
   React.useEffect(() => {
       window.addEventListener("scroll", handleScroll);
       return () => window.removeEventListener("scroll", handleScroll);
@@ -32,8 +34,8 @@ function MobileHeader() {
   }
 
     return (
-      <header>
-        <div className={scroll <= 40 ? s.header_inner : s.header_inner_scroll}>
+      <header className={s.Header}>
+        <div className={scroll <= 26 ? s.header_inner : s.header_inner_scroll}>
           <div className={s.header_items}>
             <Link to="/">
               <div className={s.header_img}>
