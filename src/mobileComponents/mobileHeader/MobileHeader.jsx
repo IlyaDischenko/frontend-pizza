@@ -9,7 +9,7 @@ import logo from './../../img/logosvg.svg'
 import s from './MobileHeader.module.scss'
 
 function MobileHeader() {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const popup = useSelector((state) => state.popup)
 
   const [scroll, setScroll] = React.useState(0)

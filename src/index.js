@@ -15,7 +15,7 @@ const View = () => {
       <TabletView>
         <Provider store={ store }> 
           <MobileApp />
-          <div>TabletViewTabletViewTabletViewTabletViewTabletView</div>
+          {/* <div>TabletViewTabletViewTabletViewTabletViewTabletView</div> */}
         </Provider> 
       </TabletView>
     )
@@ -24,7 +24,7 @@ const View = () => {
       <MobileView>
         <Provider store={ store }> 
           <MobileApp />
-          <div>MobileViewMobileViewMobileViewMobileViewMobileView</div>
+          {/* <div>MobileViewMobileViewMobileViewMobileViewMobileView</div> */}
         </Provider> 
       </MobileView>
     )
@@ -33,7 +33,7 @@ const View = () => {
       <BrowserView>
         <Provider store={ store }>
           <App />
-          <div>BrowserViewBrowserViewBrowserViewBrowserViewBrowserView</div>
+          {/* <div>BrowserViewBrowserViewBrowserViewBrowserViewBrowserView</div> */}
         </Provider>
       </BrowserView>
     )
