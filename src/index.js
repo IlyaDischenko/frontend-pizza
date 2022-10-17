@@ -5,32 +5,58 @@ import App from './App';
 import MobileApp from './MobileApp'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import { BrowserView, MobileView, IOSView, isBrowser, isMobile, TabletView, isSafari } from 'react-device-detect';
+import { BrowserView, MobileView, IOSView, isEdge, isBrowser, isMobile, TabletView, isSafari, isTablet } from 'react-device-detect';
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
+
+const View = () => {
+  if (isTablet == true) {
+    return (
+      <TabletView>
+        <Provider store={ store }> 
+          <MobileApp />
+          <div>TabletViewTabletViewTabletViewTabletViewTabletView</div>
+        </Provider> 
+      </TabletView>
+    )
+  }else if (isMobile == true) {
+    return (
+      <MobileView>
+        <Provider store={ store }> 
+          <MobileApp />
+          <div>MobileViewMobileViewMobileViewMobileViewMobileView</div>
+        </Provider> 
+      </MobileView>
+    )
+  }else if (isBrowser == true) {
+    return (
+      <BrowserView>
+        <Provider store={ store }>
+          <App />
+          <div>BrowserViewBrowserViewBrowserViewBrowserViewBrowserView</div>
+        </Provider>
+      </BrowserView>
+    )
+  }
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
     <BrowserRouter>
+      {View()}
 
-      <BrowserView>
-        <Provider store={ store }>
-          <App />
-        </Provider>
-      </BrowserView>
+
       
-      <MobileView>
-        <Provider store={ store }> 
-          <MobileApp />
-        </Provider> 
-      </MobileView>
 
-      <IOSView>
+
+
+      {/* <IOSView>
         <Provider store={ store }> 
           <MobileApp />
+          <div>IOSViewIOSViewIOSViewIOSViewIOSViewIOSView</div>
         </Provider> 
-      </IOSView>
+      </IOSView> */}
 
     </BrowserRouter>
 
