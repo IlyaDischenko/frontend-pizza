@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useSelector } from 'react-redux'
-import { addToRedux, fetchPizzas } from './../../../redux/slices/ItemsSlice';
+import { addToRedux, fetchPizzas } from '../../../redux/slices/ItemStateSliceFolder/ItemsSlice';
 
 import s from './MDrink.module.scss'
 import MItemDrink from './MItemDrink/MItemDrink'

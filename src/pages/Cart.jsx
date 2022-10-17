@@ -6,11 +6,16 @@ import CartItemPizza from '../components/cart/CartItemPizza/CartItemPizza'
 import CartItemDrink from '../components/cart/CartItemDrink/CartItemDrink'
 import { clearPizzaItems } from './../redux/slices/cartPizzaSlice'
 import { clearDrinkItems } from './../redux/slices/cartDrinkSlice'
+import { update_promocode, checkPromocode } from './../redux/slices/cartPromoSlice'
+
+// import checkPromocode
 import emptyImg from './../img/emptyCart.png'
 
 function Cart() {
     const cartPizzaState = useSelector((state) => state.cartPizza)
     const cartDrinkState = useSelector((state) => state.cartDrink)
+    const cartPromoState = useSelector((state) => state.promo)
+    const popup = useSelector((state) => state.popup)
 
 
     const dispatch = useDispatch()
@@ -18,6 +23,18 @@ function Cart() {
     const clear = () => {
         dispatch(clearPizzaItems())
         dispatch(clearDrinkItems())
+    }
+
+    const onClickCheck = () => {
+        const dataPromo = () => {
+            if (popup.is_login == true){
+                return {"number": popup.number.substring(1), "promocode": cartPromoState.promocode}
+            } else {
+                return {"number": "", "promocode": cartPromoState.promocode}
+            }
+        }
+
+        dispatch(checkPromocode(dataPromo()))
     }
 
     const summ = cartPizzaState.totalPrice + cartDrinkState.totalPrice
@@ -54,6 +71,15 @@ function Cart() {
                 <div>
                     {cartDrinkState.items.map((item) => <CartItemDrink key={item.id} {...item} />)}
                 </div>
+
+                <div className={s.promocode}>
+                    <div className={s.div_input}>
+                        <input className={s.promocode_input} value={cartPromoState.promocode} onChange={(event) => dispatch(update_promocode(event.target.value))} placeholder='Введите промокод'/>
+                    </div>
+                    <div className={s.promocode_button} onClick={onClickCheck}>
+                        <button>Применить</button>
+                    </div>
+                </div>
     
                 <div className={s.allCountAndSum}>
                     <div className={s.allCount}>
@@ -65,7 +91,7 @@ function Cart() {
                         Сумма заказа: <span>{summ} ₽</span> 
                     </div>
                 </div>
-    
+
                 <div className={s.backAndPay}>
                     <Link style={{TextDecoration: 'none'}} to="/">
                         <button className={s.firstBtn}>

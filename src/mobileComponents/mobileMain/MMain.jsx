@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useDispatch } from 'react-redux'
-import { fetchItems } from '../../redux/slices/ItemsSlice'
+import { fetchItems } from '../../redux/slices/ItemStateSliceFolder/ItemsSlice'
 
 import MPizza from './mPizza/MPizza'
 import s from './MMain.module.scss'

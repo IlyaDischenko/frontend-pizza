@@ -5,7 +5,7 @@ import App from './App';
 import MobileApp from './MobileApp'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import { BrowserView, MobileView, isBrowser, isMobile, TabletView } from 'react-device-detect';
+import { BrowserView, MobileView, IOSView, isBrowser, isMobile, TabletView, isSafari } from 'react-device-detect';
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
 
@@ -26,11 +26,11 @@ root.render(
         </Provider> 
       </MobileView>
 
-      <TabletView>
+      <IOSView>
         <Provider store={ store }> 
           <MobileApp />
         </Provider> 
-      </TabletView>
+      </IOSView>
 
     </BrowserRouter>
 

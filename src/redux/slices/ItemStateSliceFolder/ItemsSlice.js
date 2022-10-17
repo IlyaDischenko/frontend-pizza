@@ -16,6 +16,7 @@ export const itemsSlice = createSlice({
     name: 'items',
     initialState,
     reducers: {
+
     },
     extraReducers: {
         [fetchItems.pending]: (state) => {
@@ -35,6 +36,6 @@ export const itemsSlice = createSlice({
 })
       
   
-export const { setPizzas } = itemsSlice.actions
+export const { update_promocode } = itemsSlice.actions
 
 export default itemsSlice.reducer

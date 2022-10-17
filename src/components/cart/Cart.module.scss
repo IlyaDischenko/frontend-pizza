@@ -1,5 +1,5 @@
 .rootCart {
-    max-width: 1350px;
+    width: 700px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -41,6 +41,64 @@
                     transition-duration: 300ms;
                 }
             }
+        }
+    }
+
+    .promocode {
+        display: flex;
+        justify-content: flex-end;
+        width: 700px;
+        border-top: 1px rgba(230, 230, 230, 0.4235294118) solid;
+        padding-top: 17px;
+        margin-top: 17px;
+
+        .div_input {
+            margin-right: 10px;
+
+            .promocode_input {
+                border: 1px #B6B6B6 solid;
+                border-radius: 15px;
+                padding: 10px 16px;
+                font-size: 15px;
+                
+            }
+            .promocode_input_success {
+                border: 1px solid rgba(53, 189, 41, 0.322);
+                background-color: rgba(53, 189, 41, 0.1);
+                border-radius: 15px;
+                padding: 10px 16px;
+                font-size: 15px;
+            }
+            .promocode_input_error {
+                border: 1px solid rgba(231, 43, 43, 0.493);
+                background-color: rgb(231, 43, 43, 0.1);
+                border-radius: 15px;
+                padding: 10px 16px;
+                font-size: 15px;
+            }
+        }
+
+        .promocode_button {
+            display: flex;
+            align-items: center;
+
+            cursor: pointer;
+
+            button {
+                border: none;
+                background-color: #ffffff;
+
+                color: #FF5925;
+                font-weight: 700;
+                font-size: 17px;
+
+                cursor: pointer;
+            
+                &:hover {
+                    color: #dd4314;
+                }
+            }
+
         }
     }
 
