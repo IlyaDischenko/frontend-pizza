@@ -11,7 +11,6 @@ import Skeleton from './../pizza/Skeleton/Skeleton'
 function Drink() {
 
     const { drinks, status } = useSelector((state) => state.items)
-    console.log(status)
 
 
     return (

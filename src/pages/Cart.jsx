@@ -7,7 +7,7 @@ import CartItemPizza from '../components/cart/CartItemPizza/CartItemPizza'
 import CartItemDrink from '../components/cart/CartItemDrink/CartItemDrink'
 import { clearPizzaItems } from './../redux/slices/cartPizzaSlice'
 import { clearDrinkItems } from './../redux/slices/cartDrinkSlice'
-import { update_promocode, checkPromocode, clear_promocode } from './../redux/slices/cartPromoSlice'
+import { update_promocode, checkPromocode, clear_promocode, update_message, update_applied_status } from './../redux/slices/cartPromoSlice'
 
 // import checkPromocode
 import emptyImg from './../img/emptyCart.png'
@@ -43,11 +43,11 @@ function Cart() {
     }
 
     const stylePromoInput = () => {
-        if (cartPromoState.applied_status == "default") {
+        if (cartPromoState.take_status == "default") {
             return s.promocode_input
-        } else if (cartPromoState.applied_status == "success") {
+        } else if (cartPromoState.take_status == "success") {
             return s.promocode_input_success
-        } else if (cartPromoState.applied_status == "error") {
+        } else if (cartPromoState.take_status == "error") {
             return s.promocode_input_error
         }
     }
@@ -63,21 +63,21 @@ function Cart() {
     }
 
     const readOrInput = () => {
-        if (cartPromoState.applied_status == "success") {
+        if (cartPromoState.take_status == "success") {
             return "false"
-        } else if (cartPromoState.applied_status != "success") {
+        } else if (cartPromoState.take_status != "success") {
             return ""
         }
     }
 
     const promoButton = () => {
-        if (cartPromoState.applied_status == "success") {
+        if (cartPromoState.take_status == "success") {
             return (                  
                 <div className={s.promocode_button} onClick={onClickClearPromo}>
                     <button>Изменить</button>
                 </div>
                 ) 
-        } else if (cartPromoState.applied_status != "success") {
+        } else if (cartPromoState.take_status != "success") {
             return (
                 <div className={s.promocode_button} onClick={onClickCheck}>
                     <button>Применить</button>
@@ -94,22 +94,33 @@ function Cart() {
         }
     }
 
-    // const summ = cartPizzaState.totalPrice + cartDrinkState.totalPrice
+    const summ = cartPizzaState.totalPrice + cartDrinkState.totalPrice
     const summm = () => {
-        if (cartPromoState.promocode_rub != 0) {
-            const res = cartPizzaState.totalPrice + cartDrinkState.totalPrice - cartPromoState.promocode_rub
-            if (res <= 0) {
-                return "не может быть меньше 0"
-            } else return res
+        // const summ = cartPizzaState.totalPrice + cartDrinkState.totalPrice
+        if (cartPromoState.type == 2) {
+            if (summ >= cartPromoState.min_sum) {
+                dispatch(update_message(`Скидка применена: ${cartPromoState.promocode_rub}₽`))
+                dispatch(update_applied_status("success"))
+                return summ - cartPromoState.promocode_rub
+            } else {
+                dispatch(update_message(`Минимальная сумма заказа: ${cartPromoState.min_sum}₽`))
+                dispatch(update_applied_status("default"))
+                return summ
+            }
             
-        } else if (cartPromoState.promocode_percent != 0) {
-            const summ = (cartPizzaState.totalPrice + cartDrinkState.totalPrice) / 100
-            return Math.trunc(summ * (100 - cartPromoState.promocode_percent))
-        } else {
-            const result = cartPizzaState.totalPrice + cartDrinkState.totalPrice
-            return result
-        }
+        } else if (cartPromoState.type == 1) {
+            if (summ >= cartPromoState.min_sum) {
+                dispatch(update_message(`Скидка применена: ${cartPromoState.promocode_percent}%`))
+                dispatch(update_applied_status("success"))
+                // const summs = summ / 100
+                return Math.trunc((summ / 100) * (100 - cartPromoState.promocode_percent))
+            } else {
+                dispatch(update_message(`Минимальная сумма заказа: ${cartPromoState.min_sum}₽`))
+                dispatch(update_applied_status("default"))
+                return summ
+            }
         
+        } else return summ
     }
     const allCount = cartPizzaState.countItems + cartDrinkState.countItems
     
@@ -183,8 +194,5 @@ function Cart() {
     }
 
 
-
-
-    
 
 export default Cart
