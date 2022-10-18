@@ -2,7 +2,6 @@ import React from 'react'
 
 import s from './PopupLogin.module.scss'
 
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { isViewFalse, updateNumber, firstNumCode, secondNumCode, thirdNumCode, fourNumCode, setSendedFalse, clearCodeTitles } from './../../../redux/slices/PopupStateSliceFolder/popupSlise'
 import { getCodeAction, confirmCode } from './../../../redux/slices/PopupStateSliceFolder/popupAsyncThunk'
@@ -15,14 +14,13 @@ function UserPopup( {codeSend} ) {
 
 
     const [ values, setValues ] = React.useState(Array(10).fill(''));
-    const navigate = useNavigate();
 
     React.useEffect(() => {
         if (popup.is_login == true) {
             const userToken = {"token": popup.token}
             dispatch(isViewFalse())
             dispatch(getUserInfo(userToken))
-            navigate("/profile")
+
         }
     }, [popup.is_login])
 

@@ -5,18 +5,19 @@ import axios from 'axios'
 export const checkPromocode = createAsyncThunk('promo/checkPromocode', async (info) => {
     const conf = {
             "number": info.number,
-            "promocode": info.promocode
+            "promocode": info.promocode.toLowerCase()
     }
     const { data } = await axios.post('https://backend-pizza-test.herokuapp.com/api/check/promocode', conf)
     return data
 })
 
 const initialState = {
-  promocode_item: [],
+  promocode_item: {},
   promocode_percent: 0,
   promocode_rub: 0,
   promocode: "",
-  promocode_status: "",  
+  applied_status: "default",
+  promocode_message: "",  
 }
 
 export const PromoSlice = createSlice({
@@ -25,6 +26,14 @@ export const PromoSlice = createSlice({
   reducers: {
     update_promocode: (state, action) => {
       state.promocode = action.payload
+    },
+    clear_promocode: (state) => {
+      state.promocode = ""
+      state.promocode_item = {}
+      state.promocode_percent = ""
+      state.promocode_rub = ""
+      state.applied_status = "default"
+      state.promocode_message = ""
     }
   },
   extraReducers: {
@@ -36,22 +45,32 @@ export const PromoSlice = createSlice({
     console.log(action.payload)
     if (action.payload.status == 200){
       if (action.payload.type == 1) {
-        // console.log('primenen item', action.payload.item)
-        state.promocode_item = action.payload.item
-        state.promocode_status = "applied"
+
+        state.promocode_percent = action.payload.discount_data
+        state.applied_status = "success"
+        state.promocode_message = "Скидка применена"
       } else if (action.payload.type == 2) {
-        // console.log('primenen rub', action.payload.rub)
-        state.promocode_rub = action.payload.rub
-        state.promocode_status = "applied"
+
+        state.promocode_rub = action.payload.discount_data
+        state.applied_status = "success"
+        state.promocode_message = "Скидка применена"
       } else if (action.payload.type == 3) {
-        // console.log('primenen percent', action.payload.percent)
-        state.promocode_percent = action.payload.percent
-        state.promocode_status = "applied"
+
+        state.promocode_item = action.payload.discount_data
+        state.applied_status = "success"
+        state.promocode_message = "Элемент добавлен в корзину"
       }
-      // console.log('primenen', action.payload.percent)
+
       
     } else if (action.payload.status == 400) {
-      state.promocode_status = "error"
+      state.applied_status = "error"
+      state.promocode_message = "Промокод не найден. Попробуйте другой"
+    } else if (action.payload.status == 401) {
+      state.applied_status = "error"
+      state.promocode_message = "Войдите с того номера, на который был выдан промокод"
+    } else if (action.payload.status == 422) {
+      state.applied_status = "error"
+      state.promocode_message = "Количество использования этого промокода закончилось"
     }
 
   },
@@ -62,6 +81,6 @@ export const PromoSlice = createSlice({
   }
 })
 
-export const { update_promocode } = PromoSlice.actions
+export const { update_promocode, clear_promocode } = PromoSlice.actions
 
 export default PromoSlice.reducer

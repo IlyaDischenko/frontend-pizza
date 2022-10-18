@@ -6,7 +6,7 @@ import CartItemPizza from '../components/cart/CartItemPizza/CartItemPizza'
 import CartItemDrink from '../components/cart/CartItemDrink/CartItemDrink'
 import { clearPizzaItems } from './../redux/slices/cartPizzaSlice'
 import { clearDrinkItems } from './../redux/slices/cartDrinkSlice'
-import { update_promocode, checkPromocode } from './../redux/slices/cartPromoSlice'
+import { update_promocode, checkPromocode, clear_promocode } from './../redux/slices/cartPromoSlice'
 
 // import checkPromocode
 import emptyImg from './../img/emptyCart.png'
@@ -35,6 +35,54 @@ function Cart() {
         }
 
         dispatch(checkPromocode(dataPromo()))
+    }
+
+    const onClickClearPromo = () => {
+        dispatch(clear_promocode())
+    }
+
+    const stylePromoInput = () => {
+        if (cartPromoState.applied_status == "default") {
+            return s.promocode_input
+        } else if (cartPromoState.applied_status == "success") {
+            return s.promocode_input_success
+        } else if (cartPromoState.applied_status == "error") {
+            return s.promocode_input_error
+        }
+    }
+
+    const stylePromoMessage = () => {
+        if (cartPromoState.applied_status == "default") {
+            return s.promocode_message
+        } else if (cartPromoState.applied_status == "success") {
+            return s.promocode_message_success
+        } else if (cartPromoState.applied_status == "error") {
+            return s.promocode_message_error
+        }
+    }
+
+    const readOrInput = () => {
+        if (cartPromoState.applied_status == "success") {
+            return "false"
+        } else if (cartPromoState.applied_status != "success") {
+            return ""
+        }
+    }
+
+    const promoButton = () => {
+        if (cartPromoState.applied_status == "success") {
+            return (                  
+                <div className={s.promocode_button} onClick={onClickClearPromo}>
+                    <button>Изменить</button>
+                </div>
+                ) 
+        } else if (cartPromoState.applied_status != "success") {
+            return (
+                <div className={s.promocode_button} onClick={onClickCheck}>
+                    <button>Применить</button>
+                </div>  
+            )
+        }
     }
 
     const summ = cartPizzaState.totalPrice + cartDrinkState.totalPrice
@@ -73,12 +121,15 @@ function Cart() {
                 </div>
 
                 <div className={s.promocode}>
+                    <div className={s.div_message}>
+                        <div className={stylePromoMessage()}>{cartPromoState.promocode_message}</div>
+                    </div>
                     <div className={s.div_input}>
-                        <input className={s.promocode_input} value={cartPromoState.promocode} onChange={(event) => dispatch(update_promocode(event.target.value))} placeholder='Введите промокод'/>
+                        <input readOnly={readOrInput()} className={stylePromoInput()} value={cartPromoState.promocode} onChange={(event) => dispatch(update_promocode(event.target.value))} placeholder='Введите промокод'/>
                     </div>
-                    <div className={s.promocode_button} onClick={onClickCheck}>
-                        <button>Применить</button>
-                    </div>
+
+                    {promoButton()}
+
                 </div>
     
                 <div className={s.allCountAndSum}>
