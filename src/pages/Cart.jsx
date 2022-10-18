@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
+// import Math from Math
 
 import s from './../components/cart/Cart.module.scss'
 import CartItemPizza from '../components/cart/CartItemPizza/CartItemPizza'
@@ -85,7 +86,31 @@ function Cart() {
         }
     }
 
-    const summ = cartPizzaState.totalPrice + cartDrinkState.totalPrice
+    const colorSumm = () => {
+        if (cartPromoState.applied_status == "success") {
+            return s.sum_span_applied
+        } else {
+            return s.sum_span
+        }
+    }
+
+    // const summ = cartPizzaState.totalPrice + cartDrinkState.totalPrice
+    const summm = () => {
+        if (cartPromoState.promocode_rub != 0) {
+            const res = cartPizzaState.totalPrice + cartDrinkState.totalPrice - cartPromoState.promocode_rub
+            if (res <= 0) {
+                return "не может быть меньше 0"
+            } else return res
+            
+        } else if (cartPromoState.promocode_percent != 0) {
+            const summ = (cartPizzaState.totalPrice + cartDrinkState.totalPrice) / 100
+            return Math.trunc(summ * (100 - cartPromoState.promocode_percent))
+        } else {
+            const result = cartPizzaState.totalPrice + cartDrinkState.totalPrice
+            return result
+        }
+        
+    }
     const allCount = cartPizzaState.countItems + cartDrinkState.countItems
     
     if (allCount == 0) {
@@ -139,7 +164,7 @@ function Cart() {
                     </div>
                     <div className={s.totalPrice}>
     
-                        Сумма заказа: <span>{summ} ₽</span> 
+                        Сумма заказа: <span className={colorSumm()}>{summm()} ₽</span> 
                     </div>
                 </div>
 

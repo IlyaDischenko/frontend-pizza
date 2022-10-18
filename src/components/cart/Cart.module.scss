@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 30px;
 
     .titleClear {
         display: flex;
@@ -146,8 +147,12 @@
 
         .totalPrice {
             font-weight: 500;
-            span {
+            .sum_span {
                 color: #ec3801;
+
+                &_applied {
+                    color: rgb(29, 185, 15);
+                }
             }
         }
     }

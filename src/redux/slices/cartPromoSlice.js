@@ -46,14 +46,14 @@ export const PromoSlice = createSlice({
     if (action.payload.status == 200){
       if (action.payload.type == 1) {
 
-        state.promocode_percent = action.payload.discount_data
+        state.promocode_percent = Number(action.payload.discount_data)
         state.applied_status = "success"
-        state.promocode_message = "Скидка применена"
+        state.promocode_message = `Скидка применена: ${state.promocode_percent}%`
       } else if (action.payload.type == 2) {
 
-        state.promocode_rub = action.payload.discount_data
+        state.promocode_rub = Number(action.payload.discount_data)
         state.applied_status = "success"
-        state.promocode_message = "Скидка применена"
+        state.promocode_message = `Скидка применена: ${state.promocode_rub}₽`
       } else if (action.payload.type == 3) {
 
         state.promocode_item = action.payload.discount_data
