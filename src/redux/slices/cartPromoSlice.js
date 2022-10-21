@@ -13,7 +13,8 @@ export const checkPromocode = createAsyncThunk('promo/checkPromocode', async (in
 
 const initialState = {
   type: 0,
-  promocode_item: {},
+  promocode_item: [],
+  item_price: 0,
   promocode_percent: 0,
   promocode_rub: 0,
   promocode: "",
@@ -33,7 +34,8 @@ export const PromoSlice = createSlice({
     clear_promocode: (state) => {
       state.type = 0
       state.promocode = ""
-      state.promocode_item = {}
+      state.promocode_item = []
+      state.item_price = 0
       state.promocode_percent = 0
       state.promocode_rub = 0
       state.min_sum = 0
@@ -61,22 +63,22 @@ export const PromoSlice = createSlice({
         state.promocode_percent = Number(action.payload.discount_data)
         state.min_sum = Number(action.payload.min_sum)
         state.take_status = "success"
-        // state.promocode_message = `Скидка применена: ${state.promocode_percent}%`
+
       } else if (action.payload.type == 2) {
 
         state.type = action.payload.type
         state.promocode_rub = Number(action.payload.discount_data)
         state.min_sum = Number(action.payload.min_sum)
         state.take_status = "success"
-        // state.promocode_message = `Скидка применена: ${state.promocode_rub}₽`
+
       } else if (action.payload.type == 3) {
 
         state.type = action.payload.type
         state.promocode_item = action.payload.discount_data
+        state.item_price = action.payload.discount_data.price
         state.min_sum = Number(action.payload.min_sum)
         state.take_status = "success"
-        // sadsadasdasdasdasdasdasd
-        state.promocode_message = "Элемент добавлен в корзину"
+
       }
 
       

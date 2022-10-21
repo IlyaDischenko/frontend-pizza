@@ -1,0 +1,157 @@
+.rootCartItem {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    border-top: 8px rgb(243, 243, 247) solid;
+    padding-top: 17px;
+    padding: 17px 5px 0px 5px;
+    margin: 0px 0px 10px 0px;
+}
+
+
+
+.photoAndTitle {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    .topItem {
+        display: flex;
+                   
+        .img {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    
+        .titleAndSize {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 10px;
+    
+            .title {
+                font-size: 19px;
+                font-weight: 700;
+            }
+    
+            .size {
+                font-size: 15px;
+            }
+        }
+    }
+    .removeItem {
+        button {
+        min-width: 32px;
+        min-height: 32px;
+        background-color: #ffffff;
+        border: 2px #c9c9c9 solid;
+        padding: 2px 9px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        svg {
+            rotate: 45deg;
+            path{
+                fill: #c9c9c9;
+            } 
+        }
+        &:hover {
+            background-color: #c9c9c9;
+            cursor: pointer;
+            transition-duration: 200ms; 
+            svg {
+                path {
+                    fill: #ffffff;
+                }
+            }
+        }
+        }
+    }
+}
+
+
+.bottomElements {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 13px;
+    padding-top: 13px;
+    border-top: 1px rgba(230, 230, 230, 0.4235294118) solid;
+    .count {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 110px;
+            margin-left: 15px;
+
+            div {
+                font-size: 20px;
+            }
+
+            .btn {
+                width: 32px;
+                height: 32px;
+                min-width: 32px;
+                min-height: 32px;
+                background-color: #ffffff;
+                border: 2px #FF5925 solid;
+                padding: 2px 9px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+
+                svg {
+                    fill: #EB5A1E;
+                }
+
+                &:hover {
+                    background-color: #FF5925;
+                    transition-duration: 200ms; 
+
+                    svg {
+                        fill: #ffffff;
+                    }
+                }
+            }
+
+            .btnMinusOne {
+                width: 32px;
+                height: 32px;
+                min-width: 32px;
+                min-height: 32px;
+                background-color: #ffffff;
+                border: 2px #9b9b9bd2 solid;
+                padding: 2px 9px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                
+                svg {
+                    fill: #9b9b9bd2;
+                }
+            }
+    }
+    .price {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .price {
+            display: flex;
+            justify-content: flex-end;
+            font-size: 17px;
+            font-weight: 600;
+            margin: 0 15px;
+            width: 90px;
+        }
+    }
+}
