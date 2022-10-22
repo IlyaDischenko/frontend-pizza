@@ -11,7 +11,7 @@ import Skeleton from './../mPizza/mskeleton/MSkeleton'
 function MDrink() {
 
     const { drinks, status } = useSelector((state) => state.items)
-    console.log(status)
+
 
 
     return (

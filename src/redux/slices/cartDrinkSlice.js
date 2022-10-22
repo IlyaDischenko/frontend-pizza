@@ -62,7 +62,6 @@ export const cartDrinkSlice = createSlice({
 
         if (findItem) {
           state.items = state.items.filter((obj) => obj !== findItem)
-          console.log(findItem)
         }
 
         state.totalPrice = calcTotalPrice(state.items)

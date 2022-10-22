@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 import s from './MCart.module.scss'
 import MCartItemPizza from './MCartItemPizza/MCartItemPizza'
-// import CartItemDrink from '../components/cart/CartItemDrink/CartItemDrink'
-// import CartItemPromo from '../components/cart/CartItemPromo/CartItemPromo'
+import MCartItemDrink from './MCartItemDrink/MCartItemDrink'
+import MCartItemPromo from './MCartItemPromo/MCartItemPromo'
 import { clearPizzaItems } from './../../redux/slices/cartPizzaSlice'
 import { clearDrinkItems } from './../../redux/slices/cartDrinkSlice'
 import { update_promocode, checkPromocode, clear_promocode, update_message, update_applied_status } from './../../redux/slices/cartPromoSlice'
@@ -147,10 +147,22 @@ function MCart() {
             return <></>
         } else {
             return (
-                <div>
-                    {/* <CartItemPromo data={cartPromoState.promocode_item} /> */}
-                </div>
+                <MCartItemPromo data={cartPromoState.promocode_item} />
             )
+        }
+    }
+
+    const title = () => {
+        if (allCount() != 0 ) {
+            if (allCount() == 1) {
+                return  <div className={s.titleCart}>{`1 товар на ${summCart()}₽`}</div>
+            } else if (allCount() > 1 && allCount() < 5) {
+                return <div className={s.titleCart}>{`${allCount()} товара на ${summCart()}₽`}</div>
+            } else if (allCount() >= 5) {
+                return <div className={s.titleCart}>{`${allCount()} товара на ${summCart()}₽`}</div>
+            }
+        } else {
+            return <div className={s.titleCart}>В корзине нет товаров</div>
         }
     }
 
@@ -178,16 +190,12 @@ function MCart() {
             <MobileHeader />
             <div className={s.rootCart}>
                 <div className={s.titleClear}>
-                    <div className={s.titleCart}>Корзина</div>
-
+                    {title()}
                 </div>
-                {/* <div> */}
-                    {cartPizzaState.items.map((item) => <MCartItemPizza key={item.id} {...item} />)}
-                {/* </div> */}
+                
+                {cartPizzaState.items.map((item) => <MCartItemPizza key={item.id} {...item} />)}
     
-                <div>
-                    {/* {cartDrinkState.items.map((item) => <CartItemDrink key={item.id} {...item} />)} */}
-                </div>
+                {cartDrinkState.items.map((item) => <MCartItemDrink key={item.id} {...item} />)}
 
 
                 {promoitem()}
