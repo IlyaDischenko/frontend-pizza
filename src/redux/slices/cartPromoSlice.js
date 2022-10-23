@@ -84,12 +84,15 @@ export const PromoSlice = createSlice({
       
     } else if (action.payload.status == 400) {
       state.take_status = "error"
+      state.applied_status = "error"
       state.promocode_message = "Промокод не найден. Попробуйте другой"
     } else if (action.payload.status == 401) {
       state.take_status = "error"
+      state.applied_status = "error"
       state.promocode_message = "Войдите с того номера, на который был выдан промокод"
     } else if (action.payload.status == 422) {
       state.take_status = "error"
+      state.applied_status = "error"
       state.promocode_message = "Количество использования этого промокода закончилось"
     }
 

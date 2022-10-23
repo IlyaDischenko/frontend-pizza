@@ -30,7 +30,7 @@ function MCartPromoItem({ data }) {
                     <div className={s.img}>
                         <img src={data.photo}></img>
                     </div>
-                    <div className={s.titleAndSize}>
+                    <div className={s.titleAndDescription}>
                         <div className={s.title}>{data.title}</div>
                         <div className={s.description}>{data.description}</div>
                     </div>

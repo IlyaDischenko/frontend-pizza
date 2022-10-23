@@ -155,11 +155,11 @@ function MCart() {
     const title = () => {
         if (allCount() != 0 ) {
             if (allCount() == 1) {
-                return  <div className={s.titleCart}>{`1 товар на ${summCart()}₽`}</div>
+                return  '1 товар'
             } else if (allCount() > 1 && allCount() < 5) {
-                return <div className={s.titleCart}>{`${allCount()} товара на ${summCart()}₽`}</div>
+                return `${allCount()} товара`
             } else if (allCount() >= 5) {
-                return <div className={s.titleCart}>{`${allCount()} товаров на ${summCart()}₽`}</div>
+                return `${allCount()} товаров`
             }
         } else {
             return <div className={s.titleCart}>В корзине нет товаров</div>
@@ -190,7 +190,8 @@ function MCart() {
             <MobileHeader />
             <div className={s.rootCart}>
                 <div className={s.titleClear}>
-                    {title()}
+                    <div className={s.titleCart}>{title()} на {summCart()} ₽</div>
+                    
                 </div>
                 
                 {cartPizzaState.items.map((item) => <MCartItemPizza key={item.id} {...item} />)}
@@ -201,26 +202,30 @@ function MCart() {
                 {promoitem()}
 
                 <div className={s.promocode}>
-                    <div className={s.top_element}>
-                        <div className={s.div_input}>
-                            <input readOnly={readOrInput()} className={s.promocode_input} value={cartPromoState.promocode} onChange={(event) => dispatch(update_promocode(event.target.value))} placeholder='Введите промокод'/>
+                    <div className={s.forborder}>
+                        <div className={s.top_element}>
+                            <div className={s.div_input}>
+                                <input readOnly={readOrInput()} className={s.promocode_input} value={cartPromoState.promocode} onChange={(event) => dispatch(update_promocode(event.target.value))} placeholder='Введите промокод'/>
+                            </div>
+            
+                            {promoButton()}
                         </div>
-
-                        {promoButton()}
-                    </div>
-                    <div className={s.div_message}>
-                        <div className={stylePromoMessage()}>{cartPromoState.promocode_message}</div>
+                        <div className={s.div_message}>
+                            <div className={stylePromoMessage()}>{cartPromoState.promocode_message}</div>
+                        </div>
                     </div>
                 </div>
     
-                <div className={s.allCountAndSum}>
+                <div className={s.allInfo}>
+                    
                     <div className={s.allCount}>
-    
-                        Всего: <span>{allCount()}</span> шт.
+                        <span>{title()}</span>
+                        <span className={colorSumm()}>{summCart()} ₽</span> 
                     </div>
-                    <div className={s.totalPrice}>
-    
-                        Сумма заказа: <span className={colorSumm()}>{summCart()} ₽</span> 
+
+                    <div className={s.deliver}>
+                        <span>Доставка</span> 
+                        <span>Бесплатно</span> 
                     </div>
                 </div>
 
