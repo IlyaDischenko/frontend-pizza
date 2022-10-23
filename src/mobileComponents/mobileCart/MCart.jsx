@@ -67,7 +67,7 @@ function MCart() {
 
     const readOrInput = () => {
         if (cartPromoState.take_status == "success") {
-            return false
+            return "false"
         } else if (cartPromoState.take_status != "success") {
             return ""
         }
@@ -159,7 +159,7 @@ function MCart() {
             } else if (allCount() > 1 && allCount() < 5) {
                 return <div className={s.titleCart}>{`${allCount()} товара на ${summCart()}₽`}</div>
             } else if (allCount() >= 5) {
-                return <div className={s.titleCart}>{`${allCount()} товара на ${summCart()}₽`}</div>
+                return <div className={s.titleCart}>{`${allCount()} товаров на ${summCart()}₽`}</div>
             }
         } else {
             return <div className={s.titleCart}>В корзине нет товаров</div>
@@ -201,15 +201,16 @@ function MCart() {
                 {promoitem()}
 
                 <div className={s.promocode}>
+                    <div className={s.top_element}>
+                        <div className={s.div_input}>
+                            <input readOnly={readOrInput()} className={s.promocode_input} value={cartPromoState.promocode} onChange={(event) => dispatch(update_promocode(event.target.value))} placeholder='Введите промокод'/>
+                        </div>
+
+                        {promoButton()}
+                    </div>
                     <div className={s.div_message}>
                         <div className={stylePromoMessage()}>{cartPromoState.promocode_message}</div>
                     </div>
-                    <div className={s.div_input}>
-                        <input readOnly={readOrInput()} className={stylePromoInput()} value={cartPromoState.promocode} onChange={(event) => dispatch(update_promocode(event.target.value))} placeholder='Введите промокод'/>
-                    </div>
-
-                    {promoButton()}
-
                 </div>
     
                 <div className={s.allCountAndSum}>
