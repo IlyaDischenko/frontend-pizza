@@ -33,18 +33,27 @@ function MobileHeader() {
     }
   }
 
-  const styleHeader = () => {
+  const styleHeaderItems = () => {
     if (isSafari == true) {
-      return <div> safariiiiiiiiiiiiiii</div>
+      return s.header_items_safari
     } else if (isSafari == false) {
-      return <div> NEEEE SAFARIIII</div>
+      return s.header_items
+    }
+  }
+
+  
+  const styleHeaderInner = () => {
+    if (isSafari == true) {
+      return s.header_inner_safari
+    } else if (isSafari == false) {
+      return scroll <= 40 ? s.header_inner : s.header_inner_scroll
     }
   }
 
   return (
       <header className={s.Header}>
-        <div className={s.header_inner}>
-          <div className={s.header_items}>
+        <div className={styleHeaderInner()}>
+          <div className={styleHeaderItems()}>
             <Link to="/">
               <div className={s.header_img}>
                 {/* поменять логотип */}
@@ -65,9 +74,8 @@ function MobileHeader() {
             </Link> 
           </div>
         </div>
-        {styleHeader()}
       </header>
     )
   }
   
-  export default MobileHeader;
+export default MobileHeader;

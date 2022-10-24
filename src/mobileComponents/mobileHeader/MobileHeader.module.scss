@@ -3,9 +3,7 @@
     height: 48px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    // box-sizing: border-box;
-    
+    align-items: center;    
 }
 
 .header_inner{
@@ -27,9 +25,15 @@
         z-index: 3;
         backdrop-filter: blur(20px);
 
-        // width: 100%;
         box-shadow: rgb(6 5 50 / 10%) 0px 4px 30px;
     }
+}
+
+.header_inner_safari{
+    height: 48px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .header_items {
@@ -55,7 +59,7 @@
 
     width: 100%;
     
-    // position: fixed;
+
     top: 0px;
 
 }
