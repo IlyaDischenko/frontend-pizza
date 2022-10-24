@@ -22,10 +22,10 @@ function Main() {
         getItems()
     },[])
 
-    const summ = cartPizzaState.totalPrice + cartDrinkState.totalPrice 
+    // const summ = cartPizzaState.totalPrice + cartDrinkState.totalPrice 
 
     const count = () => {
-        if (cartPromoState.type == 3 && summ > cartPromoState.min_sum) {
+        if (cartPromoState.type == 3) {
             return cartPizzaState.countItems + cartDrinkState.countItems + 1
         } else return cartPizzaState.countItems + cartDrinkState.countItems
     } 

@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import './index.css'
+import App from './App'
 import MobileApp from './MobileApp'
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
-import { BrowserView, MobileView, IOSView, isEdge, isBrowser, isMobile, TabletView, isSafari, isTablet } from 'react-device-detect';
+import reportWebVitals from './reportWebVitals'
+import { BrowserRouter } from 'react-router-dom'
+import { BrowserView, MobileView, IOSView, isEdge, isBrowser, isMobile, TabletView, isSafari, isTablet } from 'react-device-detect'
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
 

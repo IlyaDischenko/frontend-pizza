@@ -3,6 +3,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { isViewTrue } from './../../redux/slices/PopupStateSliceFolder/popupSlise'
+import { IOSView, isSafari } from 'react-device-detect';
 
 import { Link } from 'react-router-dom';
 import logo from './../../img/logosvg.svg'
@@ -32,9 +33,17 @@ function MobileHeader() {
     }
   }
 
-    return (
+  const styleHeader = () => {
+    if (isSafari == true) {
+      return <div> safariiiiiiiiiiiiiii</div>
+    } else if (isSafari == false) {
+      return <div> NEEEE SAFARIIII</div>
+    }
+  }
+
+  return (
       <header className={s.Header}>
-        <div className={scroll <= 26 ? s.header_inner : s.header_inner_scroll}>
+        <div className={s.header_inner}>
           <div className={s.header_items}>
             <Link to="/">
               <div className={s.header_img}>
@@ -56,8 +65,9 @@ function MobileHeader() {
             </Link> 
           </div>
         </div>
+        {styleHeader()}
       </header>
-    );
+    )
   }
   
   export default MobileHeader;

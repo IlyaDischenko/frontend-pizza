@@ -39,11 +39,25 @@
 
     padding: 5px 10px 5px;
 
-    // max-width: 1350px;
     width: 100%;
     
     position: fixed;
     top: 0px;
+
+}
+
+.header_items_safari {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 5px 10px 5px;
+
+    width: 100%;
+    
+    // position: fixed;
+    top: 0px;
+
 }
 
 .header_img {

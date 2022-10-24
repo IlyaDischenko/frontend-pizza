@@ -137,7 +137,7 @@ function MCart() {
     }
 
     const allCount = () => {
-        if (cartPromoState.type == 3 && summ > cartPromoState.min_sum) {
+        if (cartPromoState.type == 3) {
             return cartPizzaState.countItems + cartDrinkState.countItems + 1
         } else return cartPizzaState.countItems + cartDrinkState.countItems
     } 

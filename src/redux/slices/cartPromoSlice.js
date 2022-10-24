@@ -5,7 +5,7 @@ import axios from 'axios'
 export const checkPromocode = createAsyncThunk('promo/checkPromocode', async (info) => {
     const conf = {
             "number": info.number,
-            "promocode": info.promocode.toLowerCase()
+            "promocode": info.promocode.toLowerCase().replaceAll(' ','')
     }
     const { data } = await axios.post('https://backend-pizza-test.herokuapp.com/api/check/promocode', conf)
     return data
