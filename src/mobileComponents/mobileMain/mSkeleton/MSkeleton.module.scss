@@ -1,0 +1,22 @@
+.skeleton_wrapper {
+    height: 185px;
+    padding: 25px 8px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.circle {
+    width: 128px;
+    height: 128px;
+    padding-right: 5px;
+    border-radius: 50%;
+    background-color: #e0dfdf;
+}
+
+.rect {
+    height: 128px;
+    width: calc(100% - 135px);   
+    border-radius: 20px;
+    background-color: #e0dfdf; 
+}
