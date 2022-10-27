@@ -3,15 +3,17 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { isViewTrue } from './../../redux/slices/PopupStateSliceFolder/popupSlise'
-import { IOSView, isSafari } from 'react-device-detect';
+import { setUrl } from '../../redux/slices/UserStateSliceFolder/userSlice';
+import { isSafari } from 'react-device-detect';
 
 import { Link } from 'react-router-dom';
 import logo from './../../img/logosvg.svg'
 import s from './MobileHeader.module.scss'
 
 function MobileHeader() {
-  // const dispatch = useDispatch()
+
   const popup = useSelector((state) => state.popup)
+  const dispatch = useDispatch()
 
   const [scroll, setScroll] = React.useState(0)
 

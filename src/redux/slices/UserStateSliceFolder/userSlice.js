@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { getUserInfo, updateEmailAction, updateNameAction} from './userAsyncThunk'
 
 const initialState = {
+  url: "/",
 
   token: "",
   user_data: {
@@ -28,6 +29,10 @@ export const userStateSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+
+    setUrl: (state, action) => {
+        state.url = action.payload
+    },
 
 
     setSendedFalse: (state) => {
@@ -131,6 +136,6 @@ export const userStateSlice = createSlice({
 }
 })
 
-export const {  setSendedFalse, clearCodeTitles, updaterEmailReducer, updaterNameReducer, exitUser} = userStateSlice.actions
+export const {  setUrl, setSendedFalse, clearCodeTitles, updaterEmailReducer, updaterNameReducer, exitUser } = userStateSlice.actions
 
 export default userStateSlice.reducer

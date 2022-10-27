@@ -97,7 +97,6 @@ export const popupSlice = createSlice({
     [getCodeAction.fulfilled]: (state, action) => {
         if (action.payload.status == 200) {
             state.code_sended = true
-            console.log('adasdqwesafdsfsdfewr')
         }
     },
     [getCodeAction.rejected]: (state) => {

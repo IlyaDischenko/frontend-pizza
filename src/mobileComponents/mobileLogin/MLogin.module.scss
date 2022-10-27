@@ -4,6 +4,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 1000;
 }
 
 .number_content {
@@ -21,7 +23,7 @@
     transition: 0.2s all;
 }
 
-.modal_content_active {
+.confirm_content {
     padding: 20px;
     border-radius: 12px;
     background-color: white;
@@ -77,7 +79,7 @@
 
 }
 
-.divheader_active {
+.divheader {
     transition: 0.2s all;
     transform: scale(1);
     margin-bottom: 20px;
@@ -302,6 +304,7 @@
     left: 20px;
 
     font-size: 20px;
+    text-decoration: none;
     
 
     cursor: pointer;

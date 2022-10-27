@@ -3,30 +3,34 @@ import React from 'react'
 import s from './MLogin.module.scss'
 
 import { Link } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { isViewFalse, updateNumber, firstNumCode, secondNumCode, thirdNumCode, fourNumCode, setSendedFalse, clearCodeTitles } from './../../redux/slices/PopupStateSliceFolder/popupSlise'
 import { getCodeAction, confirmCode } from './../../redux/slices/PopupStateSliceFolder/popupAsyncThunk'
 import { getUserInfo } from './../../redux/slices/UserStateSliceFolder/userAsyncThunk'
 
-function MLogin(  ) {
+function MLogin() {
     const popup = useSelector((state) => state.popup)
+    const user = useSelector((state) => state.user)
     const codeSend = popup.code_sended
     const dispatch = useDispatch()
     const passForOnClick = () => {}
 
 
     const [ values, setValues ] = React.useState(Array(10).fill(''));
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+ 
+    
 
     React.useEffect(() => {
         if (popup.is_login == true) {
             const userToken = {"token": popup.token}
             dispatch(isViewFalse())
             dispatch(getUserInfo(userToken))
-            navigate("/profile")
+            navigate(user.url)
         }
     }, [popup.is_login])
+
 
     const getCo = () => {
         const num = {"number": popup.number,}
@@ -101,7 +105,7 @@ function MLogin(  ) {
                         }}
                         className={s.number_content} onClick={e => e.stopPropagation()}>
                         
-                        <div className={s.divheader_active}>
+                        <div className={s.divheader}>
                             <div className={s.maintext}>Вход на сайт</div>
                             <div className={s.description}>Cохраним адрес доставки и расскажем об акциях</div>
                         </div>
@@ -113,7 +117,7 @@ function MLogin(  ) {
                                 onKeyDown={e => onKeySend(e)} 
                                 autoFocus={true}
                                 onChange={(event) => dispatch(updateNumber(String(event.target.value)))} 
-                                inputmode="numeric"
+                                inputMode="numeric"
                                 value={popup.number} />
                         </div>
                  
@@ -125,10 +129,10 @@ function MLogin(  ) {
             )
         } else if (c) {
             return (
-                <div className={s.modal_active} onClick={() => dispatch(isViewFalse())}>
+                <div className={s.confirm} onClick={() => dispatch(isViewFalse())}>
                     <div 
-                        className={s.modal_content_active} onClick={e => e.stopPropagation()}>
-                        <div className={s.divheader_active}>
+                        className={s.confirm_content} onClick={e => e.stopPropagation()}>
+                        <div className={s.divheader}>
                             <div className={s.maintext}>Вход на сайт</div>
                             <div className={s.numberTitle}>
                                 Отправили сообщение с кодом на <div><span>{popup.number}</span> <span className={s.orange} onClick={setSendetFalse}>Изменить</span></div>
@@ -137,10 +141,10 @@ function MLogin(  ) {
                         
                         <div onKeyDown={e => onKeyConfirm(e)} className={s.input_items_active}>
                         
-                            <input autoFocus={true} className={checkCode()} data-index="1" inputmode="numeric" onChange={onChange} value={popup.code_0} maxLength='1' ref={input => inputRefs[1] = input}/>
-                            <input className={checkCode()} data-index="2" inputmode="numeric" onChange={onChange} value={popup.code_1} maxLength='1' ref={input => inputRefs[2] = input}/>
-                            <input className={checkCode()} data-index="3" inputmode="numeric" onChange={onChange} value={popup.code_2} maxLength='1' ref={input => inputRefs[3] = input}/>
-                            <input className={checkCode()} data-index="4" inputmode="numeric" onChange={onChange} value={popup.code_3} maxLength='1' ref={input => inputRefs[4] = input}/>
+                            <input autoFocus={true} className={checkCode()} data-index="1" inputMode="numeric" onChange={onChange} value={popup.code_0} maxLength='1' ref={input => inputRefs[1] = input}/>
+                            <input className={checkCode()} data-index="2" inputMode="numeric" onChange={onChange} value={popup.code_1} maxLength='1' ref={input => inputRefs[2] = input}/>
+                            <input className={checkCode()} data-index="3" inputMode="numeric" onChange={onChange} value={popup.code_2} maxLength='1' ref={input => inputRefs[3] = input}/>
+                            <input className={checkCode()} data-index="4" inputMode="numeric" onChange={onChange} value={popup.code_3} maxLength='1' ref={input => inputRefs[4] = input}/>
                         </div>
                         
                         <div className={s.footer_active}>
@@ -158,7 +162,7 @@ function MLogin(  ) {
         <div className={s.wrp}>
             <Link to="/">
                 <button className={s.backButton}>
-                    <svg width="16" height="22" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 13L1 6.93015L6.86175 1" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <svg width="16" height="22" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 13L1 6.93015L6.86175 1" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path></svg>
                     назад
                 </button>
             </Link>

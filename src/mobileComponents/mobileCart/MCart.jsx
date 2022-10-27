@@ -8,6 +8,7 @@ import MCartItemDrink from './MCartItemDrink/MCartItemDrink'
 import MCartItemPromo from './MCartItemPromo/MCartItemPromo'
 import { clearPizzaItems } from './../../redux/slices/cartPizzaSlice'
 import { clearDrinkItems } from './../../redux/slices/cartDrinkSlice'
+import { setUrl } from '../../redux/slices/UserStateSliceFolder/userSlice';
 import { update_promocode, checkPromocode, clear_promocode, update_message, update_applied_status } from './../../redux/slices/cartPromoSlice'
 import MobileHeader from '../mobileHeader/MobileHeader';
 
@@ -166,11 +167,16 @@ function MCart() {
         }
     }
 
+    // const linkOrderBtn = () => {
+    //     if (!popup.is_login) {
+    //         return "/login"
+    //     } else if 
+    // }
     
     if (allCount() == 0) {
         return (
             <main>
-            <MobileHeader /> 
+
             <div className={s.root_empty}>
                 <div className={s.empty_wrapper}>
                     <div className={s.empty_img}>
@@ -179,6 +185,7 @@ function MCart() {
                     <div className={s.empty_bottom}>
                         <div className={s.empty_title}>Корзина пустая!</div>
                         <div className={s.empty_description}>Перейдите на главную страницу и добавьте понравившийся товар.</div>
+                        <Link to="/" className={s.link_to_main}><button>Выбрать пиццу</button></Link>
                     </div>
                 </div>
             </div>
@@ -229,14 +236,17 @@ function MCart() {
                     </div>
                 </div>
 
-                <div className={s.backAndPay}>
-                    <Link style={{TextDecoration: 'none'}} to="/">
-                        <button className={s.firstBtn}>
-                            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 13L1 6.93015L6.86175 1" stroke="#D3D3D3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path></svg>
-                            <div>Вернуться назад</div>
-                        </button>
+                <div className={s.bottom_sum}>
+                    <div className={s.allSum}>
+                        <span>Сумма заказа</span> 
+                        <span>{summCart()} ₽</span> 
+                    </div>
+                </div>
+
+                <div className={s.topaybtn}>
+                    <Link className={s.linkBtn} to={"/order"} onClick={() => dispatch(setUrl("/order"))}>
+                        <button>К оформлению заказа</button>
                     </Link>
-                    <button className={s.secondBtn}>К оформлению заказа</button>
                 </div>
             </div>
             </main>
