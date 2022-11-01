@@ -31,7 +31,7 @@ function MOrder() {
         <>
             <MHeader />
             <div className={s.adress_block}>
-                <div className={s.title_adres}>Ваш адрес</div>
+                <div className={s.title}>Ваш адрес</div>
                 <div className={s.street}>
                     <input type="text" placeholder='Улица' onChange={(e) => dispatch(updateStreet(e.target.value))} value={user.street}/>
                 </div>
@@ -49,12 +49,12 @@ function MOrder() {
                         <input type="text" placeholder='Квартира' onChange={(e) => dispatch(updateApartment(e.target.value))} value={user.apartment}/>
                     </div>
                 </div>
-                <div className={s.title_comment}>Комментарий к заказу</div>
+                <div className={s.title}>Комментарий к заказу</div>
                 <div className={s.comment}>
                     <input type="text" placeholder='Доставьте поскорей' onChange={(e) => dispatch(changeComment(e.target.value))} value={order.comment}/>
                 </div>
             </div>
-            <div className={s.title_paytype}>Способ оплаты</div>
+            <div className={s.title}>Способ оплаты</div>
             <div className={s.pay_type}>
                 <ul>
                 {paytype.map((size, i) => (
@@ -66,6 +66,21 @@ function MOrder() {
                     </li>
                 ))}
                 </ul>
+            </div>
+            <div className={s.title}>Ваш заказ:</div>
+            <div className={s.your_order}>
+                <div className={s.count}>
+                    <span>{order.count}</span>
+                    <span>{order.sum} ₽</span>
+                </div>
+                <div className={s.total}>
+                    <span>Доставка</span>
+                    <span className={s.orange}>Бесплатно</span>
+                </div>
+                <div className={s.total}>
+                    <span>Способ оплаты</span>
+                    <span>{paytype[activePaytype]}</span>
+                </div>
             </div>
         </>
     )

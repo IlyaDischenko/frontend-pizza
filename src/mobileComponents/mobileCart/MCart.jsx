@@ -11,15 +11,15 @@ import { clearDrinkItems } from './../../redux/slices/cartDrinkSlice'
 import { setUrl } from '../../redux/slices/UserStateSliceFolder/userSlice';
 import { update_promocode, checkPromocode, clear_promocode, update_message, update_applied_status } from './../../redux/slices/cartPromoSlice'
 import MobileHeader from '../mobileHeader/MobileHeader';
+import { changeCount, changeSum } from '../../redux/slices/orderStateSliceFolder/orderSlise';
 
-
-// import emptyImg from './../img/emptyCart.png'
 
 function MCart() {
     const cartPizzaState = useSelector((state) => state.cartPizza)
     const cartDrinkState = useSelector((state) => state.cartDrink)
     const cartPromoState = useSelector((state) => state.promo)
     const popup = useSelector((state) => state.popup)
+    const order = useSelector((state) => state.order)
 
 
     const dispatch = useDispatch()
@@ -105,10 +105,15 @@ function MCart() {
             if (summ >= cartPromoState.min_sum) {
                 dispatch(update_message(`Скидка применена: ${cartPromoState.promocode_rub}₽`))
                 dispatch(update_applied_status("success"))
+                dispatch(changeSum(summ - cartPromoState.promocode_rub))
+                // 
+                // 
+                // 
                 return summ - cartPromoState.promocode_rub
             } else {
                 dispatch(update_message(`Минимальная сумма заказа: ${cartPromoState.min_sum}₽`))
                 dispatch(update_applied_status("default"))
+                dispatch(changeSum(summ))
                 return summ
             }
             
@@ -116,10 +121,12 @@ function MCart() {
             if (summ >= cartPromoState.min_sum) {
                 dispatch(update_message(`Скидка применена: ${cartPromoState.promocode_percent}%`))
                 dispatch(update_applied_status("success"))
+                dispatch(changeSum(Math.trunc((summ / 100) * (100 - cartPromoState.promocode_percent))))
                 return Math.trunc((summ / 100) * (100 - cartPromoState.promocode_percent))
             } else {
                 dispatch(update_message(`Минимальная сумма заказа: ${cartPromoState.min_sum}₽`))
                 dispatch(update_applied_status("default"))
+                dispatch(changeSum(summ))
                 return summ
             }
         
@@ -127,14 +134,19 @@ function MCart() {
             if (summ >= cartPromoState.min_sum) {
                 dispatch(update_message(`Добавлено: ${cartPromoState.promocode_item.title}`))
                 dispatch(update_applied_status("success"))
+                dispatch(changeSum(summ + cartPromoState.item_price))
                 return summ + cartPromoState.item_price
             } else {
                 dispatch(update_message(`Минимальная сумма заказа: ${cartPromoState.min_sum}₽`))
                 dispatch(update_applied_status("default"))
+                dispatch(changeSum(summ))
                 return summ
             }
         
-        }else return summ
+        }else {
+            dispatch(changeSum(summ))
+            return summ
+        }
     }
 
     const allCount = () => {
@@ -156,13 +168,17 @@ function MCart() {
     const title = () => {
         if (allCount() != 0 ) {
             if (allCount() == 1) {
+                dispatch(changeCount('1 товар'))
                 return  '1 товар'
             } else if (allCount() > 1 && allCount() < 5) {
+                dispatch(changeCount(`${allCount()} товара`))
                 return `${allCount()} товара`
             } else if (allCount() >= 5) {
+                dispatch(changeCount(`${allCount()} товаров`))
                 return `${allCount()} товаров`
             }
         } else {
+            dispatch(changeCount('В корзине нет товаров'))
             return <div className={s.titleCart}>В корзине нет товаров</div>
         }
     }

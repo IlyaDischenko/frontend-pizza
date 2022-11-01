@@ -1,7 +1,7 @@
 
-.title_adres {
-    margin: 15px 10px;
-    font-size: 35px;
+.title {
+    margin: 25px 10px 10px;
+    font-size: 25px;
     font-weight: 600;
 }
 
@@ -14,7 +14,7 @@
 
         border-radius: 15px;
         border: 1px solid #cfcfcf;
-        font-size: 18px;
+        font-size: 16px;
     }
 }
 
@@ -33,15 +33,9 @@
             padding: 10px 15px;
             border-radius: 15px;
             border: 1px solid #cfcfcf;
-            font-size: 18px;
+            font-size: 16px;
         }
     }
-}
-
-.title_comment {
-    margin: 35px 10px 15px;
-    font-size: 30px;
-    font-weight: 600;
 }
 
 .comment {
@@ -53,14 +47,8 @@
 
         border-radius: 15px;
         border: 1px solid #cfcfcf;
-        font-size: 18px;
+        font-size: 16px;
     }
-}
-
-.title_paytype {
-    margin: 35px 10px 15px;
-    font-size: 30px;
-    font-weight: 600;
 }
 
 .pay_type {
@@ -83,7 +71,7 @@
             flex: 1;
             cursor: pointer;
             font-weight: 600;
-            font-size: 18px;
+            font-size: 16px;
             text-align: center;
 
 
@@ -95,4 +83,18 @@
             }
         }
     }
+}
+
+.your_order {
+    margin: 0 10px;
+    div {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 600;
+        margin: 2px 0;
+    }
+}
+
+.orange {
+    color: #ff5e00;
 }

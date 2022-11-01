@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUrl } from '../../redux/slices/UserStateSliceFolder/userSlice';
 
 import { Link } from 'react-router-dom';
-import logo from './../../img/mlogo.svg'
+import logo from './../../img/logo.svg'
 import s from './MobileHeader.module.scss'
 
 function MobileHeader() {
