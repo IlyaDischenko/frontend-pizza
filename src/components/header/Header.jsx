@@ -7,7 +7,7 @@ import { isViewTrue } from './../../redux/slices/PopupStateSliceFolder/popupSlis
 
 import Popup from './loginPopup/PopupLogin'
 import s from './Header.module.scss'
-import logo from '../../img/logosvg.svg'
+import logo from '../../img/logo.svg'
 
 function Header() {
     const cartPizza = useSelector((state) => state.cartPizza)

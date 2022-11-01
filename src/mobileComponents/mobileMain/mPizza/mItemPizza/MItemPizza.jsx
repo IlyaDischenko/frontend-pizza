@@ -8,9 +8,9 @@ import s from './MItemPizza.module.scss'
 function ItemPizza({ id, title, description, photo, price_small, price_middle, price_big }) {
     const dispatch = useDispatch()
     // Ищем добавленные пиццы по размерам
-    const bigItemState = useSelector((state) => state.cartPizza.items.find((obj) => obj.id == id && obj.size == 40))
+    const bigItemState = useSelector((state) => state.cartPizza.items.find((obj) => obj.id == id && obj.size == 35))
     const middleItemState = useSelector((state) => state.cartPizza.items.find((obj) => obj.id == id && obj.size == 30))
-    const smallItemState = useSelector((state) => state.cartPizza.items.find((obj) => obj.id == id && obj.size == 26))
+    const smallItemState = useSelector((state) => state.cartPizza.items.find((obj) => obj.id == id && obj.size == 25))
 
     const bigAddedCount = bigItemState ? bigItemState.count : 0
     const middleAddedCount = middleItemState ? middleItemState.count : 0
@@ -19,7 +19,7 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
     
     const [activePrice, setActivePrice] = React.useState(0)
     const [activeSize, setActiveSize] = React.useState(0);
-    const sizes = [26, 30, 40]
+    const sizes = [25, 30, 35]
     const prices = [price_small, price_middle, price_big]
 
     // Выбор размера пиццы

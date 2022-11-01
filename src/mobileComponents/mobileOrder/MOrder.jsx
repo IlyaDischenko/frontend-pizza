@@ -6,9 +6,9 @@ import s from './MOrder.module.scss'
 
 import MHeader from '../mobileHeader/MobileHeader'
 import { Link } from 'react-router-dom'
-import MLogin from '../mobileLogin/MLogin';
+import MLogin from '../mobileLogin/MLogin'
 
-function Main() {
+function MOrder() {
     const cartPizzaState = useSelector((state) => state.cartPizza)
     const cartDrinkState = useSelector((state) => state.cartDrink)
     const cartPromoState = useSelector((state) => state.promo)
@@ -16,24 +16,32 @@ function Main() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const loginOrPay = (isLog) => {
-
-        if (!isLog) {
-            <MLogin /> 
-        } else {
-            return <div>asdcvewrqwe</div> 
-        }
-        
-    }
-
 
     return (
         <>
             <MHeader />
-            {loginOrPay(popup.is_login)}
-            <div> asdsad </div>
+            <div className={s.adress_block}>
+                <div className={s.title}>Адрес</div>
+                <div className={s.street}>
+                    <input type="text" placeholder='Улица' />
+                </div>
+                <div className={s.footer_info}>
+                    <div className={s.house}>
+                        <input type="text" placeholder='Дом' />
+                    </div>
+                    <div className={s.entrance}>
+                        <input type="text" placeholder='Подъезд' />
+                    </div>
+                    <div className={s.floor}>
+                        <input type="text" placeholder='Этаж' />
+                    </div>
+                    <div className={s.apartament}>
+                        <input type="text" placeholder='Квартира' />
+                    </div>
+                </div>
+            </div>
         </>
     )
 }
 
-export default Main
+export default MOrder

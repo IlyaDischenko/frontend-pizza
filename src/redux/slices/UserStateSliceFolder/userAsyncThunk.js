@@ -9,7 +9,7 @@ export const getUserInfo = createAsyncThunk('userState/getUserInfo', async (tok)
     return data
 })
 
-export const updateEmailAction = createAsyncThunk('userState/updateEmailAction', async ( email) => {
+export const updateEmailAction = createAsyncThunk('userState/updateEmailAction', async (email) => {
     const conf = {
             "token": email.token,
             "email": email.email

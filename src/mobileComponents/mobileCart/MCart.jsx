@@ -167,11 +167,13 @@ function MCart() {
         }
     }
 
-    // const linkOrderBtn = () => {
-    //     if (!popup.is_login) {
-    //         return "/login"
-    //     } else if 
-    // }
+    const linkOrderBtn = () => {
+        if (!popup.is_login) {
+            return "/login"
+        } else if (popup.is_login) {
+            return "/order"
+        } 
+    }
     
     if (allCount() == 0) {
         return (
@@ -244,7 +246,7 @@ function MCart() {
                 </div>
 
                 <div className={s.topaybtn}>
-                    <Link className={s.linkBtn} to={"/order"} onClick={() => dispatch(setUrl("/order"))}>
+                    <Link className={s.linkBtn} to={linkOrderBtn()} onClick={() => dispatch(setUrl("/order"))}>
                         <button>К оформлению заказа</button>
                     </Link>
                 </div>

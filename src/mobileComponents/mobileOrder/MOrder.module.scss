@@ -1,0 +1,39 @@
+
+.title {
+    margin: 15px 10px;
+    font-size: 35px;
+    font-weight: 600;
+}
+
+.street {
+    margin: 15px 10px;
+    input {
+        height: 50px;
+        width: 100%;
+        padding: 10px;
+
+        border-radius: 15px;
+        border: 1px solid #cfcfcf;
+        font-size: 18px;
+    }
+}
+
+
+.footer_info {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 5px;
+
+    div {
+        width: 25%;
+        margin: 0 5px;
+        input {
+            height: 50px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 15px;
+            border: 1px solid #cfcfcf;
+            font-size: 18px;
+        }
+    }
+}

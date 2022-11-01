@@ -7,7 +7,7 @@ import { setUrl } from '../../redux/slices/UserStateSliceFolder/userSlice';
 import { isSafari } from 'react-device-detect';
 
 import { Link } from 'react-router-dom';
-import logo from './../../img/logosvg.svg'
+import logo from './../../img/mlogo.svg'
 import s from './MobileHeader.module.scss'
 
 function MobileHeader() {
