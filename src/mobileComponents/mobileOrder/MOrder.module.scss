@@ -1,5 +1,5 @@
 
-.title {
+.title_adres {
     margin: 15px 10px;
     font-size: 35px;
     font-weight: 600;
@@ -10,7 +10,7 @@
     input {
         height: 50px;
         width: 100%;
-        padding: 10px;
+        padding: 10px 15px;
 
         border-radius: 15px;
         border: 1px solid #cfcfcf;
@@ -30,10 +30,29 @@
         input {
             height: 50px;
             width: 100%;
-            padding: 10px;
+            padding: 10px 15px;
             border-radius: 15px;
             border: 1px solid #cfcfcf;
             font-size: 18px;
         }
+    }
+}
+
+.title_comment {
+    margin: 35px 10px 15px;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.comment {
+    margin: 15px 10px;
+    input {
+        height: 50px;
+        width: 100%;
+        padding: 10px 15px;
+
+        border-radius: 15px;
+        border: 1px solid #cfcfcf;
+        font-size: 18px;
     }
 }

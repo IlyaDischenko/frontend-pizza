@@ -6,16 +6,15 @@ const initialState = {
   url: "/",
 
   token: "",
-  user_data: {
-    name: "",
-    email: "",
-    entrance: "",
-    floor: "",
-    house: "",
-    street: "",
-    apartment: "",
 
-},
+  name: "",
+  email: "",
+  street: "",
+  entrance: "",
+  floor: "",
+  house: "",
+  apartment: "",
+
   userInfoStatus: "",
   
   updatedMail: "",
@@ -33,7 +32,6 @@ export const userStateSlice = createSlice({
     setUrl: (state, action) => {
         state.url = action.payload
     },
-
 
     setSendedFalse: (state) => {
         state.code_sended = false
@@ -57,6 +55,22 @@ export const userStateSlice = createSlice({
 
     exitUser: (state) => {
         state.is_login = false
+    },
+
+    updateStreet: (state, action) => {
+        state.street = action.payload
+    },
+    updateEntrance: (state, action) => {
+        state.entrance = action.payload
+    },
+    updateFloor: (state, action) => {
+        state.floor = action.payload
+    },
+    updateHouse: (state, action) => {
+        state.house = action.payload
+    },
+    updateApartment: (state, action) => {
+        state.apartment = action.payload
     }
   },
   extraReducers: {
@@ -66,17 +80,15 @@ export const userStateSlice = createSlice({
     },
     [getUserInfo.fulfilled]: (state, action) => {
         if (action.payload.status == 200) {
-    
-            state.user_data = { 
-                name: action.payload.data.name,
-                email: action.payload.data.email,
-                entrance: action.payload.data.entrance,
-                floor: action.payload.data.floor,
-                house: action.payload.data.house,
-                street: action.payload.data.street,
-                apartment: action.payload.data.apartment,
+            
+            state.name = action.payload.data.name
+            state.email = action.payload.data.email
+            state.entrance = action.payload.data.entrance
+            state.floor = action.payload.data.floor
+            state.house = action.payload.data.house
+            state.street = action.payload.data.street
+            state.apartment = action.payload.data.apartment
 
-            }
             state.updatedMail = action.payload.data.email
             state.updatedName = action.payload.data.name
             state.userInfoStatus = "success"
@@ -136,6 +148,7 @@ export const userStateSlice = createSlice({
 }
 })
 
-export const {  setUrl, setSendedFalse, clearCodeTitles, updaterEmailReducer, updaterNameReducer, exitUser } = userStateSlice.actions
+export const {  setUrl, setSendedFalse, clearCodeTitles, updaterEmailReducer, updaterNameReducer, exitUser,
+    updateStreet, updateEntrance, updateFloor, updateHouse, updateApartment} = userStateSlice.actions
 
 export default userStateSlice.reducer

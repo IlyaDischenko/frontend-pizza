@@ -42,13 +42,13 @@ function MobileHeader() {
       return s.header_items
     }
   }
-
+  // scroll <= 20 ? s.header_inner :
   
   const styleHeaderInner = () => {
     if (isSafari == true) {
-      return s.header_inner_safari
+      return s.header_inner_scroll
     } else if (isSafari == false) {
-      return scroll <= 40 ? s.header_inner : s.header_inner_scroll
+      return  s.header_inner_scroll
     }
   }
 
@@ -58,7 +58,6 @@ function MobileHeader() {
           <div className={styleHeaderItems()}>
             <Link to="/">
               <div className={s.header_img}>
-                {/* поменять логотип */}
                 <img src={logo} alt="Логотип" />
               </div>
             </Link>
