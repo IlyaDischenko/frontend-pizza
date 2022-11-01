@@ -40,7 +40,7 @@
 
 .title_comment {
     margin: 35px 10px 15px;
-    font-size: 25px;
+    font-size: 30px;
     font-weight: 600;
 }
 
@@ -54,5 +54,45 @@
         border-radius: 15px;
         border: 1px solid #cfcfcf;
         font-size: 18px;
+    }
+}
+
+.title_paytype {
+    margin: 35px 10px 15px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.pay_type {
+    display: flex;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+    padding: 3px;
+    margin: 0 10px 9px;
+    
+    ul {
+      display: flex;
+      flex: 1;
+        
+        li {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 6px;
+            margin: 0 1px;
+            flex: 1;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 18px;
+            text-align: center;
+
+
+            &.active {
+                background: #ffffff;
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.178);
+                border-radius: 8px;
+                cursor: pointer;
+            }
+        }
     }
 }

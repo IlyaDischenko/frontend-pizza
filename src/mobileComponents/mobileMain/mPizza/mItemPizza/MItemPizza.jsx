@@ -18,7 +18,7 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
 
     
     const [activePrice, setActivePrice] = React.useState(0)
-    const [activeSize, setActiveSize] = React.useState(0);
+    const [activeSize, setActiveSize] = React.useState(0) 
     const sizes = [25, 30, 35]
     const prices = [price_small, price_middle, price_big]
 

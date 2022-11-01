@@ -2,9 +2,7 @@ import React from 'react'
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { isViewTrue } from './../../redux/slices/PopupStateSliceFolder/popupSlise'
 import { setUrl } from '../../redux/slices/UserStateSliceFolder/userSlice';
-import { isSafari } from 'react-device-detect';
 
 import { Link } from 'react-router-dom';
 import logo from './../../img/mlogo.svg'
@@ -15,18 +13,6 @@ function MobileHeader() {
   const popup = useSelector((state) => state.popup)
   const dispatch = useDispatch()
 
-  const [scroll, setScroll] = React.useState(0)
-
-  const handleScroll = () => {
-    setScroll(window.scrollY);
-  }
-
-
-  React.useEffect(() => {
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
-  }, [])
-
   const isLoginTitle = () => {
     if (popup.is_login == true) {
         return "Кабинет"
@@ -35,27 +21,11 @@ function MobileHeader() {
     }
   }
 
-  const styleHeaderItems = () => {
-    if (isSafari == true) {
-      return s.header_items_safari
-    } else if (isSafari == false) {
-      return s.header_items
-    }
-  }
-  // scroll <= 20 ? s.header_inner :
-  
-  const styleHeaderInner = () => {
-    if (isSafari == true) {
-      return s.header_inner_scroll
-    } else if (isSafari == false) {
-      return  s.header_inner_scroll
-    }
-  }
 
   return (
       <header className={s.Header}>
-        <div className={styleHeaderInner()}>
-          <div className={styleHeaderItems()}>
+        <div className={s.header_inner_scroll}>
+          <div className={s.header_items}>
             <Link to="/">
               <div className={s.header_img}>
                 <img src={logo} alt="Логотип" />

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 
 import s from './MOrder.module.scss'
@@ -19,6 +19,12 @@ function MOrder() {
     const popup = useSelector((state) => state.popup)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const [activePaytype, setActivePaytype] = React.useState(0) 
+    const paytype = ['Наличные', "Переводом на карту"]
+    const onClickPaytype = (i) => {
+        setActivePaytype(i)
+    }
 
 
     return (
@@ -47,6 +53,19 @@ function MOrder() {
                 <div className={s.comment}>
                     <input type="text" placeholder='Доставьте поскорей' onChange={(e) => dispatch(changeComment(e.target.value))} value={order.comment}/>
                 </div>
+            </div>
+            <div className={s.title_paytype}>Способ оплаты</div>
+            <div className={s.pay_type}>
+                <ul>
+                {paytype.map((size, i) => (
+                    <li
+                    key={size}
+                    onClick={() => onClickPaytype(i)}
+                    className={activePaytype === i ? s.active : ""}>
+                    {size}
+                    </li>
+                ))}
+                </ul>
             </div>
         </>
     )
