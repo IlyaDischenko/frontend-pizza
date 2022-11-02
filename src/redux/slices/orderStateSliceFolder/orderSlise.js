@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+import { set_order } from './orderAsyncThunk'
+
 // import { getCodeAction, confirmCode} from './orderAsyncThunk'
 
 const initialState = {
   comment: '',
   sum: 0,
-  count: '',
+  count: '0 товаров',
 }
 
 export const orderSlice = createSlice({
@@ -22,7 +24,17 @@ export const orderSlice = createSlice({
       state.count = action.payload
     }
   },
-  extraReducers: {}
+  extraReducers: {  
+    [set_order.pending]: (state) => {
+
+    },
+    [set_order.fulfilled]: (state, action) => {
+      console.log("pizdaaaaaaaaaaaa")
+    },
+    [set_order.rejected]: (state) => {
+
+    }
+  }
 })
 
 export const { changeComment, changeSum, changeCount } = orderSlice.actions

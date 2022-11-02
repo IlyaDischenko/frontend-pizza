@@ -1,3 +1,6 @@
+.order_wrapper {
+    height: 100vh;
+}
 
 .title {
     margin: 25px 10px 10px;
@@ -97,4 +100,45 @@
 
 .orange {
     color: #ff5e00;
+}
+
+
+.button_order {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+
+
+    // .linkBtn {
+        
+    //     background-color: #ff5925;
+        
+    //     border-radius: 25px;
+    //     padding: 12px 14px;
+    //     transition-duration: 150ms;
+    //     width: 100%;
+    //     margin: 10px;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+
+        button {
+
+            background-color: #ff5925;
+        
+            border-radius: 25px;
+            padding: 12px 14px;
+            transition-duration: 150ms;
+            width: 100%;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 17px;
+            border: none;
+            background-color: #ff5925;
+            color:#ffffff;
+        }
+    // }
 }

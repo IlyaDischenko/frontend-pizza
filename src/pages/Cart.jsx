@@ -165,6 +165,9 @@ function Cart() {
                         <div className={s.empty_title}>Корзина пустая!</div>
                         <div className={s.empty_description}>Перейдите на главную страницу и добавьте понравившийся товар.</div>
                     </div>
+                    <div className={s.go_to_main}>
+                        <Link to="/" className={s.link_to_main}><button>Выбрать пиццу</button></Link>
+                    </div>
                 </div>
             </div>
         )

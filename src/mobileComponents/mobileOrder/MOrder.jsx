@@ -6,9 +6,9 @@ import s from './MOrder.module.scss'
 
 import MHeader from '../mobileHeader/MobileHeader'
 import { Link } from 'react-router-dom'
-import MLogin from '../mobileLogin/MLogin'
 import { updateApartment, updateEntrance, updateFloor, updateHouse, updateStreet } from '../../redux/slices/UserStateSliceFolder/userSlice';
 import { changeComment } from '../../redux/slices/orderStateSliceFolder/orderSlise';
+import { set_order } from '../../redux/slices/orderStateSliceFolder/orderAsyncThunk';
 
 function MOrder() {
     const cartPizzaState = useSelector((state) => state.cartPizza)
@@ -18,12 +18,42 @@ function MOrder() {
     const order = useSelector((state) => state.order)
     const popup = useSelector((state) => state.popup)
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const [activePaytype, setActivePaytype] = React.useState(0) 
     const paytype = ['Наличные', "Переводом на карту"]
     const onClickPaytype = (i) => {
         setActivePaytype(i)
+    }
+
+    const token = popup.token
+    const number = user.number
+    const pizza = cartPizzaState.items
+    const drink = cartDrinkState.items
+    const promo = cartPromoState.promocode
+    const street = user.street
+    const house = user.house
+    const entrance = user.entrance
+    const floor = user.floor
+    const apartment = user.apartment
+    const comment = order.comment
+
+    const send_order = () => {
+        const inf = {
+            token: token,
+            number: number,
+            pizzas: pizza,
+            drinks: drink,
+            promocode: promo,
+            street: street,
+            house:house,
+            entrance:entrance,
+            floor: floor,
+            apartment: apartment,
+            device: "mbrowser",
+            paytype: "cash",
+            comment: comment,
+        }
+        dispatch(set_order(inf))
     }
 
 
@@ -82,8 +112,13 @@ function MOrder() {
                     <span>{paytype[activePaytype]}</span>
                 </div>
             </div>
+            <div className={s.button_order} onClick={send_order}>
+                <button>Оформить заказ</button>
+            </div>
         </>
     )
 }
+
+
 
 export default MOrder

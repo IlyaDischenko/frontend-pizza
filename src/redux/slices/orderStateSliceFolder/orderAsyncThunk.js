@@ -1,23 +1,27 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-export const getCodeAction = createAsyncThunk('popup/getCode', async (num) => {
+export const set_order = createAsyncThunk('order/set_order', async (info) => {
     const body = {
-        "number": num.number.substring(1)
+        "token": info.token,
+        // "number": info.number,
+        "pizzas": info.pizzas,
+        "drinks": info.drinks,
+        "promocode": info.promocode,
+        "street": info.street,
+        "house": info.house,
+        "entrance": info.entrance,
+        "floor": info.floor,
+        "apartment": info.apartment,
+        "device": info.device,
+        "paytype": info.paytype,
+        "comment": info.comment,
+        "status": "accepted",
     }
-    const { data } = await axios.post('https://backend-pizza-test.herokuapp.com/api/get/token', body)
+    const { data } = await axios.post('https://backend-pizza-test.herokuapp.com/api/set_order', body)
     return data
 })
 
-export const confirmCode = createAsyncThunk('popup/confirmCode', async (dataa) => {
-    const body = {
-        "number": dataa.num.substring(1),
-        "code": dataa.codee
-    }
-
-    const { data } = await axios.post('https://backend-pizza-test.herokuapp.com/api/confirmtoken', body)
-    return data
-})
 
 
 

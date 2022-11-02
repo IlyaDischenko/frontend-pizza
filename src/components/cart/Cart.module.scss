@@ -249,3 +249,23 @@
         }
     }
 }
+
+.go_to_main {
+    display: flex;
+    justify-content: center;
+}
+
+.link_to_main {
+    margin-top: 18px;
+    
+
+    button {
+        font-size: 20px;
+        padding: 9px 14px;
+        border: none;
+        border-radius: 20px;
+        background-color: #ff5925;
+        color: #ffffff;
+        cursor: pointer;
+    }
+}
