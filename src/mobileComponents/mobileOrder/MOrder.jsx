@@ -37,6 +37,15 @@ function MOrder() {
     const apartment = user.apartment
     const comment = order.comment
 
+
+    const paytype_func = () => {
+        if (activePaytype == 0) {
+            return "cash"
+        } else if (activePaytype == 1) {
+            return "sendtocart"
+        }
+    }
+
     const send_order = () => {
         const inf = {
             token: token,
@@ -50,15 +59,23 @@ function MOrder() {
             floor: floor,
             apartment: apartment,
             device: "mbrowser",
-            paytype: "cash",
+            paytype: paytype_func(),
             comment: comment,
         }
         dispatch(set_order(inf))
     }
 
+    const classPreloader = () => {
+        if (order.status == "loading") {
+            return s.loading
+        } else {
+            return 
+        }
+    }
 
     return (
         <>
+            <div className={classPreloader()}></div>
             <MHeader />
             <div className={s.adress_block}>
                 <div className={s.title}>Ваш адрес</div>
@@ -112,8 +129,18 @@ function MOrder() {
                     <span>{paytype[activePaytype]}</span>
                 </div>
             </div>
-            <div className={s.button_order} onClick={send_order}>
-                <button>Оформить заказ</button>
+            <div className={s.button} >
+                <Link to="/cart" className={s.goback}>
+                    <button>
+                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 13L1 6.93015L6.86175 1" stroke="#D3D3D3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        </path></svg>
+                    назад
+                    </button>
+                </Link>
+                <Link to="/success" className={s.send_order_link}>
+                    <button className={s.send_order} onClick={send_order}>Оформить заказ</button>
+                </Link>
             </div>
         </>
     )

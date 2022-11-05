@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+
 export const set_order = createAsyncThunk('order/set_order', async (info) => {
     const body = {
         "token": info.token,
-        // "number": info.number,
         "pizzas": info.pizzas,
         "drinks": info.drinks,
         "promocode": info.promocode,
@@ -18,7 +18,7 @@ export const set_order = createAsyncThunk('order/set_order', async (info) => {
         "comment": info.comment,
         "status": "accepted",
     }
-    const { data } = await axios.post('https://backend-pizza-test.herokuapp.com/api/set_order', body)
+    const { data } = await axios.post('https://backend-pizza-test.herokuapp.com/api/set/order', body)
     return data
 })
 

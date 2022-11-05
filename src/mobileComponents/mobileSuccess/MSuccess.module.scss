@@ -1,0 +1,35 @@
+.success_wrapper {
+    height: calc(100vh - 48px);
+    // margin: auto auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.img {
+    img {
+        height: 100px;
+        width: 125px;
+    }
+}
+
+.text_div {
+    margin: 10px 0 17px;
+    font-size: 18px; 
+    text-align: center;
+}
+
+.button {
+    
+    .mainbut {
+        font-size: 18px;
+        padding: 9px 14px;
+        border: none;
+        border-radius: 20px;
+        background-color: #ff5925;
+        color: #ffffff;
+        cursor: pointer;
+    }
+}

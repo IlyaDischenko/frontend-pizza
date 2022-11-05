@@ -1,3 +1,12 @@
+.loading {
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    z-index: 10000;
+    position: absolute;
+}
+
 .order_wrapper {
     height: 100vh;
 }
@@ -103,42 +112,53 @@
 }
 
 
-.button_order {
+.button {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
+    margin: 10px;
 
 
-    // .linkBtn {
-        
-    //     background-color: #ff5925;
-        
-    //     border-radius: 25px;
-    //     padding: 12px 14px;
-    //     transition-duration: 150ms;
-    //     width: 100%;
-    //     margin: 10px;
-    //     display: flex;
-    //     justify-content: center;
-    //     align-items: center;
-
+    .goback {
+        width: 50%;
+        margin-right: 5px;
         button {
-
-            background-color: #ff5925;
-        
             border-radius: 25px;
             padding: 12px 14px;
             transition-duration: 150ms;
             width: 100%;
-            margin: 10px;
+            
             display: flex;
             justify-content: center;
             align-items: center;
+            font-size: 17px;
+            background-color: #ffffff;
+            border: 1px solid #B6B6B6;
+            color:#B6B6B6;
+            
+    
+            svg {
+                margin-right: 10px;
+            }
+        }
 
+    }
+
+    .send_order_link {
+        width: 50%;
+        margin-left: 5px;
+        .send_order {
+            border-radius: 25px;
+            padding: 12px 14px;
+            transition-duration: 150ms;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-size: 17px;
             border: none;
             background-color: #ff5925;
             color:#ffffff;
         }
-    // }
+    }
 }

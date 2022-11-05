@@ -8,6 +8,7 @@ const initialState = {
   comment: '',
   sum: 0,
   count: '0 товаров',
+  status: "default"
 }
 
 export const orderSlice = createSlice({
@@ -26,10 +27,10 @@ export const orderSlice = createSlice({
   },
   extraReducers: {  
     [set_order.pending]: (state) => {
-
+      state.status = "loading"
     },
     [set_order.fulfilled]: (state, action) => {
-      console.log("pizdaaaaaaaaaaaa")
+      state.status = "success"
     },
     [set_order.rejected]: (state) => {
 

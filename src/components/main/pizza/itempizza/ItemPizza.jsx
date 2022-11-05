@@ -10,7 +10,7 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
     // Ищем добавленные пиццы по размерам
     const bigItemState = useSelector((state) => state.cartPizza.items.find((obj) => obj.id == id && obj.size == 35))
     const middleItemState = useSelector((state) => state.cartPizza.items.find((obj) => obj.id == id && obj.size == 30))
-    const smallItemState = useSelector((state) => state.cartPizza.items.find((obj) => obj.id == id && obj.size == 23))
+    const smallItemState = useSelector((state) => state.cartPizza.items.find((obj) => obj.id == id && obj.size == 25))
 
     const bigAddedCount = bigItemState ? bigItemState.count : 0
     const middleAddedCount = middleItemState ? middleItemState.count : 0
