@@ -8,7 +8,8 @@ const initialState = {
   comment: '',
   sum: 0,
   count: '0 товаров',
-  status: "default"
+  status: "default",
+  order_status: ""
 }
 
 export const orderSlice = createSlice({

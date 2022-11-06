@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
-// import Math from Math
+
 
 import s from './../components/cart/Cart.module.scss'
 import CartItemPizza from '../components/cart/CartItemPizza/CartItemPizza'
@@ -19,8 +19,8 @@ function Cart() {
     const cartPromoState = useSelector((state) => state.promo)
     const popup = useSelector((state) => state.popup)
 
-
     const dispatch = useDispatch()
+
 
     const clear = () => {
         dispatch(clearPizzaItems())
@@ -182,7 +182,7 @@ function Cart() {
                     </div>
                 </div>
                 <div>
-                    {cartPizzaState.items.map((item) => <CartItemPizza key={item.id} {...item} />)}
+                    {cartPizzaState.items.map((item) => <CartItemPizza key={item.uuid} {...item} />)}
                 </div>
     
                 <div>

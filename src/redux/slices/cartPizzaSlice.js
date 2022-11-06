@@ -37,6 +37,7 @@ export const cartPizzaSlice = createSlice({
       } else {
         state.items.push({
           ...action.payload,
+          uuid: Math.random(),
           count: 1,
           allItemPrice: action.payload.price
           
@@ -48,7 +49,7 @@ export const cartPizzaSlice = createSlice({
       state.totalPrice = calcTotalPrice(state.items)
     },
     itemMinus(state, action) {
-      const findItem = state.items.find((obj) => obj.id === action.payload.id && obj.size == action.payload.size);
+      const findItem = state.items.find((obj) => obj.uuid === action.payload.uuid);
 
       if (findItem) {
             findItem.count--
@@ -59,7 +60,7 @@ export const cartPizzaSlice = createSlice({
       state.totalPrice = calcTotalPrice(state.items)
     },
     removeItem(state, action) {
-        const findItem = state.items.find((obj) => obj.id === action.payload.id && obj.size == action.payload.size);
+        const findItem = state.items.find((obj) => obj.uuid === action.payload.uuid);
 
         if (findItem) {
           state.items = state.items.filter((obj) => obj !== findItem)
