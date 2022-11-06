@@ -22,7 +22,7 @@ function MPizza() {
                 {   status == 'error' ? <div> Ошибка </div> :
                     status == 'loading' 
                     ? [...new Array(12)].map((_, index) => <MSkeleton key={index}/>)
-                    : pizzas.map((item) => <MItemPizza key={item.id} {...item} />) 
+                    : pizzas.map((item) => <MItemPizza key={item.uuid} {...item} />) 
                 }
             </div>
         </div>

@@ -194,7 +194,7 @@ function MCart() {
     if (allCount() == 0) {
         return (
             <main>
-
+            <MobileHeader />
             <div className={s.root_empty}>
                 <div className={s.empty_wrapper}>
                     <div className={s.empty_img}>
@@ -219,7 +219,7 @@ function MCart() {
                     
                 </div>
                 
-                {cartPizzaState.items.map((item) => <MCartItemPizza key={item.id} {...item} />)}
+                {cartPizzaState.items.map((item) => <MCartItemPizza key={item.uuid} {...item} />)}
     
                 {cartDrinkState.items.map((item) => <MCartItemDrink key={item.id} {...item} />)}
 

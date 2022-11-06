@@ -4,12 +4,12 @@ import s from './MCartItemPizza.module.scss'
 import { addItem, removeItem, itemMinus } from './../../../redux/slices/cartPizzaSlice';
 
 
-function CartItem({ id, photo, title, size, count, allItemPrice }) {
+function CartItem({ id, photo, title, size, uuid, count, allItemPrice }) {
     const dispatch = useDispatch()
 
     const itemDecrement = () => {
         if (count > 1) {
-            dispatch(itemMinus({id, size}))
+            dispatch(itemMinus({uuid}))
         }
     }
 
@@ -18,7 +18,7 @@ function CartItem({ id, photo, title, size, count, allItemPrice }) {
     }
 
     const rmItem = () => {
-        dispatch(removeItem({id, size}))
+        dispatch(removeItem({uuid}))
     }
 
     return (
