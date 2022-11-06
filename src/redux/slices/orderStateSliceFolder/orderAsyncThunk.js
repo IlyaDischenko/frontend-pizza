@@ -16,12 +16,15 @@ export const set_order = createAsyncThunk('order/set_order', async (info) => {
         "device": info.device,
         "paytype": info.paytype,
         "comment": info.comment,
-        "status": "accepted",
     }
     const { data } = await axios.post('https://backend-pizza-test.herokuapp.com/api/set/order', body)
     return data
 })
 
+export const get_street = createAsyncThunk('order/get_streets', async () => {
+    const { data } = await axios.get('https://backend-pizza-test.herokuapp.com/api/get/street')
+    return data
+})
 
 
 

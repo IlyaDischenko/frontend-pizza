@@ -19,16 +19,11 @@ function MCart() {
     const cartDrinkState = useSelector((state) => state.cartDrink)
     const cartPromoState = useSelector((state) => state.promo)
     const popup = useSelector((state) => state.popup)
-    const order = useSelector((state) => state.order)
+    // const order = useSelector((state) => state.order)
 
 
     const dispatch = useDispatch()
 
-    const clear = () => {
-        dispatch(clearPizzaItems())
-        dispatch(clearDrinkItems())
-        dispatch(clear_promocode())
-    }
 
     const onClickCheck = () => {
         const dataPromo = () => {
@@ -197,9 +192,6 @@ function MCart() {
             <MobileHeader />
             <div className={s.root_empty}>
                 <div className={s.empty_wrapper}>
-                    <div className={s.empty_img}>
-                        {/* <img src={emptyImg} alt="Корзина пустая" /> */}
-                    </div>
                     <div className={s.empty_bottom}>
                         <div className={s.empty_title}>Корзина пустая!</div>
                         <div className={s.empty_description}>Перейдите на главную страницу и добавьте понравившийся товар.</div>

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { set_order } from './orderAsyncThunk'
+import { set_order, get_street } from './orderAsyncThunk'
 
 // import { getCodeAction, confirmCode} from './orderAsyncThunk'
 
@@ -9,7 +9,8 @@ const initialState = {
   sum: 0,
   count: '0 товаров',
   status: "default",
-  order_status: ""
+  order_status: "",
+  streets: []
 }
 
 export const orderSlice = createSlice({
@@ -34,6 +35,14 @@ export const orderSlice = createSlice({
       state.status = "success"
     },
     [set_order.rejected]: (state) => {
+
+    },
+    [get_street.pending]: (state) => {
+    },
+    [get_street.fulfilled]: (state, action) => {
+      state.streets = action.payload.street
+    },
+    [get_street.rejected]: (state) => {
 
     }
   }

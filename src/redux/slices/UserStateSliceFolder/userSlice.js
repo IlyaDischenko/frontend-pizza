@@ -28,6 +28,9 @@ export const userStateSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    setStreet: (state, action) => {
+        state.street = action.payload
+    },
 
     setUrl: (state, action) => {
         state.url = action.payload
@@ -148,7 +151,7 @@ export const userStateSlice = createSlice({
 }
 })
 
-export const {  setUrl, setSendedFalse, clearCodeTitles, updaterEmailReducer, updaterNameReducer, exitUser,
+export const { setStreet, setUrl, setSendedFalse, clearCodeTitles, updaterEmailReducer, updaterNameReducer, exitUser,
     updateStreet, updateEntrance, updateFloor, updateHouse, updateApartment} = userStateSlice.actions
 
 export default userStateSlice.reducer

@@ -1,5 +1,4 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 
 import s from './MOrder.module.scss'
@@ -8,7 +7,8 @@ import MHeader from '../mobileHeader/MobileHeader'
 import { Link } from 'react-router-dom'
 import { updateApartment, updateEntrance, updateFloor, updateHouse, updateStreet } from '../../redux/slices/UserStateSliceFolder/userSlice';
 import { changeComment } from '../../redux/slices/orderStateSliceFolder/orderSlise';
-import { set_order } from '../../redux/slices/orderStateSliceFolder/orderAsyncThunk';
+import { get_street, set_order } from '../../redux/slices/orderStateSliceFolder/orderAsyncThunk';
+import { setStreet } from '../../redux/slices/UserStateSliceFolder/userSlice';
 
 function MOrder() {
     const cartPizzaState = useSelector((state) => state.cartPizza)
@@ -18,6 +18,22 @@ function MOrder() {
     const order = useSelector((state) => state.order)
     const popup = useSelector((state) => state.popup)
     const dispatch = useDispatch()
+
+    const [showStreetList, setShowStreetList] = React.useState([])
+
+
+    React.useEffect(() => {
+        dispatch(get_street())
+    },[])
+
+    const setStreetValue = (i) => {
+        dispatch(setStreet(i))
+    } 
+
+    const filteredStreet = order.streets.filter(str => {
+        return str.toLowerCase().includes(user.street.toLowerCase())
+    })
+
 
     const [activePaytype, setActivePaytype] = React.useState(0) 
     const paytype = ['Наличные', "Переводом на карту"]
@@ -73,14 +89,33 @@ function MOrder() {
         }
     }
 
+    const findet_street = order.streets.find(obj => obj.toLowerCase() == user.street.toLowerCase())
+
+    const street_style = () => {
+        if (showStreetList == false || filteredStreet.length == 0 || findet_street ) {
+            return s.streets_none
+        } else {
+            return s.streets
+        }
+    }
+
     return (
         <>
             <div className={classPreloader()}></div>
             <MHeader />
-            <div className={s.adress_block}>
-                <div className={s.title}>Ваш адрес</div>
-                <div className={s.street}>
-                    <input type="text" placeholder='Улица' onChange={(e) => dispatch(updateStreet(e.target.value))} value={user.street}/>
+            <div className={s.adress_block} onClick={() => setShowStreetList(false)}>
+                <div className={s.title} >Ваш адрес</div>
+                <div className={s.street_block} onClick={e => e.stopPropagation()}>
+                    <input type="text" placeholder='Улица' onChange={(e) => dispatch(updateStreet(e.target.value))} value={user.street}  onClick={() => setShowStreetList(true)}/>
+                    <div className={street_style()}>
+                        <div className={s.street_list}>
+                            {filteredStreet.map((street) => (
+                                <li key={street} onClick={() => setStreetValue(street)} >
+                                    {street}
+                                </li>
+                            ))}
+                        </div>
+                    </div>
                 </div>
                 <div className={s.footer_info}>
                     <div className={s.house}>

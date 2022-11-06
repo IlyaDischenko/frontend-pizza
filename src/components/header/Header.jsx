@@ -13,7 +13,6 @@ function Header() {
     const cartPizza = useSelector((state) => state.cartPizza)
     const cartDrink = useSelector((state) => state.cartDrink)
     const cartPromo = useSelector((state) => state.promo)
-    // const userstate = useSelector((state) => state.userState)
     const popup = useSelector((state) => state.popup)
 
     const isActive = useSelector((state) => state.popup.isPopupActive)

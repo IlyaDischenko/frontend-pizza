@@ -20,7 +20,6 @@ function UserPopup( {codeSend} ) {
             const userToken = {"token": popup.token}
             dispatch(isViewFalse())
             dispatch(getUserInfo(userToken))
-
         }
     }, [popup.is_login])
 
