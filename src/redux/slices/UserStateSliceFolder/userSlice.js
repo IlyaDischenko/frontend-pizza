@@ -15,6 +15,8 @@ const initialState = {
   house: "",
   apartment: "",
 
+  streetStatus: false,
+
   userInfoStatus: "",
   
   updatedMail: "",
@@ -62,6 +64,7 @@ export const userStateSlice = createSlice({
 
     updateStreet: (state, action) => {
         state.street = action.payload
+        state.streetStatus = true
     },
     updateEntrance: (state, action) => {
         state.entrance = action.payload

@@ -9,13 +9,20 @@ export const fetchItems = createAsyncThunk('items/fetchItems', async () => {
 const initialState = {
   pizzas: [],
   drinks: [],
-  status: 'loading'
+  status: 'loading',
+  popupinfo: false
 }
 
 export const itemsSlice = createSlice({
     name: 'items',
     initialState,
     reducers: {
+        setPopupInfoTrue: (state) => {
+            state.popupinfo = true
+        },
+        setPopupInfoFalse: (state) => {
+            state.popupinfo = false
+        }
 
     },
     extraReducers: {
@@ -36,6 +43,6 @@ export const itemsSlice = createSlice({
 })
       
   
-export const { update_promocode } = itemsSlice.actions
+export const { setPopupInfoTrue, setPopupInfoFalse, update_promocode } = itemsSlice.actions
 
 export default itemsSlice.reducer

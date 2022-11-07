@@ -34,6 +34,51 @@
     }
 }
 
+.info_message {
+    position: absolute;
+    right: 10px;
+    top: 103px;
+    color: #eb0000;
+    font-size: 12px;
+}
+
+// @keyframes input {
+//     0% { transform: rotate(0deg); }
+// //    50% { transform: rotate(0deg); }
+// 0% { transform: rotate(0.5deg); }
+// 2% { transform: rotate(-0.5deg); }
+// 5% { transform: rotate(0.5deg); }
+// 7% { transform: rotate(-0.5deg); }
+// 10% { transform: rotate(0.5deg); }
+// 12% { transform: rotate(-0.5deg); }
+// 15% { transform: rotate(0.5deg); }
+// 17% { transform: rotate(-0.5deg); }
+// 20% { transform: rotate(0.5deg); }
+// 22% { transform: rotate(-0.5deg); }
+// 25% { transform: rotate(0.5deg); }
+// 27% { transform: rotate(-0.5deg); }
+// 30% { transform: rotate(0.5deg); }
+// 32% { transform: rotate(-0.5deg); }
+// 35% { transform: rotate(0.5deg); }
+// 37% { transform: rotate(-0.5deg); }
+
+//    40% { transform: rotate(0.5deg); }
+//    42% { transform: rotate(-0.5deg); }
+//    45% { transform: rotate(0.5deg); }
+//    47% { transform: rotate(-0.5deg); }
+//    50% { transform: rotate(0.5deg); }
+//    52% { transform: rotate(-0.5deg); }
+//    55% { transform: rotate(0.5deg); }
+//    57% { transform: rotate(-0.5deg); }
+//    60% { transform: rotate(0.5deg); }
+//    62% { transform: rotate(-0.5deg); }
+//    65% { transform: rotate(0.5deg); }
+//    67% { transform: rotate(-0.5deg); }
+//   100% { transform: rotate(0deg); }
+// }
+
+
+
 .streets {
     position: absolute;
     
@@ -58,7 +103,7 @@
         width: calc(100% - 0px);
         
         li {
-            padding: 1px 15px 2px;
+            padding: 2px 15px 2px;
             background-color: #ffffff;
             font-size: 17px;
         }
@@ -68,6 +113,8 @@
 .streets_none {
     display: none;
 }
+
+
 
 
 .footer_info {

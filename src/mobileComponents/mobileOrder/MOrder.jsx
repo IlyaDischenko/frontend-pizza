@@ -9,6 +9,7 @@ import { updateApartment, updateEntrance, updateFloor, updateHouse, updateStreet
 import { changeComment } from '../../redux/slices/orderStateSliceFolder/orderSlise';
 import { get_street, set_order } from '../../redux/slices/orderStateSliceFolder/orderAsyncThunk';
 import { setStreet } from '../../redux/slices/UserStateSliceFolder/userSlice';
+import PopupInfo from '../../components/popupInfo/PopupInfo'
 
 function MOrder() {
     const cartPizzaState = useSelector((state) => state.cartPizza)
@@ -99,6 +100,20 @@ function MOrder() {
         }
     }
 
+    const info_message = () => {
+        if (!user.streetStatus) {
+            return ''
+        } else if (!findet_street) {
+            return '* выберите улицу из списка'
+        } else if (findet_street) {
+            return ''
+        }
+    }
+
+    const popoup = () => {
+        <PopupInfo />
+    }
+
     return (
         <>
             <div className={classPreloader()}></div>
@@ -106,6 +121,9 @@ function MOrder() {
             <div className={s.adress_block} onClick={() => setShowStreetList(false)}>
                 <div className={s.title} >Ваш адрес</div>
                 <div className={s.street_block} onClick={e => e.stopPropagation()}>
+                    <div className={s.info_message}>
+                        {info_message()}
+                    </div>
                     <input type="text" placeholder='Улица' onChange={(e) => dispatch(updateStreet(e.target.value))} value={user.street}  onClick={() => setShowStreetList(true)}/>
                     <div className={street_style()}>
                         <div className={s.street_list}>
@@ -116,8 +134,9 @@ function MOrder() {
                             ))}
                         </div>
                     </div>
+
                 </div>
-                <div className={s.footer_info}>
+                <div className={s.footer_info} onClick={() => popoup()}>
                     <div className={s.house}>
                         <input type="text" placeholder='Дом' onChange={(e) => dispatch(updateHouse(e.target.value))} value={user.house}/>
                     </div>
