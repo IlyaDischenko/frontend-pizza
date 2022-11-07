@@ -110,8 +110,34 @@ function MOrder() {
         }
     }
 
-    const popoup = () => {
-        <PopupInfo />
+    const successOrGetStreet = () => {
+        if (!findet_street) {
+            return (
+                <div className={s.send_order_link}>
+                    <button className={s.send_order_grey} >Оформить заказ</button>
+                </div>
+            )
+        } else if (findet_street) {
+            return (
+                <Link to="/success" className={s.send_order_link}>
+                    <button className={s.send_order} onClick={send_order}>Оформить заказ</button>
+                </Link>
+            )
+        }
+    }
+
+    const null_street = () => {
+        if (!user.streetStatus) {
+            return ''
+        } else if (findet_street) {
+            return ''
+        } else if (!findet_street) {
+            return (
+                <div className={s.null_street_message}>
+                    * К сожалению, зона доставки ограничена. Выберите улицу из списка доступных.
+                </div>
+            )
+        }
     }
 
     return (
@@ -119,7 +145,7 @@ function MOrder() {
             <div className={classPreloader()}></div>
             <MHeader />
             <div className={s.adress_block} onClick={() => setShowStreetList(false)}>
-                <div className={s.title} >Ваш адрес</div>
+                <div className={s.title_first} >Ваш адрес</div>
                 <div className={s.street_block} onClick={e => e.stopPropagation()}>
                     <div className={s.info_message}>
                         {info_message()}
@@ -136,7 +162,7 @@ function MOrder() {
                     </div>
 
                 </div>
-                <div className={s.footer_info} onClick={() => popoup()}>
+                <div className={s.footer_info}>
                     <div className={s.house}>
                         <input type="text" placeholder='Дом' onChange={(e) => dispatch(updateHouse(e.target.value))} value={user.house}/>
                     </div>
@@ -176,13 +202,14 @@ function MOrder() {
                 </div>
                 <div className={s.total}>
                     <span>Доставка</span>
-                    <span className={s.orange}>Бесплатно</span>
+                    <span className={s.green}>Бесплатно</span>
                 </div>
                 <div className={s.total}>
                     <span>Способ оплаты</span>
                     <span>{paytype[activePaytype]}</span>
                 </div>
             </div>
+            {null_street()}
             <div className={s.button} >
                 <Link to="/cart" className={s.goback}>
                     <button>
@@ -192,9 +219,7 @@ function MOrder() {
                     назад
                     </button>
                 </Link>
-                <Link to="/success" className={s.send_order_link}>
-                    <button className={s.send_order} onClick={send_order}>Оформить заказ</button>
-                </Link>
+                {successOrGetStreet()}
             </div>
         </>
     )
