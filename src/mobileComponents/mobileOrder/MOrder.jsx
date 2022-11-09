@@ -9,7 +9,6 @@ import { updateApartment, updateEntrance, updateFloor, updateHouse, updateStreet
 import { changeComment } from '../../redux/slices/orderStateSliceFolder/orderSlise';
 import { get_street, set_order } from '../../redux/slices/orderStateSliceFolder/orderAsyncThunk';
 import { setStreet } from '../../redux/slices/UserStateSliceFolder/userSlice';
-import PopupInfo from '../../components/popupInfo/PopupInfo'
 
 function MOrder() {
     const cartPizzaState = useSelector((state) => state.cartPizza)
@@ -20,7 +19,7 @@ function MOrder() {
     const popup = useSelector((state) => state.popup)
     const dispatch = useDispatch()
 
-    const [showStreetList, setShowStreetList] = React.useState([])
+    const [showStreetList, setShowStreetList] = React.useState(false)
 
 
     React.useEffect(() => {
@@ -42,11 +41,19 @@ function MOrder() {
         setActivePaytype(i)
     }
 
+    const forpromo = () => {
+        if (cartPromoState.applied_status === "success") {
+            return cartPromoState.promocode
+        } else {
+            return ""
+        }
+    }
+
     const token = popup.token
     const number = user.number
     const pizza = cartPizzaState.items
     const drink = cartDrinkState.items
-    const promo = cartPromoState.promocode
+    const promo = forpromo()
     const street = user.street
     const house = user.house
     const entrance = user.entrance
@@ -56,9 +63,9 @@ function MOrder() {
 
 
     const paytype_func = () => {
-        if (activePaytype == 0) {
+        if (activePaytype === 0) {
             return "cash"
-        } else if (activePaytype == 1) {
+        } else if (activePaytype === 1) {
             return "sendtocart"
         }
     }
@@ -83,17 +90,17 @@ function MOrder() {
     }
 
     const classPreloader = () => {
-        if (order.status == "loading") {
+        if (order.status === 2) {
             return s.loading
         } else {
             return 
         }
     }
 
-    const findet_street = order.streets.find(obj => obj.toLowerCase() == user.street.toLowerCase())
+    const findet_street = order.streets.find(obj => obj.toLowerCase() === user.street.toLowerCase())
 
     const street_style = () => {
-        if (showStreetList == false || filteredStreet.length == 0 || findet_street ) {
+        if (showStreetList === false || filteredStreet.length === 0 || findet_street ) {
             return s.streets_none
         } else {
             return s.streets
@@ -140,12 +147,31 @@ function MOrder() {
         }
     }
 
-    return (
+    if (cartPizzaState.items.length === 0 && cartDrinkState.items.length === 0 && cartPromoState.promocode_item.length === 0) {
+        return (
+            <>
+                <MHeader />
+                <main>
+                    <div className={s.root_empty}>
+                        <div className={s.empty_wrapper}>
+                            <div className={s.empty_bottom}>
+                                <div className={s.empty_title}>Корзина пустая!</div>
+                                <div className={s.empty_description}>Перейдите на главную страницу и добавьте понравившийся товар.</div>
+                                <Link to="/" className={s.link_to_main}><button>Выбрать пиццу</button></Link>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </>
+        ) 
+    } else {
+        return (
         <>
             <div className={classPreloader()}></div>
             <MHeader />
             <div className={s.adress_block} onClick={() => setShowStreetList(false)}>
                 <div className={s.title_first} >Ваш адрес</div>
+                <script type="text/javascript" charSet="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor:a45d758e1a8c03f71e9001c2a97fe8db4fafc06b743c39270150f0613c3ecd1c&amp;width=540&amp;height=540&amp;lang=ru_RU&amp;scroll=true"></script>
                 <div className={s.street_block} onClick={e => e.stopPropagation()}>
                     <div className={s.info_message}>
                         {info_message()}
@@ -223,6 +249,7 @@ function MOrder() {
             </div>
         </>
     )
+}
 }
 
 

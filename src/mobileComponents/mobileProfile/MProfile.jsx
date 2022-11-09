@@ -26,21 +26,21 @@ function Profile() {
     }
 
     const checkChangeMail = () => {
-        if (userstate.updatedMailStatus == "default") {
+        if (userstate.updatedMailStatus === "default") {
             return s.input_email
-        } else if (userstate.updatedMailStatus == "success") {
+        } else if (userstate.updatedMailStatus === "success") {
             return s.success_input_email
-        } else if (userstate.updatedMailStatus == "error") {
+        } else if (userstate.updatedMailStatus === "error") {
             return s.error_input_email
         }
     }
 
     const checkChangeName = () => {
-        if (userstate.updatedNameStatus == "default") {
+        if (userstate.updatedNameStatus === "default") {
             return s.input_name
-        } else if (userstate.updatedNameStatus == "success") {
+        } else if (userstate.updatedNameStatus === "success") {
             return s.success_input_name
-        } else if (userstate.updatedNameStatus == "error") {
+        } else if (userstate.updatedNameStatus === "error") {
             return s.error_input_name
         }
     }
@@ -49,19 +49,19 @@ function Profile() {
         dispatch(exitUser())
     }
 
-    if (popup.is_login == false) {
+    if (popup.is_login === false) {
         return (
             <>
             <MHeader />
             <div className={x.maindiv}>
-                <p>Эта страница пока в sosi и дрочи мне разработке(</p>
+                <p>Вы ещё не авторизованы</p>
                 <Link to="/">
                     <button>На главную</button>
                 </Link>
             </div>
             </>
         )
-    } else if (popup.is_login == true) return (
+    } else if (popup.is_login === true) return (
         <>
         <MHeader />
 

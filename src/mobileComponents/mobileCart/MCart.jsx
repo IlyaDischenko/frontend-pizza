@@ -6,8 +6,8 @@ import s from './MCart.module.scss'
 import MCartItemPizza from './MCartItemPizza/MCartItemPizza'
 import MCartItemDrink from './MCartItemDrink/MCartItemDrink'
 import MCartItemPromo from './MCartItemPromo/MCartItemPromo'
-import { clearPizzaItems } from './../../redux/slices/cartPizzaSlice'
-import { clearDrinkItems } from './../../redux/slices/cartDrinkSlice'
+// import { clearPizzaItems } from './../../redux/slices/cartPizzaSlice'
+// import { clearDrinkItems } from './../../redux/slices/cartDrinkSlice'
 import { setUrl } from '../../redux/slices/UserStateSliceFolder/userSlice';
 import { update_promocode, checkPromocode, clear_promocode, update_message, update_applied_status } from './../../redux/slices/cartPromoSlice'
 import MobileHeader from '../mobileHeader/MobileHeader';
@@ -27,7 +27,7 @@ function MCart() {
 
     const onClickCheck = () => {
         const dataPromo = () => {
-            if (popup.is_login == true){
+            if (popup.is_login){
                 return {"number": popup.number.substring(1), "promocode": cartPromoState.promocode}
             } else {
                 return {"number": "", "promocode": cartPromoState.promocode}
@@ -41,42 +41,42 @@ function MCart() {
         dispatch(clear_promocode())
     }
 
-    const stylePromoInput = () => {
-        if (cartPromoState.take_status == "default") {
-            return s.promocode_input
-        } else if (cartPromoState.take_status == "success") {
-            return s.promocode_input_success
-        } else if (cartPromoState.take_status == "error") {
-            return s.promocode_input_error
-        }
-    }
+    // const stylePromoInput = () => {
+    //     if (cartPromoState.take_status == "default") {
+    //         return s.promocode_input
+    //     } else if (cartPromoState.take_status == "success") {
+    //         return s.promocode_input_success
+    //     } else if (cartPromoState.take_status == "error") {
+    //         return s.promocode_input_error
+    //     }
+    // }
 
     const stylePromoMessage = () => {
-        if (cartPromoState.applied_status == "default") {
+        if (cartPromoState.applied_status === "default") {
             return s.promocode_message
-        } else if (cartPromoState.applied_status == "success") {
+        } else if (cartPromoState.applied_status === "success") {
             return s.promocode_message_success
-        } else if (cartPromoState.applied_status == "error") {
+        } else if (cartPromoState.applied_status === "error") {
             return s.promocode_message_error
         }
     }
 
     const readOrInput = () => {
-        if (cartPromoState.take_status == "success") {
+        if (cartPromoState.take_status === "success") {
             return "false"
-        } else if (cartPromoState.take_status != "success") {
+        } else if (cartPromoState.take_status !== "success") {
             return ""
         }
     }
 
     const promoButton = () => {
-        if (cartPromoState.take_status == "success") {
+        if (cartPromoState.take_status === "success") {
             return (                  
                 <div className={s.promocode_button} onClick={onClickClearPromo}>
                     <button>Изменить</button>
                 </div>
                 ) 
-        } else if (cartPromoState.take_status != "success") {
+        } else if (cartPromoState.take_status !== "success") {
             return (
                 <div className={s.promocode_button} onClick={onClickCheck}>
                     <button>Применить</button>
@@ -86,7 +86,7 @@ function MCart() {
     }
 
     const colorSumm = () => {
-        if (cartPromoState.applied_status == "success") {
+        if (cartPromoState.applied_status === "success") {
             return s.sum_span_applied
         } else {
             return s.sum_span
@@ -96,7 +96,7 @@ function MCart() {
     const summ = cartPizzaState.totalPrice + cartDrinkState.totalPrice 
     const summCart = () => {
 
-        if (cartPromoState.type == 2) {
+        if (cartPromoState.type === 2) {
             if (summ >= cartPromoState.min_sum) {
                 dispatch(update_message(`Скидка применена: ${cartPromoState.promocode_rub}₽`))
                 dispatch(update_applied_status("success"))
@@ -112,7 +112,7 @@ function MCart() {
                 return summ
             }
             
-        } else if (cartPromoState.type == 1) {
+        } else if (cartPromoState.type === 1) {
             if (summ >= cartPromoState.min_sum) {
                 dispatch(update_message(`Скидка применена: ${cartPromoState.promocode_percent}%`))
                 dispatch(update_applied_status("success"))
@@ -125,7 +125,7 @@ function MCart() {
                 return summ
             }
         
-        } else if (cartPromoState.type == 3) {
+        } else if (cartPromoState.type === 3) {
             if (summ >= cartPromoState.min_sum) {
                 dispatch(update_message(`Добавлено: ${cartPromoState.promocode_item.title}`))
                 dispatch(update_applied_status("success"))
@@ -145,13 +145,13 @@ function MCart() {
     }
 
     const allCount = () => {
-        if (cartPromoState.type == 3) {
+        if (cartPromoState.type === 3) {
             return cartPizzaState.countItems + cartDrinkState.countItems + 1
         } else return cartPizzaState.countItems + cartDrinkState.countItems
     } 
 
     const promoitem = () => {
-        if (cartPromoState.promocode_item.length == 0) {
+        if (cartPromoState.promocode_item.length === 0) {
             return <></>
         } else {
             return (
@@ -161,8 +161,8 @@ function MCart() {
     }
 
     const title = () => {
-        if (allCount() != 0 ) {
-            if (allCount() == 1) {
+        if (allCount() !== 0 ) {
+            if (allCount() === 1) {
                 dispatch(changeCount('1 товар'))
                 return  '1 товар'
             } else if (allCount() > 1 && allCount() < 5) {
@@ -186,7 +186,23 @@ function MCart() {
         } 
     }
     
-    if (allCount() == 0) {
+    const successOrGetItem = () => {
+        if (summCart() === 0) {
+            return (
+                <div className={s.linkBtn}>
+                    <button className={s.btn_grey} >Оформить заказ</button>
+                </div>
+            )
+        } else if (summCart() !== 0) {
+            return (
+                <Link to={linkOrderBtn()} className={s.linkBtn} onClick={() => dispatch(setUrl("/order"))}>
+                    <button className={s.btn} >Оформить заказ</button>
+                </Link>
+            )
+        }
+    }
+
+    if (allCount() === 0) {
         return (
             <main>
             <MobileHeader />
@@ -254,9 +270,7 @@ function MCart() {
                 </div>
 
                 <div className={s.topaybtn}>
-                    <Link className={s.linkBtn} to={linkOrderBtn()} onClick={() => dispatch(setUrl("/order"))}>
-                        <button>К оформлению заказа</button>
-                    </Link>
+                    {successOrGetItem()}
                 </div>
             </div>
             </main>

@@ -8,8 +8,8 @@ const initialState = {
   comment: '',
   sum: 0,
   count: '0 товаров',
-  status: "default",
-  order_status: "",
+  status: 1,
+  order_status_message: "",
   streets: []
 }
 
@@ -29,14 +29,33 @@ export const orderSlice = createSlice({
   },
   extraReducers: {  
     [set_order.pending]: (state) => {
-      state.status = "loading"
+      state.status = 2
     },
     [set_order.fulfilled]: (state, action) => {
-      state.status = "success"
+      if (action.payload.status === 200){
+        state.status = 200
+        state.order_status_message = "Мы уже начали готовить ваш заказ"
+      } else if (action.payload.status === 450) {
+        state.status = 450
+        state.order_status_message = "Не найден промокод"
+      } else if (action.payload.status === 451) {
+        state.status = 451
+        state.order_status_message = "Промокод привязан к другому номеру телефона"
+      } else if (action.payload.status === 452) {
+        state.status = 452
+        state.order_status_message = "Количество использования этого промокода закончилось"
+      } else if (action.payload.status === 460) {
+        state.status = 460
+      } else if (action.payload.status === 461) {
+        state.status = 461
+      }
     },
     [set_order.rejected]: (state) => {
 
     },
+
+
+
     [get_street.pending]: (state) => {
     },
     [get_street.fulfilled]: (state, action) => {
