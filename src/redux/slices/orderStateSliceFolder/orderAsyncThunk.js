@@ -17,7 +17,7 @@ export const set_order = createAsyncThunk('order/set_order', async (info) => {
         "paytype": info.paytype,
         "comment": info.comment,
     }
-    const { data } = await axios.post('http://127.0.0.1:8000/api/set/order', body)
+    const { data } = await axios.post('https://backend-pizza-test.herokuapp.com/api/set/order', body)
     
     return data
 })
@@ -30,7 +30,6 @@ export const get_street = createAsyncThunk('order/get_streets', async () => {
 export const get_orders = createAsyncThunk('order/get_orders', async (info) => {
     
     const { data } = await axios.get('http://127.0.0.1:8000/api/get/order/all', {
-        // params: { user: 79155188088 },
         headers: {
             Authorization: `${info.token}`,
         },
