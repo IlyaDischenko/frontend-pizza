@@ -29,7 +29,7 @@ export const get_street = createAsyncThunk('order/get_streets', async () => {
 
 export const get_orders = createAsyncThunk('order/get_orders', async (info) => {
     
-    const { data } = await axios.get('http://127.0.0.1:8000/api/get/order/all', {
+    const { data } = await axios.get('https://backend-pizza-test.herokuapp.com/api/get/order/all', {
         headers: {
             Authorization: `${info.token}`,
         },
