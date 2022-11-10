@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { set_order, get_street } from './orderAsyncThunk'
+import { set_order, get_street, get_orders } from './orderAsyncThunk'
 
 // import { getCodeAction, confirmCode} from './orderAsyncThunk'
 
@@ -10,7 +10,9 @@ const initialState = {
   count: '0 товаров',
   status: 1,
   order_status_message: "",
-  streets: []
+  streets: [],
+
+  orders: [],
 }
 
 export const orderSlice = createSlice({
@@ -46,14 +48,21 @@ export const orderSlice = createSlice({
         state.order_status_message = "Количество использования этого промокода закончилось"
       } else if (action.payload.status === 460) {
         state.status = 460
+        state.order_status_message = "Сумма заказа меньше минимальной суммы для использования промокода"
       } else if (action.payload.status === 461) {
         state.status = 461
+        state.order_status_message = "Сумма заказа вместе со скидкой меньше нуля"
+      } else if (action.payload.status === 400) {
+        state.status = 400
+        state.order_status_message = "Неизвестная ошибка"
+      } else if (action.payload.status === 401) {
+        state.status = 401
+        state.order_status_message = "Пожалуйста, авторизайтесь заного"
       }
     },
     [set_order.rejected]: (state) => {
 
     },
-
 
 
     [get_street.pending]: (state) => {
@@ -62,6 +71,16 @@ export const orderSlice = createSlice({
       state.streets = action.payload.street
     },
     [get_street.rejected]: (state) => {
+
+    },
+
+
+    [get_orders.pending]: (state) => {
+    },
+    [get_orders.fulfilled]: (state, action) => {
+      state.orders = action.payload
+    },
+    [get_orders.rejected]: (state) => {
 
     }
   }

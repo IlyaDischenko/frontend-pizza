@@ -126,7 +126,7 @@ function MOrder() {
             )
         } else if (findet_street) {
             return (
-                <Link to="/success" className={s.send_order_link}>
+                <Link to="/myorder" className={s.send_order_link}>
                     <button className={s.send_order} onClick={send_order}>Оформить заказ</button>
                 </Link>
             )
