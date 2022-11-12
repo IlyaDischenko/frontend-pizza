@@ -51,11 +51,28 @@
     font-weight: 600;
 }
 
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+}
+
 .price {
     font-size: 19px;
     color: #242424;
     padding: 5px 1px 17px 17px;
     font-weight: 700;
+}
+
+.cancel {
+    padding: 5px 17px 17px 1px;
+    button {
+        border: none;
+        border-radius: 15px;
+        padding: 5px 10px;
+        background-color: #efefef;
+        color: #242424;
+    }
 }
 
 // .paytype {

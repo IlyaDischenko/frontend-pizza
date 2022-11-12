@@ -67,7 +67,9 @@ function MMyOrderItem({ id, pizzas, drink, promocode_item, street, house, apartm
                 </div>
                 <div className={s.footer}>
                     <div className={s.price}>{`${totalprice} ₽`}</div>
-                    <div className={s.cancel}></div>
+                    <div className={s.cancel}>
+                        <button onClick={() => alert("sos")}>Отменить</button>
+                    </div>
                 </div>
             </div>
         </>
