@@ -22,6 +22,9 @@
 }
 
 .button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
     
     .mainbut {
         font-size: 18px;
