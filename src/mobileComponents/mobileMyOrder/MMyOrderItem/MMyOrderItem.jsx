@@ -27,7 +27,50 @@ function MMyOrderItem({ id, pizzas, drink, promocode_item, street, house, apartm
         }
     }
 
+    const size_translater = (i) => {
+        if (i === 25) {
+            return "маленькая"
+        } else if (i === 30) {
+            return "средняя"
+        } else if (i === 35 ) {
+            return "большая"
+        }
+    }
 
+    const promocode_item_transleter = () => {
+        if (promocode_item.length === 0) {
+            return ""
+        } else if (promocode_item.length !== 0) {
+            return `• ${promocode_item.title}`
+        }
+    }
+
+    const comment_check = () => {
+        if (comment.length !== 0) {
+            return (
+            <div className={s.commentblock}>
+                <div className={s.title}>Комментарий</div>
+                <div className={s.content}>{comment}</div>
+            </div>
+            )
+        }
+    }
+
+    const house_check = () => {
+        if (house.length !== 0) {
+            return `, д. ${house}`
+        } else {
+            return ""
+        }
+    } 
+
+    const apartment_check = () => {
+        if (apartment.length !== 0) {
+            return `, кв. ${apartment}`
+        } else {
+            return ""
+        }
+    } 
 
     return (
         <>
@@ -38,21 +81,18 @@ function MMyOrderItem({ id, pizzas, drink, promocode_item, street, house, apartm
                 </div>
                 <div className={s.compoundList}>
                     {pizzas.map((pizz) => (
-                        <li key={pizz.id}>{`• ${pizz.title}, ${pizz.size} см, ${pizz.count} шт`}</li>
+                        <li key={pizz.id}>{`• ${pizz.title}, ${size_translater(pizz.size)}, ${pizz.count} шт`}</li>
                     ))}
                     {drink.map((drin) => (
                         <li key={drin.id}>{`• ${drin.title}, ${drin.count} шт`}</li>
                     ))}
-                    <li>{`• ${promocode_item.title}`}</li>
+                    <li>{promocode_item_transleter()}</li>
                 </div>
                 <div className={s.adresblock}>
                     <div className={s.title}>Адрес</div>
-                    <div className={s.content}>{`${street}, д. ${house}, кв. ${apartment}`}</div>
+                    <div className={s.content}>{`${street}${house_check()}${apartment_check()}`}</div>
                 </div>
-                <div className={s.commentblock}>
-                    <div className={s.title}>Комментарий</div>
-                    <div className={s.content}>{comment}</div>
-                </div>
+                {comment_check()}
                 <div className={s.paytypeblock}>
                     <div className={s.title}>Оплата</div>
                     <div className={s.content}>{pay()}</div>
@@ -68,7 +108,7 @@ function MMyOrderItem({ id, pizzas, drink, promocode_item, street, house, apartm
                 <div className={s.footer}>
                     <div className={s.price}>{`${totalprice} ₽`}</div>
                     <div className={s.cancel}>
-                        <button onClick={() => alert("sos")}>Отменить</button>
+                        <button onClick={() => alert(data.replace('T', ' '))}>Отменить</button>
                     </div>
                 </div>
             </div>

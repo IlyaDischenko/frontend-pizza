@@ -30,7 +30,7 @@
     }
 
     .description {
-        margin: 7px 0;
+        margin: 5px 0 9px;
         div {
             font-size: 13px;
             color: rgb(94, 92, 92);
@@ -42,7 +42,8 @@
         background-color: #f3f3f3;
         border-radius: 8px;
         padding: 3px;
-        margin-bottom: 9px;
+        margin-bottom: 13px;
+        // box-shadow: rgb(6 5 50 / 30%) 0px 4px 30px;
         
         ul {
           display: flex;
