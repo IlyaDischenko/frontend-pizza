@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 
 import { isViewTrue } from './../../redux/slices/PopupStateSliceFolder/popupSlise'
+import { isViewPromocodeTrue } from './../../redux/slices/cartPromoSlice'
 
 import Popup from './loginPopup/PopupLogin'
+import PromocodePopup from './promocodePopup/PopupPromocode'
 import s from './Header.module.scss'
 import logo from '../../img/logo.svg'
 
@@ -28,7 +30,7 @@ function Header() {
     }, [])
 
     const allCount = () => {
-        if (cartPromo.type == 3) {
+        if (cartPromo.type === 3) {
             return cartPizza.countItems + cartDrink.countItems + 1
         } else {
             return cartPizza.countItems + cartDrink.countItems
@@ -36,7 +38,7 @@ function Header() {
     } 
 
     const cartCount = () => {
-        if (allCount() == 0) {
+        if (allCount() === 0) {
              return <span></span>
         } else {
             return <div className={s.countItem}>
@@ -52,17 +54,17 @@ function Header() {
     }
     
     const isLoginTitle = () => {
-        if (popup.is_login == true) {
+        if (popup.is_login === true) {
             return "Кабинет"
-        } else if (popup.is_login == false) {
+        } else if (popup.is_login === false) {
             return "Вход"
         }
     }
 
     const linkToOrPopup = (is) => {
-        if (is == false) {
+        if (is === false) {
             return (
-                <div onClick={() => dispatch(isViewTrue())} className={s.cabinet}>
+                <div onClick={() => dispatch(isViewTrue())} className={s.item}>
                     <span fill="none" className={s.icon}>
                         <svg width="20" height="28" viewBox="0 0 23 28" fill="none" className={s.iconimg} xmlns="http://www.w3.org/2000/svg">
                             <path d="M11.5 11.8182C14.2469 11.8182 16.4737 9.62031 16.4737 6.90909C16.4737 4.19787 14.2469 2 11.5 2C8.7531 2 6.52631 4.19787 6.52631 6.90909C6.52631 9.62031 8.7531 11.8182 11.5 11.8182Z" fill="none" stroke="#000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -72,10 +74,10 @@ function Header() {
                     <div className={s.text}>{isLoginTitle()}</div>
                 </div>
             )
-        } else if (is == true) {
+        } else if (is === true) {
             return (
                 <Link to="/profile">
-                    <div className={s.cabinet}>
+                    <div className={s.item}>
                         <span fill="none" className={s.icon}>
                             <svg width="20" height="28" viewBox="0 0 23 28" fill="none" className={s.iconimg} xmlns="http://www.w3.org/2000/svg">
                                 <path d="M11.5 11.8182C14.2469 11.8182 16.4737 9.62031 16.4737 6.90909C16.4737 4.19787 14.2469 2 11.5 2C8.7531 2 6.52631 4.19787 6.52631 6.90909C6.52631 9.62031 8.7531 11.8182 11.5 11.8182Z" fill="none" stroke="#000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
@@ -97,10 +99,19 @@ function Header() {
                 <div className={s.header_items}>
                     <Link to="/">
                         <div className={s.left_items}>
-                            <img src={logo} alt="logo" />
+                            <img src={logo} alt="Логотип" />
                         </div>
                     </Link>
                     <div className={s.right_items}>
+                        <div onClick={() => dispatch(isViewPromocodeTrue())} className={s.item}>
+                            <span fill="none" className={s.icon}>
+                                <svg width="20" height="28" viewBox="0 0 23 28" fill="none" className={s.iconimg} xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11.5 11.8182C14.2469 11.8182 16.4737 9.62031 16.4737 6.90909C16.4737 4.19787 14.2469 2 11.5 2C8.7531 2 6.52631 4.19787 6.52631 6.90909C6.52631 9.62031 8.7531 11.8182 11.5 11.8182Z" fill="none" stroke="#000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d="M13.203 17.2727H9.79698C5.12844 17.2727 1.5187 21.3685 2.10526 26H20.8947C21.4813 21.3685 17.8716 17.2727 13.203 17.2727Z" fill="none" stroke="#000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                            </span>
+                            <div className={s.text}>Промокод</div>
+                        </div>
                         {linkToOrPopup(popup.is_login)}
                         <Link to="/cart">
                             <div className={s.divbutton}>
@@ -116,6 +127,7 @@ function Header() {
                 </div>
             </div>
             {isActive && <Popup isView={popup.isPopupActive} codeSend={codeSended}/>}
+            {cartPromo.isPopupPromocodeActive && <PromocodePopup isView={popup.isPopupActive} codeSend={codeSended}/>}
         </header>
     )
 }

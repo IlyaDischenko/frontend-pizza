@@ -82,12 +82,12 @@
     }
 }
 
-.cabinet {
+.item {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
+    margin-left: 20px;
     
     .icon {
         fill: black;
@@ -110,7 +110,11 @@
     // }
     
     &:hover {
-        color: #FF5925;
+        .text {
+            color: #FF5925;
+            transition-duration: 200ms; 
+        }
+        
         cursor: pointer;
         
         

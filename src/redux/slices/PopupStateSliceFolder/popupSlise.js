@@ -31,11 +31,11 @@ export const popupSlice = createSlice({
     },
     updateNumber: (state, actions) => {
 
-        if (isNaN(Number(actions.payload.slice(-1))) == false) {
+        if (isNaN(Number(actions.payload.slice(-1))) === false) {
             if (actions.payload.length <= 12) {
                 state.number = actions.payload
                 state.can_send_code = false
-                if (actions.payload.length == 12) {
+                if (actions.payload.length === 12) {
                     state.can_send_code = true
                 } else {
                     state.can_send_code = false
@@ -46,29 +46,29 @@ export const popupSlice = createSlice({
 
     },
     firstNumCode: (state, actions) => {
-        if (isNaN(actions.payload) == false) {
+        if (isNaN(actions.payload) === false) {
             state.code_0 = String(actions.payload)
         }
         state.code = state.code_0 + state.code_1 + state.code_2 + state.code_3
     },
     secondNumCode: (state, actions) => {
-        if (isNaN(actions.payload) == false) {
+        if (isNaN(actions.payload) === false) {
             state.code_1 = String(actions.payload)
         }
         state.code = state.code_0 + state.code_1 + state.code_2 + state.code_3
     },
     thirdNumCode: (state, actions) => {
-        if (isNaN(actions.payload) == false) {
+        if (isNaN(actions.payload) === false) {
             state.code_2 = String(actions.payload)
         }
         state.code = state.code_0 + state.code_1 + state.code_2 + state.code_3
     },
     fourNumCode: (state, actions) => {
-        if (isNaN(actions.payload) == false) {
+        if (isNaN(actions.payload) === false) {
             state.code_3 = String(actions.payload)
         }
         state.code = String(state.code_0 + state.code_1 + state.code_2 + state.code_3)
-        if (state.code.length == 4) {
+        if (state.code.length === 4) {
             state.can_confirm_code = true
         }
     },
@@ -95,7 +95,7 @@ export const popupSlice = createSlice({
         state.code_sended = false
     },
     [getCodeAction.fulfilled]: (state, action) => {
-        if (action.payload.status == 200) {
+        if (action.payload.status === 200) {
             state.code_sended = true
         }
     },
@@ -108,10 +108,10 @@ export const popupSlice = createSlice({
         state.is_login_status = "default"
     },
     [confirmCode.fulfilled]: (state, action) => {
-        if (action.payload.status == 200) {
+        if (action.payload.status === 200) {
             state.is_login = true
             state.token = action.payload.token
-        } else if (action.payload.status == 400) {
+        } else if (action.payload.status === 400) {
             state.is_login = false
             state.is_login_status = "error"
         }

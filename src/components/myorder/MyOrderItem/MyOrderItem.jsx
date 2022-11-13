@@ -1,8 +1,8 @@
 import React from 'react'
 
-import s from './MMyOrderItem.module.scss'
+import s from './MyOrderItem.module.scss'
 
-function MMyOrderItem({ id, pizzas, drink, promocode_item, street, house, apartment, comment, paytype, data, status, totalprice }) {
+function MyOrderItem({ id, pizzas, drink, promocode_item, street, house, apartment, comment, paytype, data, status, totalprice }) {
     const pay = () => {
         if (paytype === "cash") {
             return "Наличными"
@@ -110,4 +110,4 @@ function MMyOrderItem({ id, pizzas, drink, promocode_item, street, house, apartm
 
 
 
-export default MMyOrderItem
+export default MyOrderItem

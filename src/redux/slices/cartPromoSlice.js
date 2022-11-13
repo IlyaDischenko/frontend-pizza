@@ -22,12 +22,19 @@ const initialState = {
   take_status: "default",
   applied_status: "default",
   promocode_message: "",  
+  isPopupPromocodeActive: false,
 }
 
 export const PromoSlice = createSlice({
   name: 'promo',
   initialState,
   reducers: {
+    isViewPromocodeTrue: (state) => {
+      state.isPopupPromocodeActive = true
+    },
+    isViewPromocodeFalse: (state) => {
+      state.isPopupPromocodeActive = false
+    },
     update_promocode: (state, action) => {
       state.promocode = action.payload
     },
@@ -56,22 +63,22 @@ export const PromoSlice = createSlice({
   },
 
   [checkPromocode.fulfilled]: (state, action) => {
-    if (action.payload.status == 200){
-      if (action.payload.type == 1) {
+    if (action.payload.status === 200){
+      if (action.payload.type === 1) {
 
         state.type = action.payload.type
         state.promocode_percent = Number(action.payload.discount_data)
         state.min_sum = Number(action.payload.min_sum)
         state.take_status = "success"
 
-      } else if (action.payload.type == 2) {
+      } else if (action.payload.type === 2) {
 
         state.type = action.payload.type
         state.promocode_rub = Number(action.payload.discount_data)
         state.min_sum = Number(action.payload.min_sum)
         state.take_status = "success"
 
-      } else if (action.payload.type == 3) {
+      } else if (action.payload.type === 3) {
 
         state.type = action.payload.type
         state.promocode_item = action.payload.discount_data
@@ -82,15 +89,15 @@ export const PromoSlice = createSlice({
       }
 
       
-    } else if (action.payload.status == 400) {
+    } else if (action.payload.status === 400) {
       state.take_status = "error"
       state.applied_status = "error"
       state.promocode_message = "Промокод не найден. Попробуйте другой"
-    } else if (action.payload.status == 401) {
+    } else if (action.payload.status === 401) {
       state.take_status = "error"
       state.applied_status = "error"
       state.promocode_message = "Войдите с того номера, на который был выдан промокод"
-    } else if (action.payload.status == 422) {
+    } else if (action.payload.status === 422) {
       state.take_status = "error"
       state.applied_status = "error"
       state.promocode_message = "Количество использования этого промокода закончилось"
@@ -104,6 +111,6 @@ export const PromoSlice = createSlice({
   }
 })
 
-export const { update_promocode, clear_promocode, update_message, update_applied_status } = PromoSlice.actions
+export const { isViewPromocodeTrue, isViewPromocodeFalse, update_promocode, clear_promocode, update_message, update_applied_status } = PromoSlice.actions
 
 export default PromoSlice.reducer

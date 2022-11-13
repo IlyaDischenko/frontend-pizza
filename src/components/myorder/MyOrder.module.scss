@@ -1,7 +1,7 @@
 .success_wrapper {
     // height: calc(100vh - 48px);
-    // // margin: auto auto;
-    // width: 100%;
+    margin: 0 auto;
+    max-width: 1340px;
     // display: flex;
     // justify-content: center;
     // align-items: center;
@@ -34,13 +34,19 @@
         background-color: #ff5925;
         color: #ffffff;
         cursor: pointer;
+        transition-duration: 100ms;
+
+        &:hover {
+            background-color: #e65225;
+        }
     }
 }
 
+
 .null_orders {
-    width: 100%;
+    max-width: 1315px;
     margin: 0 auto;
-    height: calc(100vh - 40px);
+    height: calc(100vh - 62px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,5 +57,4 @@
 .null_text {
     text-align: center;
     margin-bottom: 25px;
-    padding: 0 15px;
 }
