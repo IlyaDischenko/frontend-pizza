@@ -59,8 +59,7 @@
 }
 
 .promo_active {
-    transition: 0.2s all;
-    transform: scale(1);
+
     margin-top: 18px;
     margin-bottom: 15px;
     .title {
@@ -70,19 +69,67 @@
         margin-bottom: 5px;
     }
 
-    .inputPromo {
-        padding: 16px;
-        border-radius: 14px;
-        border: 1px solid rgb(226, 226, 233);
-        width: 100%;
-        margin-bottom: 8px;
-        
-        font-size: 16px;
-        transition-duration: 250ms;
 
+    .promocode_input {
+        border: 1px #B6B6B6 solid;
+        border-radius: 15px;
+        padding: 16px;
+        font-size: 16px;
+        width: 100%;
+        // margin-bottom: 8px;
+    
         &:focus {
             border: 1px solid #FF5925;
             transition-duration: 250ms;
+        }
+    
+    
+        &_success {
+            border: 1px solid rgba(53, 189, 41, 0.322);
+            background-color: rgba(53, 189, 41, 0.1);
+            border-radius: 15px;
+            padding: 16px;
+            font-size: 16px;
+            width: 100%;
+            // margin-bottom: 8px;
+        }
+    
+    
+        &_error {
+            border: 1px solid rgba(231, 43, 43, 0.493);
+            background-color: rgb(231, 43, 43, 0.1);
+            border-radius: 15px;
+            padding: 16px;
+            font-size: 16px;
+            width: 100%;
+            // margin-bottom: 8px;
+            &:focus {
+                border: 1px solid #FF5925;
+                transition-duration: 250ms;
+            }
+        }
+        
+    }
+
+}
+
+.div_message {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    .promocode_message {
+        font-size: 12px;
+        color: rgb(134, 134, 134);
+
+        &_success {
+            
+            font-size: 12px;
+            color: rgb(53, 189, 41);
+        }
+
+        &_error {
+            font-size: 12px;
+            color: rgb(224, 44, 44);
         }
     }
 

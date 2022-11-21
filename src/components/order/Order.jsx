@@ -82,7 +82,7 @@ function Order() {
             entrance:entrance,
             floor: floor,
             apartment: apartment,
-            device: "mbrowser",
+            device: "browser",
             paytype: paytype_func(),
             comment: comment,
         }

@@ -19,6 +19,7 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
     
     const [activePrice, setActivePrice] = React.useState(0)
     const [activeSize, setActiveSize] = React.useState(0) 
+    const [isViewSizes, setIsViewSizes] = React.useState(false)
     const sizes = [25, 30, 35]
     const prices = [price_small, price_middle, price_big]
 
@@ -29,15 +30,19 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
     }
 
     const onClickAdd = () => {
-        const item = {
-            id,
-            title,
-            photo,
-            price: prices[activePrice],
-            size: sizes[activeSize]
+        if (!isViewSizes) {
+            setIsViewSizes(true)
+        } else {
+            const item = {
+                id,
+                title,
+                photo,
+                price: prices[activePrice],
+                size: sizes[activeSize]
+            }
+            dispatch(addItem(item),
+            )
         }
-        dispatch(addItem(item),
-        )
     }
 
     const checkSize = (indexSize) => {
@@ -93,6 +98,8 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
 
                 <div className={s.item_footer}>
 
+
+                {isViewSizes ? 
                     <div className={s.sizes}>
                         <ul>
                         {sizes.map((size, i) => (
@@ -105,7 +112,8 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
                             </li>
                         ))}
                         </ul>
-                    </div>
+                    </div>: "" 
+                } 
 
                     <div className={s.price_and_button}>
                         <div className={s.button}>

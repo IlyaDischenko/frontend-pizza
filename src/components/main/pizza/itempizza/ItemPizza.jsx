@@ -19,6 +19,7 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
     
     const [activePrice, setActivePrice] = React.useState(0)
     const [activeSize, setActiveSize] = React.useState(0)
+    const [isViewSizes, setIsViewSizes] = React.useState(false)
     const sizes = [25, 30, 35]
     const prices = [price_small, price_middle, price_big]
 
@@ -29,15 +30,19 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
     }
 
     const onClickAdd = () => {
-        const item = {
-            id,
-            title,
-            photo,
-            price: prices[activePrice],
-            size: sizes[activeSize]
+        if (!isViewSizes) {
+            setIsViewSizes(true)
+        } else {
+            const item = {
+                id,
+                title,
+                photo,
+                price: prices[activePrice],
+                size: sizes[activeSize]
+            }
+            dispatch(addItem(item),
+            )
         }
-        dispatch(addItem(item),
-        )
     }
 
     const checkSize = (indexSize) => {
@@ -81,42 +86,48 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
             <div className={s.photo}>
                 <img src={photo} alt="Логотип" />
             </div>
+
+            <div className={s.bottom_info}>
         
-            <div className={s.title}>
-                <div>{title}</div>
-            </div>
-
-            <div className={s.description}>
-                <div>{description}</div>
-            </div>
-
-            <div className={s.item_footer}>
-
-                <div className={s.sizes}>
-                    <ul>
-                        {sizes.map((size, i) => (
-                            <li
-                            key={size}
-                            onClick={() => onClickSizeItem(i)}
-                            className={activeSize === i ? s.active : ""}>
-                            {size} см 
-                            {checkSize(i)}
-                            </li>
-                        ))}
-                    </ul>
+                <div className={s.title}>
+                    <div>{title}</div>
                 </div>
 
-                <div className={s.price_and_button}>
-                    <div className={s.price}>
-                        <div>от {prices[activePrice]} ₽</div>
+                <div className={s.description}>
+                    <div>{description}</div>
+                </div>
+
+                <div className={s.item_footer}>
+
+                    {isViewSizes ? 
+                    <div className={s.sizes}>
+                        <ul>
+                            {sizes.map((size, i) => (
+                                <li
+                                key={size}
+                                onClick={() => onClickSizeItem(i)}
+                                className={activeSize === i ? s.active : ""}>
+                                {size} см 
+                                {checkSize(i)}
+                                </li>
+                            ))}
+                        </ul>
+                    </div> : "" 
+                    } 
+
+                    <div className={s.price_and_button}>
+                        <div className={s.price}>
+                            <div>от {prices[activePrice]} ₽</div>
+                        </div>
+
+                        <div className={s.button}>
+                            <button onClick={onClickAdd}>
+                            <span>Выбрать</span>
+                            {allCountItem()}
+                            </button>
+                        </div>
                     </div>
 
-                    <div className={s.button}>
-                        <button onClick={onClickAdd}>
-                        <span>Выбрать</span>
-                        {allCountItem()}
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>

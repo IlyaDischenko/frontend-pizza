@@ -10,6 +10,7 @@ import { clearPizzaItems } from './../redux/slices/cartPizzaSlice'
 import { clearDrinkItems } from './../redux/slices/cartDrinkSlice'
 import { setUrl } from './../redux/slices/UserStateSliceFolder/userSlice';
 import { update_promocode, checkPromocode, clear_promocode, update_message, update_applied_status } from './../redux/slices/cartPromoSlice'
+import { isViewTrue } from '../redux/slices/PopupStateSliceFolder/popupSlise';
 
 
 import emptyImg from './../img/emptyCart.png'
@@ -170,11 +171,20 @@ function Cart() {
                 </div>
             )
         } else if (summCart() !== 0) {
-            return (
-                <Link to={linkOrderBtn()} className={s.linkBtn} onClick={() => dispatch(setUrl("/order"))}>
+            if (!popup.is_login) {
+                return (
+                    <div className={s.linkBtn}>
+                        <button className={s.btn} onClick={() => dispatch(isViewTrue())}>Оформить заказ</button>
+                    </div>
+                )
+                
+            } else if (popup.is_login) {
+                return (
+                <Link to="/order" className={s.linkBtn} onClick={() => dispatch(setUrl("/order"))}>
                     <button className={s.btn} >Оформить заказ</button>
                 </Link>
-            )
+                )
+            }
         }
     }
 
@@ -246,7 +256,6 @@ function Cart() {
                             <div>Вернуться назад</div>
                         </button>
                     </Link>
-                    {/* <button className={s.secondBtn}>К оформлению заказа</button> */}
                     {successOrGetItem()}
                 </div>
             </div>

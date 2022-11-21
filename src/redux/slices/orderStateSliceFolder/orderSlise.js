@@ -12,31 +12,7 @@ const initialState = {
   order_status_message: "",
   streets: [],
 
-  orders: [
-    {
-      "id": 1,
-      "pizzas": [{
-        "id": 1,
-        "title": "Сыр и бекон",
-        "size": 25,
-        "count": 4
-      }],
-      "drink": [{
-        "id": 23,
-        "title": "Морс",
-        "count": 9
-      }],
-      "promocode_item": "",
-      "street": "Зарыганская",
-      "house": 11,
-      "apartment": 22,
-      "comment": "Быстрее, пожалуйста",
-      "paytype": "cash",
-      "data": "2022-11-12T12:22:41",
-      "status": "accepted",
-      "totalprice": 1222
-    }
-  ],
+  orders: [],
 }
 
 export const orderSlice = createSlice({
