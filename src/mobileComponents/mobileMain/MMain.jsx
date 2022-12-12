@@ -22,7 +22,6 @@ function Main() {
         getItems()
     },[])
 
-    // const summ = cartPizzaState.totalPrice + cartDrinkState.totalPrice 
 
     const count = () => {
         if (cartPromoState.type === 3) {
@@ -52,9 +51,9 @@ function Main() {
     return (
         <>
             <MHeader />
-            <Link to='/myorder'>
-                <button>adsdasdasd</button>
-            </Link>
+            {/* <Link to='/myorder'>
+                <button>myorder</button>
+            </Link> */}
             <main className={s.main}>
                 <MPizza />
                 <MDrink />

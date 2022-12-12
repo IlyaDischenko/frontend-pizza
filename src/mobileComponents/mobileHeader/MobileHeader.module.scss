@@ -45,40 +45,40 @@
     }
 }
 
-.cabinet {
+.right_elements {
+    display: flex;
+    height: 38px;
+}
+
+
+.item {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-left: 20px;
+}
     
-    
-    .icon {
-        fill: black;
-        stroke: black;
-        height: 19px;
-    }
-    
-    .text {
-        font-size: 14px;
-        font-weight: 500;
-        text-decoration: none;
-        color: rgb(0, 0, 0);
-        &:hover {
-            color: #FF5925;
-        }
-    }
-    
-    
-    &:hover {
-        color: #FF5925;
-        cursor: pointer;
-        
-        
-        path {
-            transform: translate(0, -1px);
-            color: #FF5925;
-            stroke: #FF5925;
-            transition-duration: 200ms; 
-        }
+.icon {
+    fill: black;
+    stroke: black;
+    height: 19px;
+
+    img {
+        height: 20px;
     }
 }
+
+
+
+.text {
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    &:hover {
+        color: #FF5925;
+    }
+}
+
+

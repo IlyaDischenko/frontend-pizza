@@ -1,5 +1,6 @@
 .root_profile {
     width: 1350px;
+    height: calc(100vh - 62px);
     margin: 0 auto;
 }
 
@@ -145,3 +146,7 @@
     }
     
 }
+
+// .maindiv {
+//     height: calc(100vh - 62px);
+// }

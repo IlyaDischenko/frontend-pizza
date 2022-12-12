@@ -1,4 +1,7 @@
 import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem } from '../../../../redux/slices/cartPizzaSlice';
 
@@ -23,16 +26,32 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
     const sizes = [25, 30, 35]
     const prices = [price_small, price_middle, price_big]
 
+
+
     // Выбор размера пиццы
     const onClickSizeItem = (i) => {
         setActiveSize(i)
         setActivePrice(i)
     }
 
+    const notify = () => toast.success(`Добавлено: ${title} ${sizes[activeSize]} см`, {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        })
+
+
     const onClickAdd = () => {
+        
         if (!isViewSizes) {
             setIsViewSizes(true)
         } else {
+            notify()
             const item = {
                 id,
                 title,
@@ -127,7 +146,18 @@ function ItemPizza({ id, title, description, photo, price_small, price_middle, p
                             </button>
                         </div>
                     </div>
-
+                    <ToastContainer 
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick = {false}
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="dark"
+                        />
                 </div>
             </div>
         </div>

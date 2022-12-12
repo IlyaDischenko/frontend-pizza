@@ -1,4 +1,8 @@
 import React from 'react';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { useDispatch, useSelector } from 'react-redux'
 import { addDrinkItem } from '../../../../redux/slices/cartDrinkSlice';
 
@@ -13,8 +17,19 @@ function ItemPizza({ id, title, description, photo, price }) {
     const AddedCount = ItemState ? ItemState.count : 0
     // const haveDescription = ItemState ? ItemState.description : false
 
+    const notify = () => toast.success(`Добавлено: ${title}`, {
+        position: "bottom-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        })
 
     const onClickAdd = () => {
+        notify()
         const item = {
             id,
             title,
@@ -72,6 +87,18 @@ function ItemPizza({ id, title, description, photo, price }) {
                     </div>
                 </div>
             </div>
+            <ToastContainer 
+                        position="bottom-left"
+                        autoClose={2000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss={false}
+                        draggable
+                        pauseOnHover
+                        theme="dark"
+                        />
         </div>
     )
 }

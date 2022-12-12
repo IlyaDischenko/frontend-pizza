@@ -5,7 +5,8 @@ import MyOrderItem from './MyOrderItem/MyOrderItem'
 
 import s from './MyOrder.module.scss'
 import { Link } from 'react-router-dom'
-import { get_orders } from './../../redux/slices/orderStateSliceFolder/orderAsyncThunk';
+import { get_order } from './../../redux/slices/orderStateSliceFolder/orderAsyncThunk';
+import Loading from '../Loading/Loading'
 
 function MMyOrder() {
     const order = useSelector((state) => state.order)
@@ -13,16 +14,6 @@ function MMyOrder() {
     const popup = useSelector((state) => state.popup)
     const dispatch = useDispatch()
 
-    React.useEffect(() => {
-        // if (order.status === 200) {
-            const info = {
-                token: popup.token
-            }
-            dispatch(get_orders(info))
-        // }
-    },[
-        // order.status
-    ])
 
     if (orders.length === 0) {
         return (
@@ -35,14 +26,17 @@ function MMyOrder() {
                 </Link>
             </div>
         )
+    } else if (orders.getorder_status === 2) {
+        return (
+            <Loading />
+        )
     } else {
         return (
             <>
                 <div className={s.success_wrapper}>
                     
-                    {orders.map((ord) => (
-                        <MyOrderItem key={ord.id} {...ord} />
-                    ))}
+                    
+                    {orders ? <MyOrderItem key={orders.id} {...orders} />: <></>}
 
                     <div className={s.button}>
                         <Link to="/" >

@@ -111,7 +111,7 @@ function UserPopup( {codeSend} ) {
                         </div>
                  
                         <div className={s.footer_active}>
-                        <button onClick={popup.can_send_code ? getCo : passForOnClick} className={popup.can_send_code ? s.btn_can : s.btn}>Выслать код</button>
+                        <button onClick={popup.can_send_code ? getCo : passForOnClick} className={popup.can_send_code ? s.btn_can : s.btn}>Продолжить</button>
                         </div>
                     </div>
                 </div>
@@ -129,10 +129,10 @@ function UserPopup( {codeSend} ) {
                         <div className={s.divheader_active}>
                             <div className={s.maintext}>Вход на сайт</div>
                             <div className={s.numberTitle}>
-                                Отправили сообщение с кодом на <div><span>{popup.number}</span> <span className={s.orange} onClick={setSendetFalse}>Изменить</span></div>
+                                Звонок поступит на <div><span>{popup.number}</span> <span className={s.orange} onClick={setSendetFalse}>Изменить</span></div>
                             </div>
                         </div>
-                        
+                        <div className={s.input_info}>Введите последние 4 цифры номера</div>
                         <div onKeyDown={e => onKeyConfirm(e)} className={s.input_items_active}>
                         
                             <input autoFocus={true} className={checkCode()} data-index="1" onChange={onChange} value={popup.code_0} maxLength='1' ref={input => inputRefs[1] = input}/>
@@ -140,10 +140,12 @@ function UserPopup( {codeSend} ) {
                             <input className={checkCode()} data-index="3" onChange={onChange} value={popup.code_2} maxLength='1' ref={input => inputRefs[3] = input}/>
                             <input className={checkCode()} data-index="4" onChange={onChange} value={popup.code_3} maxLength='1' ref={input => inputRefs[4] = input}/>
                         </div>
+
+                        
                         
                         <div className={s.footer_active}>
         
-                        <button onClick={popup.can_confirm_code ? confirmCo : passForOnClick} className={popup.can_confirm_code ? s.btn_can : s.btn}>Подтвердить код</button>
+                            <button onClick={popup.can_confirm_code ? confirmCo : passForOnClick} className={popup.can_confirm_code ? s.btn_can : s.btn}>Подтвердить</button>
                         </div>
                     </div>
                 </div>

@@ -2,12 +2,14 @@ import { createSlice } from '@reduxjs/toolkit'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+import { localUrl, url } from '../../Config'
+
 export const checkPromocode = createAsyncThunk('promo/checkPromocode', async (info) => {
     const conf = {
             "number": info.number,
             "promocode": info.promocode.toLowerCase().replaceAll(' ','')
     }
-    const { data } = await axios.post('https://backend-pizza-test.herokuapp.com/api/check/promocode', conf)
+    const { data } = await axios.post(`${localUrl}/api/check/promocode`, conf)
     return data
 })
 

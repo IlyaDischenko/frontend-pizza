@@ -8,7 +8,7 @@
 }
 
 .order_wrapper {
-    height: 100vh;
+    height: calc(100vh - 62px);
     max-width: 1310px;
     margin: 45px auto;
 }
@@ -55,11 +55,12 @@
 .streets {
     position: absolute;
     
+    max-width: 1290px;
     width: calc(100% - 20px);
     
-    top: 160px;
+    top: 195px;
     max-height: 320px;  
-    overflow: scroll;
+    overflow-y: scroll;
 
     display: flex;
     justify-content: center;
@@ -69,17 +70,29 @@
     border-top: none;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    // margin: 0 10px;
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
     
 
     .street_list {
         
-        width: calc(100% - 0px);
+        width: 100%;
         
         li {
             padding: 2px 15px 2px;
             background-color: #ffffff;
             font-size: 17px;
+
+            &:hover {
+                cursor: pointer;
+                background-color: #eeeeee;
+            }
         }
+
+
     }
 }
 
@@ -229,6 +242,7 @@
             border: none;
             background-color: #ff5925;
             color:#ffffff;
+            cursor: pointer;
 
             &_grey {
                 border-radius: 25px;
@@ -291,6 +305,11 @@
                     border-radius: 20px;
                     background-color: #ff5925;
                     color: #ffffff;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #e95123;
+                    }
                 }
             }
         }

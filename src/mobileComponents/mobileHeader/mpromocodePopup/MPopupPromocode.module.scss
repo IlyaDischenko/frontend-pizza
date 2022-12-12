@@ -1,7 +1,7 @@
 
 
 .modal_active {
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     background-color: rgba(0,0,0,0.4);
     position: fixed;
@@ -13,7 +13,7 @@
     justify-content: center;
     z-index: 10;
 
-    transition: 0.3s;
+    // transition: 0.3s;
 
     opacity: 1;
     pointer-events: all;
@@ -29,11 +29,19 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-
+    margin: 10px;
 
     transition: 0.2s all;
     
-    transform: scale(1);
+    // transform: scale(1);
+
+    @media (max-width: 380px) {
+        height: 370px;
+    }
+
+    @media (max-width: 310px) {
+        height: 410px;
+    }
 
 }
 
@@ -188,7 +196,7 @@
 
             &:hover {
                 border: 1px solid #b3b3b3;
-                color: #222222;
+                color: #272727;
             }
         }
 

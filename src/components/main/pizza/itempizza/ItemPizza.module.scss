@@ -1,11 +1,11 @@
 .item_pizza {
     width: 270px;
-    height: 420px;
+    // max-height: 450px;
     display: flex;
     flex-direction: column;
     align-items: space-between;
     justify-content: space-between;
-    margin: 30px 2px 40px 2px;
+    margin: 30px 2px 60px 2px;
     box-sizing: border-box;
 
     .photo {
@@ -28,7 +28,7 @@
 .bottom_info {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
     height: 100%;
     position: relative;
 }
@@ -36,6 +36,7 @@
 .title {
     margin-top: 10px;
     margin-bottom:2px;
+    // height: 54px;
     width: 270px;
     div {
         font-weight: 700;
@@ -127,7 +128,7 @@
 
     .price {
         div {
-            font-weight: 400;
+            font-weight: 600;
             font-size: 20px;
             white-space: nowrap;
         }

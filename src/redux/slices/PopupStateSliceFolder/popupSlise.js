@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import { getCodeAction, confirmCode} from './popupAsyncThunk'
+import { getUserInfo} from './../UserStateSliceFolder/userAsyncThunk'
 
 const initialState = {
   isPopupActive: false,
@@ -16,7 +17,7 @@ const initialState = {
   is_login_status: "default",
   can_confirm_code: false,
   confirm_code_status: "default",
-  token: "",
+  token: window.localStorage.getItem('token'),
 }
 
 export const popupSlice = createSlice({
@@ -88,6 +89,8 @@ export const popupSlice = createSlice({
         state.is_login = false
         state.number = "+7"
         state.code_sended = false
+        window.localStorage.setItem('token', '')
+        state.token = ''
     },
   },
   extraReducers: {
@@ -110,6 +113,7 @@ export const popupSlice = createSlice({
     [confirmCode.fulfilled]: (state, action) => {
         if (action.payload.status === 200) {
             state.is_login = true
+            window.localStorage.setItem('token', action.payload.token)
             state.token = action.payload.token
         } else if (action.payload.status === 400) {
             state.is_login = false
@@ -119,6 +123,22 @@ export const popupSlice = createSlice({
     [confirmCode.rejected]: (state) => {
         state.is_login = false
         state.is_login_status = "default"
+    },
+
+    [getUserInfo.pending]: (state) => {
+        state.userInfoStatus = "error"
+    },
+    [getUserInfo.fulfilled]: (state, action) => {
+        if (action.payload.status == 200) {
+            state.is_login = true
+        } else if (action.payload.status == 400) {
+
+            state.userInfoStatus = "error"
+        }
+    },
+    [getUserInfo.rejected]: (state) => {
+
+        state.userInfoStatus = "reject"
     },
     }
 })

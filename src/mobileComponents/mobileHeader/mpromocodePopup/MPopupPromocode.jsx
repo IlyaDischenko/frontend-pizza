@@ -1,12 +1,12 @@
 import React from 'react'
 
-import s from './PopupPromocode.module.scss'
+import s from './MPopupPromocode.module.scss'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { update_promocode, checkPromocode, clear_promocode, update_message, update_applied_status, isViewPromocodeFalse } from './../../../redux/slices/cartPromoSlice'
+import { update_promocode, checkPromocode, clear_promocode, update_message, update_applied_status, isViewPromocodeFalse } from '../../../redux/slices/cartPromoSlice'
 // import { update_promocode, checkPromocode, clear_promocode, update_message, update_applied_status } from './../../../redux/slices/cartPromoSlice'
 
-function PromocodePopup(  ) {
+function MPromocodePopup(  ) {
     const promo = useSelector((state) => state.promo)
     const popup = useSelector((state) => state.popup)
     const cartPromoState = useSelector((state) => state.promo)
@@ -162,4 +162,4 @@ function PromocodePopup(  ) {
 
 }
 
-export default PromocodePopup;
+export default MPromocodePopup;

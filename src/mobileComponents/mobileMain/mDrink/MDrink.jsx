@@ -19,7 +19,7 @@ function MDrink() {
             </div>
             
             <div className={s.drink_block}>
-                {   status == 'error' ? <div> Ошибка </div> :
+                {   status == 'error' ? <div> Произошла неизвестная ошибка, попробуйте перезагрузить страницу </div> :
                     status == 'loading' 
                     ? [...new Array(8)].map((_, index) => <MSkeleton key={index}/>)
                     : drinks.map((item) => <MItemDrink key={item.id} {...item} />) 

@@ -20,7 +20,7 @@ function Drink() {
             </div>
             
             <div className={s.drink_block}>
-                {   status == 'error' ? <div> Ошибка </div> :
+                {   status == 'error' ? <div> Произошла неизвестная ошибка, попробуйте перезагрузить страницу </div> :
                     status == 'loading' 
                     ? [...new Array(12)].map((_, index) => <Skeleton key={index}/>)
                     : drinks.map((item) => <ItemDrink key={item.id} {...item} />) 

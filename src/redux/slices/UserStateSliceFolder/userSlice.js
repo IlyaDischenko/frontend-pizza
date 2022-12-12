@@ -5,8 +5,6 @@ import { getUserInfo, updateEmailAction, updateNameAction} from './userAsyncThun
 const initialState = {
   url: "/",
 
-  token: "",
-
   name: "",
   email: "",
   street: "",
@@ -115,14 +113,14 @@ export const userStateSlice = createSlice({
         if (action.payload.response_status == 200) {
             if (action.payload.server_status == 200) {
                 state.updatedMailStatus = "success"
-                state.user_data.email = state.updatedMail
+                state.email = state.updatedMail
             } else {
                 state.updatedMailStatus = "error"
-                state.updatedMail = state.user_data.email
+                state.updatedMail = state.email
             }
         } else if (action.payload.response_status == 422) {
             state.updatedMailStatus = "error"
-            state.updatedMail = state.user_data.email
+            state.updatedMail = state.email
         }
     },
     [updateEmailAction.rejected]: (state) => {
@@ -134,18 +132,17 @@ export const userStateSlice = createSlice({
         state.updatedNameStatus = "default"
     },
     [updateNameAction.fulfilled]: (state, action) => {
-        console.log('red',action.payload)
         if (action.payload.response_status == 200) {
             if (action.payload.server_status == 200) {
                 state.updatedNameStatus = "success"
-                state.user_data.name = state.updatedName
+                state.name = state.updatedName
             } else {
                 state.updatedNameStatus = "error"
-                state.updatedName = state.user_data.name
+                state.updatedName = state.name
             }
         } else if (action.payload.response_status == 422) {
             state.updatedNameStatus = "error"
-            state.updatedName = state.user_data.name
+            state.updatedName = state.name
         }
     },
     [updateNameAction.rejected]: (state) => {

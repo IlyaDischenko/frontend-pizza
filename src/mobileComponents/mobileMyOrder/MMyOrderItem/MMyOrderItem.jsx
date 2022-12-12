@@ -1,8 +1,16 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { backout_order } from './../../../redux/slices/orderStateSliceFolder/orderAsyncThunk';
 
 import s from './MMyOrderItem.module.scss'
 
 function MMyOrderItem({ id, pizzas, drink, promocode_item, street, house, apartment, comment, paytype, data, status, totalprice }) {
+    const order = useSelector((state) => state.order)
+    const popup = useSelector((state) => state.popup)
+
+    const dispatch = useDispatch()
+
     const pay = () => {
         if (paytype === "cash") {
             return "Наличными"
@@ -11,13 +19,13 @@ function MMyOrderItem({ id, pizzas, drink, promocode_item, street, house, apartm
         }
     }
 
-    const status_translater = () => {
-        if (status === "accepted") {
-            return "Готовится"
-        } else if (status === "deliver") {
-            return "Курьер в пути"
-        }
-    }
+    // const status_translater = () => {
+    //     if (status === "accepted") {
+    //         return "Готовится"
+    //     } else if (status === "deliver") {
+    //         return "Курьер в пути"
+    //     }
+    // }
 
     const size_translater = (i) => {
         if (i === 25) {
@@ -64,6 +72,14 @@ function MMyOrderItem({ id, pizzas, drink, promocode_item, street, house, apartm
         }
     } 
 
+    const backout_order_func = () => {
+        const info = {
+            token: popup.token,
+            order_id: order.order_id
+        }
+        dispatch(backout_order(info))
+    }
+
     return (
         <>
             <div className={s.my_order_item}>
@@ -93,14 +109,14 @@ function MMyOrderItem({ id, pizzas, drink, promocode_item, street, house, apartm
                     <div className={s.title}>Дата и время</div>
                     <div className={s.content}>{data.replace('T', ' ')}</div>
                 </div>
-                <div className={s.statusblock}>
+                {/* <div className={s.statusblock}>
                     <div className={s.title}>Статус</div>
                     <div className={s.content}>{status_translater()}</div>
-                </div>
+                </div> */}
                 <div className={s.footer}>
                     <div className={s.price}>{`${totalprice} ₽`}</div>
                     <div className={s.cancel}>
-                        <button onClick={() => alert(data.replace('T', ' '))}>Отменить</button>
+                        <button onClick={backout_order_func}>Отменить</button>
                     </div>
                 </div>
             </div>

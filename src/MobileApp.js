@@ -1,4 +1,6 @@
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
 
 
 import MMain from './mobileComponents/mobileMain/MMain'
@@ -8,9 +10,32 @@ import MCart from './mobileComponents/mobileCart/MCart'
 import MOrder from './mobileComponents/mobileOrder/MOrder'
 import MMyOrder from './mobileComponents/mobileMyOrder/MMyOrder'
 
+import { getUserInfo } from './redux/slices/UserStateSliceFolder/userAsyncThunk'
+
 import './MobileApp.css'
 
 function MobileApp() {
+  const popup = useSelector((state) => state.popup)
+  const dispatch = useDispatch()
+
+  async function check_token() {
+    if (popup.token !== '') {
+      const token = {'token': popup.token}
+      await dispatch(getUserInfo(token))
+    }
+  }
+
+
+  // setTimeout(function get_info() {
+  //     if (popup.token !== '') {
+  //       const token = {'token': popup.token}
+  //     dispatch(getUserInfo(token))}
+  // }, 5000)
+
+  React.useEffect(() => {
+    check_token()
+  }, [])
+
     return (
       <div className="App">
             <Routes>

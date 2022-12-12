@@ -46,10 +46,10 @@
 }
 
 .left_items {
-    width: 50%;
+    // width: 50%;
     height: 50px;
     justify-self: flex-start;
-    flex: 0 0 50%;
+    // flex: 0 0 50%;
     
     margin-right: 1px;
     margin-left: 25px;
@@ -70,16 +70,25 @@
     height: 50px;
     justify-content: right;
     align-items: center;
-    width: 50%;
-    flex: 0 0 50%;
+    // width: 50%;
+    // flex: 0 0 50%;
     margin-right: 25px;
     margin-left: 1px;
 
-    @media screen and (min-width:0px) and (max-width:559px) {
-        padding-left: 5px;
-        width: 369px;
+    // @media screen and (min-width:0px) and (max-width:736px) {
+    //     padding-left: 5px;
+    //     width: 369px;
 
-    }
+    // }
+}
+
+.number_text {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.01px;
+    cursor: pointer;
+    margin: 0 15px;
+    white-space: nowrap;
 }
 
 .item {
@@ -108,10 +117,7 @@
             color: #FF5925;
         }
     }
-    
-    // .iconimg {
-        
-    // }
+
     
     &:hover {
         .text {

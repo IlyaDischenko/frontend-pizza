@@ -89,7 +89,7 @@ function Profile() {
                     </div>
                 </div>
 
-                <div className={s.your_cart}>Тут будут все ваши заказы</div>
+                <div className={s.your_cart}>Скоро тут будут все ваши заказы</div>
                 <div  className={s.exit_button}>
                     <Link to="/">
                         <button onClick={exitUserReduser} >Выйти</button>

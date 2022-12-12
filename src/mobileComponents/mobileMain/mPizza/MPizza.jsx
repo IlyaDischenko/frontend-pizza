@@ -20,7 +20,7 @@ function MPizza() {
             </div>
             
             <div className={s.pizza_block}>
-                {   status == 'error' ? <div> Ошибка </div> :
+                {   status == 'error' ? <div> Произошла неизвестная ошибка, попробуйте перезагрузить страницу </div> :
                     status == 'loading' 
                     ? [...new Array(12)].map((_, index) => <MSkeleton key={index}/>)
                     : pizzas.map((item) => <MItemPizza key={item.id} {...item} />) 

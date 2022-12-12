@@ -6,7 +6,7 @@ import MMyOrderItem from './MMyOrderItem/MMyOrderItem'
 import s from './MMyOrder.module.scss'
 import MHeader from '../mobileHeader/MobileHeader'
 import { Link } from 'react-router-dom'
-import { get_orders } from './../../redux/slices/orderStateSliceFolder/orderAsyncThunk';
+import { get_order } from './../../redux/slices/orderStateSliceFolder/orderAsyncThunk';
 
 function MMyOrder() {
     const order = useSelector((state) => state.order)
@@ -17,9 +17,10 @@ function MMyOrder() {
     React.useEffect(() => {
         if (order.status === 200) {
             const info = {
-                token: popup.token
+                token: popup.token,
+                order_id: order.order_id
             }
-            dispatch(get_orders(info))
+            dispatch(get_order(info))
         }
     },[order.status])
 
@@ -41,9 +42,7 @@ function MMyOrder() {
                 <MHeader />
                 <div className={s.success_wrapper}>
                     
-                    {orders.map((ord) => (
-                        <MMyOrderItem key={ord.id} {...ord} />
-                    ))}
+                {orders ? <MMyOrderItem key={orders.id} {...orders} />: <></>}
 
                     <div className={s.button}>
                         <Link to="/" >

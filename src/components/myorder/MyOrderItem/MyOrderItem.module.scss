@@ -1,11 +1,16 @@
 .my_order_item {
-    max-width: 700px;
+    width: 700px;
     background-color: #d9d9d92e;
-    margin: 10px auto;
+    margin: 10px auto 30px;
     padding: 5px 0;
     border-radius: 15px;
     box-shadow: rgb(6 5 50 / 18%) 0px 4px 30px;
-    
+    @media (max-width: 830px) {
+        width: 500px;
+    }
+    @media (max-width: 530px) {
+        width: 300px;
+    }
 }
 
 .compoundOrder {

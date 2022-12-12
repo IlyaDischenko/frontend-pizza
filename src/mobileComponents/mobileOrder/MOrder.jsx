@@ -1,14 +1,19 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
 
 import s from './MOrder.module.scss'
 
 import MHeader from '../mobileHeader/MobileHeader'
 import { Link } from 'react-router-dom'
 import { updateApartment, updateEntrance, updateFloor, updateHouse, updateStreet } from '../../redux/slices/UserStateSliceFolder/userSlice';
-import { changeComment } from '../../redux/slices/orderStateSliceFolder/orderSlise';
-import { get_street, set_order } from '../../redux/slices/orderStateSliceFolder/orderAsyncThunk';
+import { changeComment, clearOrder } from '../../redux/slices/orderStateSliceFolder/orderSlise';
+import { get_street, set_order, get_order } from '../../redux/slices/orderStateSliceFolder/orderAsyncThunk';
 import { setStreet } from '../../redux/slices/UserStateSliceFolder/userSlice';
+import { clearDrinkItems } from '../../redux/slices/cartDrinkSlice';
+import { clearPizzaItems } from '../../redux/slices/cartPizzaSlice';
+import { clear_promocode } from '../../redux/slices/cartPromoSlice';
 
 function MOrder() {
     const cartPizzaState = useSelector((state) => state.cartPizza)
@@ -18,13 +23,72 @@ function MOrder() {
     const order = useSelector((state) => state.order)
     const popup = useSelector((state) => state.popup)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [showStreetList, setShowStreetList] = React.useState(false)
+    const [render, setRender] = React.useState(false)
 
+    React.useEffect( () => {
+        if (render) {
+            if (order.status === 200) {
+                navigate('/myorder')
+    
+                const info = {
+                    token: popup.token,
+                    order_id: order.order_id
+                }
+                dispatch(get_order(info))
+                dispatch(clearDrinkItems())
+                dispatch(clearPizzaItems())
+                dispatch(clear_promocode())
+                dispatch(clearOrder())
+                notify_success()
+            } else if (order.status === 1) {
+                // notify()
+            } else if (order.status === 2) {
+                // notify()
+                
+            } else if (order.status === 401) {
+                console.log('asdsadasdasd')
+                    notify()
+                
+            }  else {
+                notify()
+            } 
+        } 
+    },[order.status])
+
+    React.useEffect(() => {
+        if (!render) {
+            setRender(true)
+        }
+    },[])
 
     React.useEffect(() => {
         dispatch(get_street())
     },[])
+
+    const notify = () => toast.error(`${order.order_status_message}`, {
+        position: "bottom-left",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        })
+
+    const notify_success = () => toast.success(`Заказ успешно оформлен`, {
+        position: "bottom-left",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        })
 
     const setStreetValue = (i) => {
         dispatch(setStreet(i))
@@ -87,6 +151,7 @@ function MOrder() {
             comment: comment,
         }
         dispatch(set_order(inf))
+
     }
 
     const classPreloader = () => {
@@ -125,10 +190,13 @@ function MOrder() {
                 </div>
             )
         } else if (findet_street) {
+
             return (
-                <Link to="/myorder" className={s.send_order_link}>
+                // <Link to="/myorder" 
+                <div className={s.send_order_link}>
                     <button className={s.send_order} onClick={send_order}>Оформить заказ</button>
-                </Link>
+                </div>
+                // </Link>
             )
         }
     }
@@ -171,7 +239,6 @@ function MOrder() {
             <MHeader />
             <div className={s.adress_block} onClick={() => setShowStreetList(false)}>
                 <div className={s.title_first} >Ваш адрес</div>
-                <script type="text/javascript" charSet="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor:a45d758e1a8c03f71e9001c2a97fe8db4fafc06b743c39270150f0613c3ecd1c&amp;width=540&amp;height=540&amp;lang=ru_RU&amp;scroll=true"></script>
                 <div className={s.street_block} onClick={e => e.stopPropagation()}>
                     <div className={s.info_message}>
                         {info_message()}
@@ -248,6 +315,18 @@ function MOrder() {
                 </Link>
                 {successOrGetStreet()}
             </div>
+            <ToastContainer 
+                        position="top-left"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick = {false}
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="dark"
+                        />
         </>
     )
 }

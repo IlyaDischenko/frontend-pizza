@@ -19,7 +19,7 @@ function Pizza() {
             </div>
             
             <div className={s.pizza_block}>
-                {   status == 'error' ? <div> Ошибка </div> :
+                {   status == 'error' ? <div> Произошла неизвестная ошибка, попробуйте перезагрузить страницу </div> :
                     status == 'loading' 
                     ? [...new Array(12)].map((_, index) => <Skeleton key={index}/>)
                     : pizzas.map((item) => <ItemPizza key={item.id} {...item} />) 
