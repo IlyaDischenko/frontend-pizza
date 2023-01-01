@@ -87,8 +87,10 @@ export const popupSlice = createSlice({
 
     exitUser: (state) => {
         state.is_login = false
+        state.can_send_code = false
         state.number = "+7"
         state.code_sended = false
+        state.can_confirm_code = false
         window.localStorage.setItem('token', '')
         state.token = ''
     },

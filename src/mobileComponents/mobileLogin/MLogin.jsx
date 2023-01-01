@@ -122,7 +122,7 @@ function MLogin() {
                         </div>
                  
                         <div className={s.footer_active}>
-                        <button onClick={popup.can_send_code ? getCo : passForOnClick} className={popup.can_send_code ? s.btn_can : s.btn}>Выслать код</button>
+                        <button onClick={popup.can_send_code ? getCo : passForOnClick} className={popup.can_send_code ? s.btn_can : s.btn}>Продолжить</button>
                         </div>
                     </div>
                 </div>
@@ -135,9 +135,11 @@ function MLogin() {
                         <div className={s.divheader}>
                             <div className={s.maintext}>Вход на сайт</div>
                             <div className={s.numberTitle}>
-                                Отправили сообщение с кодом на <div><span>{popup.number}</span> <span className={s.orange} onClick={setSendetFalse}>Изменить</span></div>
+                                Звонок поступит на <div><span>{popup.number}</span> <span className={s.orange} onClick={setSendetFalse}>Изменить</span></div>
                             </div>
                         </div>
+
+                        <div className={s.input_info}>Введите последние 4 цифры номера</div>
                         
                         <div onKeyDown={e => onKeyConfirm(e)} className={s.input_items_active}>
                         
@@ -149,7 +151,7 @@ function MLogin() {
                         
                         <div className={s.footer_active}>
         
-                        <button onClick={popup.can_confirm_code ? confirmCo : passForOnClick} className={popup.can_confirm_code ? s.btn_can : s.btn}>Подтвердить код</button>
+                        <button onClick={popup.can_confirm_code ? confirmCo : passForOnClick} className={popup.can_confirm_code ? s.btn_can : s.btn}>Подтвердить</button>
                         </div>
                     </div>
                 </div>

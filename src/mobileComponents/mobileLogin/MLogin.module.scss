@@ -43,8 +43,7 @@
 
 
 .divheader {
-    transform: scale(1);
-    transition: 0.2s all;
+
     
 
     .maintext {
@@ -79,47 +78,16 @@
 
 }
 
-.divheader {
-    transition: 0.2s all;
-    transform: scale(1);
-    margin-bottom: 20px;
-
-
-    .maintext {
-        font-size: 35px;
-        font-weight: 600;
-        margin-bottom: 5px;
-    }
-
-    .description {
-        font-size: 16px;
-        font-weight: 500;
-        color: rgb(92, 99, 112);
-    }
-
-    .numberTitle {
-        display: flex;
-        align-items: flex-start;
-        flex-direction: column;
-        color: rgb(92, 99, 112);
-        div {
-            span {
-                color: rgb(0, 0, 0);
-            }
-            .orange {
-                color: #FF5925;
-                cursor: pointer;
-            }
-        }
-
-    }
+.input_info {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(92, 99, 112);
 }
 
 
-
 .number {
-    transform: scale(1);
-    transition: 0.2s all;
+
+
     margin-top: 15px;
     margin-bottom: 15px;
     .title {
