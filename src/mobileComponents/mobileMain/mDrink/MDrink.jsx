@@ -9,7 +9,7 @@ import MSkeleton from './../mSkeleton/MSkeleton'
 
 function MDrink() {
 
-    const { drinks, status } = useSelector((state) => state.items)
+    const { drinks, drinks_status } = useSelector((state) => state.app)
 
 
     return (
@@ -19,8 +19,8 @@ function MDrink() {
             </div>
             
             <div className={s.drink_block}>
-                {   status == 'error' ? <div> Произошла неизвестная ошибка, попробуйте перезагрузить страницу </div> :
-                    status == 'loading' 
+                {   
+                    drinks_status == 'loading' 
                     ? [...new Array(8)].map((_, index) => <MSkeleton key={index}/>)
                     : drinks.map((item) => <MItemDrink key={item.id} {...item} />) 
                 }

@@ -10,7 +10,7 @@ import cartPizzaSlice from '../../../redux/slices/cartPizzaSlice'
 
 function MPizza() {
 
-    const { pizzas, status } = useSelector((state) => state.items)
+    const { pizzas, pizzas_status } = useSelector((state) => state.app)
 
 
     return (
@@ -20,8 +20,8 @@ function MPizza() {
             </div>
             
             <div className={s.pizza_block}>
-                {   status == 'error' ? <div> Произошла неизвестная ошибка, попробуйте перезагрузить страницу </div> :
-                    status == 'loading' 
+                {   
+                    pizzas_status == 'loading' 
                     ? [...new Array(12)].map((_, index) => <MSkeleton key={index}/>)
                     : pizzas.map((item) => <MItemPizza key={item.id} {...item} />) 
                 }

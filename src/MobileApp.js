@@ -1,7 +1,9 @@
 import React from 'react';
+import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 
+import { getItems } from './redux/slices/AppState/appAsyncThunk'
 
 import MMain from './mobileComponents/mobileMain/MMain'
 import MLogin from './mobileComponents/mobileLogin/MLogin'
@@ -16,7 +18,15 @@ import './MobileApp.css'
 
 function MobileApp() {
   const popup = useSelector((state) => state.popup)
+  const { work, noWorkMessage } = useSelector((state) => state.app)
   const dispatch = useDispatch()
+
+  const getAllItems = async () => {
+    dispatch(getItems())
+  }
+  React.useEffect(() => {
+      getAllItems()
+  },[])
 
   async function check_token() {
     if (popup.token !== '') {
@@ -26,16 +36,19 @@ function MobileApp() {
   }
 
 
-  // setTimeout(function get_info() {
-  //     if (popup.token !== '') {
-  //       const token = {'token': popup.token}
-  //     dispatch(getUserInfo(token))}
-  // }, 5000)
 
   React.useEffect(() => {
     check_token()
   }, [])
 
+
+  if (work === false) {
+    return (
+      <main className='noWorkContainer'>
+        <div className='noWorInfo'>{noWorkMessage}</div>
+      </main>
+    )
+  } else {
     return (
       <div className="App">
             <Routes>
@@ -48,7 +61,8 @@ function MobileApp() {
                 <Route path="*" element={<h1>Not found</h1>} />
             </Routes>
       </div>
-    );
+    )
   }
+}
   
   export default MobileApp;

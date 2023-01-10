@@ -17,19 +17,19 @@ function ItemPizza({ id, title, description, photo, price }) {
     const AddedCount = ItemState ? ItemState.count : 0
     // const haveDescription = ItemState ? ItemState.description : false
 
-    const notify = () => toast.success(`Добавлено: ${title}`, {
-        position: "bottom-left",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        })
+    // const notify = () => toast.success(`Добавлено: ${title}`, {
+    //     position: "bottom-left",
+    //     autoClose: 2000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: false,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "dark",
+    //     })
 
     const onClickAdd = () => {
-        notify()
+        // notify()
         const item = {
             id,
             title,
@@ -87,7 +87,7 @@ function ItemPizza({ id, title, description, photo, price }) {
                     </div>
                 </div>
             </div>
-            <ToastContainer 
+            {/* <ToastContainer 
                         position="bottom-left"
                         autoClose={2000}
                         hideProgressBar={false}
@@ -98,7 +98,7 @@ function ItemPizza({ id, title, description, photo, price }) {
                         draggable
                         pauseOnHover
                         theme="dark"
-                        />
+                        /> */}
         </div>
     )
 }

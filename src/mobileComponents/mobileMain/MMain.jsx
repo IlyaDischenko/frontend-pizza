@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchItems } from '../../redux/slices/ItemStateSliceFolder/ItemsSlice'
 
 import MPizza from './mPizza/MPizza'
 import s from './MMain.module.scss'
@@ -13,14 +12,7 @@ function Main() {
     const cartPizzaState = useSelector((state) => state.cartPizza)
     const cartDrinkState = useSelector((state) => state.cartDrink)
     const cartPromoState = useSelector((state) => state.promo)
-    const dispatch = useDispatch()
-
-    const getItems = async () => {
-        dispatch(fetchItems())
-    }
-    React.useEffect(() => {
-        getItems()
-    },[])
+    const { drinks_view } = useSelector((state) => state.app)
 
 
     const count = () => {
@@ -51,12 +43,12 @@ function Main() {
     return (
         <>
             <MHeader />
-            {/* <Link to='/myorder'>
-                <button>myorder</button>
-            </Link> */}
+
             <main className={s.main}>
                 <MPizza />
-                <MDrink />
+                {
+                    drinks_view ? <MDrink /> : ''
+                }
                 {cartButton()}
             </main>
         </>

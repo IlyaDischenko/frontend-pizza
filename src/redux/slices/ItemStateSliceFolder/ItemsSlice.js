@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import { localUrl, url } from '../../../Config'
+import { url } from '../../../Config'
 
 export const fetchItems = createAsyncThunk('items/fetchItems', async () => {
-    const { data } = await axios.get(`${localUrl}/get/all`)
+    const { data } = await axios.get(`${url}/get/all/web`)
     return data
 })
 
@@ -12,6 +12,8 @@ const initialState = {
   pizzas: [],
   drinks: [],
   status: 'loading',
+  load_pizza_status: 'loading',
+  load_drink_status: 'default',
   popupinfo: false
 }
 
@@ -45,6 +47,6 @@ export const itemsSlice = createSlice({
 })
       
   
-export const { setPopupInfoTrue, setPopupInfoFalse, update_promocode } = itemsSlice.actions
+export const { setPopupInfoTrue, setPopupInfoFalse } = itemsSlice.actions
 
 export default itemsSlice.reducer

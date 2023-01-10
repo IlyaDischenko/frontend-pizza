@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { useSelector } from 'react-redux'
-// import { addToRedux, fetchPizzas } from '../../../redux/slices/ItemsSlice';
 
 import s from './Drink.module.scss'
 import ItemDrink from './itemDrink/ItemDrink'
@@ -10,7 +9,7 @@ import Skeleton from './../pizza/Skeleton/Skeleton'
 
 function Drink() {
 
-    const { drinks, status } = useSelector((state) => state.items)
+    const { drinks, drinks_status } = useSelector((state) => state.app)
 
 
     return (
@@ -20,8 +19,8 @@ function Drink() {
             </div>
             
             <div className={s.drink_block}>
-                {   status == 'error' ? <div> Произошла неизвестная ошибка, попробуйте перезагрузить страницу </div> :
-                    status == 'loading' 
+                {  
+                    drinks_status == 'loading' 
                     ? [...new Array(12)].map((_, index) => <Skeleton key={index}/>)
                     : drinks.map((item) => <ItemDrink key={item.id} {...item} />) 
                 }

@@ -1,45 +1,24 @@
 import React from 'react'
-// import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
-import { useDispatch } from 'react-redux'
-import { fetchItems } from '../redux/slices/ItemStateSliceFolder/ItemsSlice';
+import { useSelector } from 'react-redux'
 
 import Pizza from '../components/main/pizza/Pizza'
 import s from '../components/main/Main.module.scss'
 import Drink from '../components/main/drink/Drink';
-import Loading from '../components/Loading/Loading';
-// import { Link } from 'react-router-dom';
 
-function MMain() {
+function Main() {
 
-    
-    const dispatch = useDispatch()
-
-    const getItems = async () => {
-        dispatch(fetchItems())
-    }
-
-
-    React.useEffect(() => {
-        getItems()
-    },[])
+    const { drinks_view } = useSelector((state) => state.app)
 
 
     return (
         <main className={s.main}>
-            {/* <Link to='/order'>
-                <button>orderorder</button>
-            </Link>
-            <Link to='/myorder'>
-                <button>mymymymymymymmymy</button>
-            </Link> */}
-            {/* <button onClick={notify}>toastify</button> */}
-            {/* <Loading /> */}
             <Pizza />
-            <Drink />
+            {
+                drinks_view ? <Drink /> : ''
+            }
         </main>
     )
 }
 
-export default MMain
+export default Main
