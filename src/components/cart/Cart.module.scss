@@ -1,6 +1,6 @@
 .rootCart {
     width: 700px;
-    height: calc(100vh - 62px);
+    min-height: calc(100vh - 62px);
     margin: 0 auto;
     display: flex;
     flex-direction: column;

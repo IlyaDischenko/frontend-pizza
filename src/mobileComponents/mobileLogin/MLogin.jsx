@@ -135,7 +135,7 @@ function MLogin() {
                         <div className={s.divheader}>
                             <div className={s.maintext}>Вход на сайт</div>
                             <div className={s.numberTitle}>
-                                Отправили сообщение с кодом на <div><span>{popup.number}</span> <span className={s.orange} onClick={setSendetFalse}>Изменить</span></div>
+                                Звонок поступит на <div><span>{popup.number}</span> <span className={s.orange} onClick={setSendetFalse}>Изменить</span></div>
                             </div>
                         </div>
                         
